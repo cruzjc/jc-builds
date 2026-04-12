@@ -2,7 +2,7 @@
 projectSlug: "jc-builds-site"
 date: "2026-04-12"
 title: "Forced the deploy job onto Node 24 ahead of GitHub's runner switch"
-summary: "Added GitHub's FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 workflow env so the deploy job runs JavaScript actions on Node 24 now, clearing the remaining Node 20 deprecation warning before the June 2, 2026 runner default switch."
+summary: "Added GitHub's FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 workflow env so the deploy job exercises the Node 24 runner path ahead of the June 2, 2026 default switch, even though configure-aws-credentials still publishes a Node 20 target."
 links:
   - label: "Project page"
     url: "https://d449i4mct1wst.cloudfront.net/projects/jc-builds-site/"
@@ -13,6 +13,6 @@ links:
 source: "agent"
 ---
 
-GitHub's runner deprecation note now gives a concrete date for the default runtime shift: JavaScript-based actions begin moving to Node 24 on June 2, 2026. The deploy workflow already used current action majors, but `aws-actions/configure-aws-credentials@v5` still showed one remaining Node 20 warning in the run annotations.
+GitHub's runner deprecation note now gives a concrete date for the default runtime shift: JavaScript-based actions begin moving to Node 24 on June 2, 2026. The deploy workflow already used current action majors, but `aws-actions/configure-aws-credentials@v5` still publishes a Node 20 target in its action metadata.
 
-This update opts the deploy job into `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` now instead of waiting for the platform default to change. That keeps the S3 and CloudFront publish path on the future runner behavior immediately, gives earlier signal if any marketplace action still breaks under Node 24, and removes the last deprecation warning from the deployment pipeline.
+This update opts the deploy job into `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` now instead of waiting for the platform default to change. The latest deployment run confirms the job is using the Node 24 path already, even though GitHub still emits an annotation because the AWS credentials action itself has not been republished with a Node 24 target yet.
