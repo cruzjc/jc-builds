@@ -1,0 +1,16 @@
+---
+projectSlug: "jc-builds-site"
+date: "2026-04-12"
+title: "Refreshed the deploy workflow to Node 24-ready action versions"
+summary: "Updated the deploy workflow to current major releases for checkout, setup-node, pnpm/action-setup, and configure-aws-credentials to clear the GitHub Node 20 deprecation warning."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/jc-builds-site/"
+  - label: "Workflow file"
+    url: "https://github.com/cruzjc/jc-builds/blob/main/.github/workflows/deploy.yml"
+source: "agent"
+---
+
+The deploy workflow was already succeeding, but GitHub still warned that several marketplace actions were running on deprecated Node 20 action runtimes. The workflow now uses the current major releases for checkout, setup-node, pnpm setup, and AWS credential configuration so the publish path stays compatible with the GitHub-hosted runner changes scheduled for 2026.
+
+This is a maintenance update rather than a behavior change. The deploy contract stays the same: build the Astro site, assume the tracked GitHub OIDC role, sync the static output to S3, and invalidate the CloudFront distribution.
