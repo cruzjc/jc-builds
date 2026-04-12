@@ -1,0 +1,207 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_NAME, absoluteUrl, formatCalendarDate, formatDate, resolveSite } from '../../lib/constants';
+import { getAllProjects, getProjectBySlug } from '../../lib/content';
+
+export const getStaticPaths = (async () => {
+	const projects = await getAllProjects();
+
+	return projects.map((project) => ({
+		params: { slug: project.entry.data.slug },
+		props: { slug: project.entry.data.slug },
+	}));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.props;
+const project = await getProjectBySlug(slug);
+
+if (!project) {
+	throw new Error(`Project not found for slug: ${slug}`);
+}
+
+const { Content } = await render(project.entry);
+const renderedUpdates = await Promise.all(
+	project.updates.map(async (update) => {
+		const rendered = await render(update);
+		return { update, Content: rendered.Content };
+	}),
+);
+const site = resolveSite(Astro.site);
+const canonicalPath = `/projects/${project.entry.data.slug}/`;
+const isReference = project.entry.data.surface === 'reference';
+
+const jsonLd = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'CreativeWork',
+		name: project.entry.data.title,
+		description: project.entry.data.summary,
+		url: absoluteUrl(canonicalPath, site).toString(),
+		dateModified: project.lastActivity.toISOString(),
+		keywords: project.entry.data.tags.join(', '),
+	},
+];
+---
+
+<BaseLayout
+	title={`${project.entry.data.title} | ${SITE_NAME}`}
+	description={project.entry.data.summary}
+	canonicalPath={canonicalPath}
+	jsonLd={jsonLd}
+>
+	<div class="page-shell">
+		<div class="page-grid">
+			<article class="project-hero">
+				<div>
+					<p class="kicker">{isReference ? 'Reference page' : 'Project page'}</p>
+					<h1>{project.entry.data.title}</h1>
+				</div>
+				<div class="status-line">
+					<span class="status-pill">{project.entry.data.status}</span>
+					<span class="muted">Last activity {formatDate(project.lastActivity)}</span>
+				</div>
+				<p class="lede" style="font-size: 1.05rem;">{project.entry.data.summary}</p>
+				<div class="project-links">
+					{project.repoUrls.map((url) => <a class="button--ghost" href={url}>Repository</a>)}
+					{project.entry.data.demoUrl && <a class="button" href={project.entry.data.demoUrl}>Open demo</a>}
+					<a class="button--ghost" href="/updates/index.json">Updates JSON</a>
+				</div>
+				<div class="project-hero__visual">
+					<img src={project.entry.data.heroImage} alt="" width="1200" height="800" />
+				</div>
+				<section class="project-summary">
+					<div class="section-heading" style="margin-bottom: 0; padding-bottom: 0.8rem;">
+						<div>
+							<p class="kicker">Stable summary</p>
+							<h2 style="font-size: 2.2rem;">What this project is.</h2>
+						</div>
+					</div>
+					<div class="meta-grid">
+						<div class="meta-item">
+							<strong>Agent summary</strong>
+							<p class="muted">{project.entry.data.agentSummary}</p>
+						</div>
+						<div class="meta-item">
+							<strong>Stage</strong>
+							<p class="muted">{project.entry.data.labStage}</p>
+						</div>
+						<div class="meta-item">
+							<strong>Surface</strong>
+							<p class="muted">{project.entry.data.surface}</p>
+						</div>
+						<div class="meta-item">
+							<strong>Tags</strong>
+							<div class="tag-list">
+								{project.entry.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+							</div>
+						</div>
+						<div class="meta-item">
+							<strong>Last updated field</strong>
+							<p class="muted">{formatCalendarDate(project.entry.data.lastUpdated)}</p>
+						</div>
+					</div>
+				</section>
+				<section class="rich-copy">
+					<Content />
+				</section>
+				<section class="update-log" aria-labelledby="project-log-heading">
+					<header class="section-heading">
+						<div>
+							<p class="kicker">Full log</p>
+							<h2 id="project-log-heading">Dated updates</h2>
+						</div>
+						<p class="lede">Every update stays attached to its project and gets a stable anchor.</p>
+					</header>
+					{
+						renderedUpdates.length > 0 ? (
+							renderedUpdates.map(({ update, Content: UpdateContent }) => (
+								<article class="project-log-entry" id={`update-${update.id}`}>
+									<div class="project-log-entry__content">
+										<div class="status-line">
+											<span class="kicker">{update.data.date.toISOString().slice(0, 10)}</span>
+											<span class="muted">{update.data.source}</span>
+										</div>
+										<h3>{update.data.title}</h3>
+										<p class="muted">{update.data.summary}</p>
+										{update.data.links.length > 0 && (
+											<div class="detail-links">
+												{update.data.links.map((link) => (
+													<a href={link.url}>{link.label}</a>
+												))}
+											</div>
+										)}
+									</div>
+									<div class="project-log-entry__body">
+										<UpdateContent />
+									</div>
+								</article>
+							))
+						) : (
+							<article class="project-log-entry">
+								<div class="project-log-entry__content">
+									<h3>No dated updates yet.</h3>
+									<p class="muted">
+										{isReference
+											? 'This reference page is meant to be copied as a starting point for new project records.'
+											: 'Add a dated entry under src/content/updates when this project changes.'}
+									</p>
+								</div>
+							</article>
+						)
+					}
+				</section>
+			</article>
+
+			<aside class="machine-rail" aria-label="Project machine-readable details">
+				<section class="detail-grid">
+					<div class="detail-block">
+						<strong>Surface</strong>
+						<p class="muted">
+							{isReference
+								? 'Reference page. Publicly accessible, but excluded from listed project feeds.'
+								: 'Listed project. Included in homepage listings, JSON indexes, and update feeds.'}
+						</p>
+					</div>
+					<div class="detail-block">
+						<strong>Canonical URL</strong>
+						<a href={canonicalPath}>{absoluteUrl(canonicalPath, site).toString()}</a>
+					</div>
+					<div class="detail-block">
+						<strong>Project index</strong>
+						<a href="/projects/index.json">/projects/index.json</a>
+					</div>
+					<div class="detail-block">
+						<strong>Update index</strong>
+						<a href="/updates/index.json">/updates/index.json</a>
+					</div>
+					<div class="detail-block">
+						<strong>Linked repos</strong>
+						{project.repoUrls.length > 0 ? (
+							<ul>
+								{project.repoUrls.map((url) => (
+									<li><a href={url}>{url}</a></li>
+								))}
+							</ul>
+						) : (
+							<p class="muted">No public repository link is published yet.</p>
+						)}
+					</div>
+					<div class="detail-block">
+						<strong>Sync snapshot</strong>
+						{project.sync?.available ? (
+							<ul>
+								<li>Branch: {project.sync.branch ?? 'unknown'}</li>
+								<li>Dirty: {project.sync.dirty ? 'yes' : 'no'}</li>
+								<li>Last commit: {project.sync.lastCommitSubject ?? 'not available'}</li>
+							</ul>
+						) : (
+							<p class="muted">{project.sync?.error ?? 'No local sync data is attached.'}</p>
+						)}
+					</div>
+				</section>
+			</aside>
+		</div>
+	</div>
+</BaseLayout>

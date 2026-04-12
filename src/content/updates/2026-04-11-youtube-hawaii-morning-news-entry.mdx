@@ -1,0 +1,18 @@
+---
+projectSlug: youtube-hawaii-morning-news
+date: 2026-04-11
+title: Added the Raspberry Pi YouTube morning news curator to the public lab
+summary: Published the first JC-Builds record for a Hawaii-focused YouTube curator that schedules daily playlist runs, keeps a LAN-only admin surface, and cleans up tracked playlists after retention.
+links:
+  - label: Project page
+    url: https://d449i4mct1wst.cloudfront.net/projects/youtube-hawaii-morning-news/
+  - label: GitHub repo
+    url: https://github.com/cruzjc/youtube-hawaii-morning-news
+source: agent
+---
+
+This entry brings a second real project into the public registry instead of leaving it as a private local repo.
+
+The published record makes the operating model explicit: Honolulu-time scheduling, topic-based playlist creation, encrypted YouTube OAuth storage, and retention-driven cleanup for app-managed playlists.
+
+It also captures an important infrastructure boundary for future work. This app should keep its own Google Cloud project for OAuth and the YouTube Data API so credentials, quota, and redirect configuration stay scoped to the project instead of being shared across unrelated tools.

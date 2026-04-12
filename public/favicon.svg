@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">JC-Builds Mark</title>
+  <desc id="desc">A geometric mark for the JC-Builds public lab.</desc>
+  <defs>
+    <linearGradient id="labGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd3a5" />
+      <stop offset="45%" stop-color="#f36c4f" />
+      <stop offset="100%" stop-color="#5f1d17" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="32" fill="#0f1116" />
+  <path d="M28 28h44v16H44v20h24v16H44v20h28v16H28V28Z" fill="#f4efe6" />
+  <path d="M108 28 74 64l34 36H86L52 64l34-36h22Z" fill="url(#labGlow)" />
+  <circle cx="92" cy="64" r="8" fill="#f4efe6" />
+</svg>

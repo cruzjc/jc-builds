@@ -1,0 +1,44 @@
+---
+slug: "project-reconciler-template"
+title: "Project Reconciler Template"
+summary: "Reusable Python template for reconcile-first project maintenance with durable specs, repo maps, log observation, and report-driven scheduled runs."
+agentSummary: "Python maintenance template that keeps human and agent context aligned through durable specs, repo maps, cautious git reconciliation, scheduler-safe runner phases, and timestamped reports."
+status: "active"
+surface: "listed"
+featured: false
+tags:
+  - "python"
+  - "automation"
+  - "maintenance"
+  - "ai-agents"
+  - "template"
+repoUrls:
+  - "https://github.com/cruzjc/project-reconciler-template"
+heroImage: "/art/project-reconciler-template.svg"
+lastUpdated: "2026-04-12"
+order: 3
+labStage: "building"
+---
+
+## Objective
+
+This template exists to make recurring repository maintenance safe enough for automation without hiding the operating model.
+
+A human operator and a maintenance agent both get the same durable context through a project spec, operating rules, a stable runner contract, and generated map artifacts. The goal is to reconcile a repo with its intended state, not to let a scheduler mutate it blindly.
+
+## How it works
+
+The maintenance loop stays intentionally explicit:
+
+- `PROJECT_SPEC.md`, `AGENT_RULES.md`, `RUNNER_CONTRACT.md`, and `REPO_MAP.md` define the durable project context
+- `scripts/run_maintenance.py` follows fixed phases: lock, reconcile, map, observe, agent, validate, report
+- reconcile is fast-forward-only and stops when the workspace is dirty or diverged before any maintenance work runs
+- reports, inbox summaries, and repo-map refreshes leave behind evidence of what was observed, changed, or blocked
+
+That gives the template a clear safety boundary for scheduled runs while still leaving room for project-specific automation later.
+
+## Current state
+
+The repo already includes bootstrap prompts, a Python runner, repo-map generation, Linux and Windows scheduling scripts, validation checks, and report artifacts from recent maintenance runs.
+
+It is still intentionally a template rather than a turnkey maintainer. `PROJECT_SPEC.md` still carries placeholders so each adopting repo can define its own goal, protected paths, runtime constraints, and acceptance checks before automatic maintenance is enabled.

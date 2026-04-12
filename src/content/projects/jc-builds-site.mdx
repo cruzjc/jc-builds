@@ -1,0 +1,50 @@
+---
+slug: jc-builds-site
+title: JC-Builds Site
+summary: A public project registry for JC-Builds that stays readable for humans, crawlable for agents, and useful as a central update log.
+agentSummary: Static Astro site with listed and reference project pages, dated project updates, JSON indexes, RSS, llms.txt, and a public template entry for future records.
+status: active
+surface: listed
+featured: true
+tags:
+  - astro
+  - portfolio
+  - accessibility
+  - ai-agents
+repoUrls: []
+heroImage: /art/jc-builds-site.svg
+lastUpdated: "2026-04-11"
+order: 1
+labStage: building
+---
+
+## Objective
+
+The site exists to do three jobs without forcing a tradeoff between them:
+
+- give human visitors a fast read on what JC-Builds is actively building
+- give browsing agents a stable surface with predictable routes and reusable content patterns
+- keep project changes visible through dated entries that can act as a public update log
+
+That means no client-side-only content model, no hidden project facts, and no dependence on private dashboards for the canonical project state.
+
+## How the model works
+
+The operating model stays intentionally plain:
+
+- listed projects are the public portfolio records
+- reference pages remain public, but do not join the main portfolio feeds
+- dated updates are append-only project log entries
+- machine-readable routes expose the current published state without requiring HTML-only discovery
+
+## Update workflow
+
+The site is meant to be updated by agents through normal repo workflows. After a new app or project exists, an agent can:
+
+1. use `pnpm new:project` to scaffold a new project record or revise an existing entry under `src/content/projects`
+2. use `pnpm new:update` to create a dated post under `src/content/updates`
+3. optionally register a local repository in `project-sync.config.json`
+4. run the build so the HTML, JSON, RSS, and `llms.txt` surfaces stay in sync
+5. push through git and let GitHub Actions handle the production AWS publish after merge to `main`
+
+That keeps the public site, the machine-readable routes, and the git-authored history aligned.

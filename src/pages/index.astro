@@ -1,0 +1,267 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+	SITE_DESCRIPTION,
+	SITE_NAME,
+	SITE_TITLE,
+	absoluteUrl,
+	formatDateTime,
+	resolveSite,
+} from '../lib/constants';
+import { getContentSnapshotMeta, getProjects, getUpdates } from '../lib/content';
+
+const [projects, updates] = await Promise.all([getProjects(), getUpdates()]);
+const featuredProjects = projects.filter((project) => project.entry.data.featured);
+const projectsForHomepage = (featuredProjects.length > 0 ? featuredProjects : projects).slice(0, 3);
+const latestUpdates = updates.slice(0, 6);
+const syncMeta = getContentSnapshotMeta();
+const site = resolveSite(Astro.site);
+const activeProjects = projects.filter((project) => project.entry.data.status === 'active').length;
+
+const jsonLd = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: SITE_NAME,
+		url: site.toString(),
+		description: SITE_DESCRIPTION,
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'CollectionPage',
+		name: SITE_TITLE,
+		description: SITE_DESCRIPTION,
+		url: site.toString(),
+		hasPart: projectsForHomepage.map((project) => ({
+			'@type': 'CreativeWork',
+			name: project.entry.data.title,
+			url: absoluteUrl(`/projects/${project.entry.data.slug}/`, site).toString(),
+		})),
+	},
+];
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} canonicalPath="/" jsonLd={jsonLd}>
+	<section class="hero">
+		<div class="hero__inner">
+			<div class="hero__copy">
+				<div class="eyebrow" data-reveal>Public project registry</div>
+				<h1 data-reveal>JC-Builds keeps project pages stable and project updates dated.</h1>
+				<p data-reveal>
+					This site is the public record for JC-Builds work. Humans get a readable overview, browsing agents
+					get predictable routes, and project changes land as normal git-authored entries instead of hidden
+					dashboard state.
+				</p>
+				<div class="hero__actions" data-reveal>
+					<a class="button" href="#projects">Browse published projects</a>
+					<a class="button--ghost" href="/about/">Read how the site works</a>
+				</div>
+			</div>
+			<aside class="hero-signal" aria-labelledby="signal-title" data-reveal>
+				<div class="eyebrow">Live surface</div>
+				<h2 id="signal-title" style="margin: 0; font-size: 1.35rem;">Current signal</h2>
+				<ul class="signal-list">
+					<li>
+						<span class="signal-index">01</span>
+						<a href="#projects">{projects.length} listed projects</a>
+						<span class="signal-status">{activeProjects} active now</span>
+					</li>
+					<li>
+						<span class="signal-index">02</span>
+						<a href="#updates">{latestUpdates.length} recent updates</a>
+						<span class="signal-status">dated log</span>
+					</li>
+					<li>
+						<span class="signal-index">03</span>
+						<a href="/about/">About this site</a>
+						<span class="signal-status">workflow</span>
+					</li>
+					<li>
+						<span class="signal-index">04</span>
+						<a href="/llms.txt">Agent guide</a>
+						<span class="signal-status">plain text</span>
+					</li>
+					{
+						syncMeta.syncGeneratedAt && (
+							<li>
+								<span class="signal-index">05</span>
+								<span>Metadata sync</span>
+								<span class="signal-status">{formatDateTime(new Date(syncMeta.syncGeneratedAt))}</span>
+							</li>
+						)
+					}
+				</ul>
+			</aside>
+		</div>
+	</section>
+
+	<section class="band" id="projects">
+		<div class="section-inner">
+			<header class="section-heading" data-reveal>
+				<div>
+					<p class="kicker">Published projects</p>
+					<h2>Listed records are the public source of truth.</h2>
+				</div>
+				<p class="lede">
+					Only listed project entries appear here. Reusable reference patterns, including the public template
+					page, stay available without inflating the main portfolio index.
+				</p>
+			</header>
+			{
+				projectsForHomepage.length > 0 ? (
+					<div class="featured-list">
+						{projectsForHomepage.map((project) => (
+							<article class="featured-item" data-reveal>
+								<div class="featured-item__content">
+									<div class="status-line">
+										<span class="status-pill">{project.entry.data.status}</span>
+										<span class="muted">Stage: {project.entry.data.labStage}</span>
+									</div>
+									<h3>
+										<a href={`/projects/${project.entry.data.slug}/`}>{project.entry.data.title}</a>
+									</h3>
+									<p class="muted">{project.entry.data.summary}</p>
+									<div class="tag-list">
+										{project.entry.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+									</div>
+									<div class="detail-links">
+										<a href={`/projects/${project.entry.data.slug}/`}>Open project page</a>
+										{project.repoUrls[0] && <a href={project.repoUrls[0]}>Primary repo</a>}
+									</div>
+								</div>
+								<div class="featured-item__visual">
+									<img
+										src={project.entry.data.heroImage}
+										alt=""
+										loading="lazy"
+										width="960"
+										height="640"
+									/>
+								</div>
+							</article>
+						))}
+					</div>
+				) : (
+					<div class="detail-grid">
+						<div class="detail-block" data-reveal>
+							<strong>No listed projects yet</strong>
+							<p class="muted">
+								Publish a project MDX entry with <code>surface: listed</code> to make it appear on the
+								homepage and in the project index.
+							</p>
+						</div>
+					</div>
+				)
+			}
+		</div>
+	</section>
+
+	<section class="band" id="updates">
+		<div class="section-inner">
+			<header class="section-heading" data-reveal>
+				<div>
+					<p class="kicker">Latest updates</p>
+					<h2>Dated project changes stay visible from the public surface.</h2>
+				</div>
+				<p class="lede">
+					Update entries remain project-linked records. Listed-project updates appear on the homepage, JSON
+					feeds, RSS, and the matching project page.
+				</p>
+			</header>
+			{
+				latestUpdates.length > 0 ? (
+					<div class="update-stream">
+						{latestUpdates.map((update) => {
+							const project = projects.find((candidate) => candidate.entry.data.slug === update.data.projectSlug);
+							return (
+								<article class="update-item" data-reveal>
+									<div class="update-item__content">
+										<div class="status-line">
+											<span class="kicker">{project?.entry.data.title ?? update.data.projectSlug}</span>
+											<span class="muted">{update.data.date.toISOString().slice(0, 10)}</span>
+										</div>
+										<h3>
+											<a href={`/projects/${update.data.projectSlug}/#update-${update.id}`}>{update.data.title}</a>
+										</h3>
+										<p class="muted">{update.data.summary}</p>
+										<div class="detail-links">
+											<a href={`/projects/${update.data.projectSlug}/`}>Open project</a>
+											{update.data.links[0] && <a href={update.data.links[0].url}>{update.data.links[0].label}</a>}
+										</div>
+									</div>
+								</article>
+							);
+						})}
+					</div>
+				) : (
+					<div class="detail-grid">
+						<div class="detail-block" data-reveal>
+							<strong>No public updates yet</strong>
+							<p class="muted">
+								Add a dated entry under <code>src/content/updates</code> to publish the next project change
+								across the homepage, feeds, and project log.
+							</p>
+						</div>
+					</div>
+				)
+			}
+		</div>
+	</section>
+
+	<section class="band">
+		<div class="section-inner">
+			<header class="section-heading" data-reveal>
+				<div>
+					<p class="kicker">Working principles</p>
+					<h2>Built to stay legible under both human and machine traffic.</h2>
+				</div>
+				<p class="lede">
+					The visual layer stays expressive, but the information model stays plain: stable project pages, dated
+					updates, and explicit public routes for machines to crawl.
+				</p>
+			</header>
+			<div class="principles">
+				<div class="principle" data-reveal>
+					<strong>Stable project records</strong>
+					<p class="muted">
+						Every listed project gets one durable page with the summary, stage, links, and full dated log kept
+						in one place.
+					</p>
+				</div>
+				<div class="principle" data-reveal>
+					<strong>Git-authored updates</strong>
+					<p class="muted">
+						Agents can add or revise project records and dated updates through the repo without introducing a
+						separate CMS or hidden admin panel.
+					</p>
+				</div>
+				<div class="principle" data-reveal>
+					<strong>Machine-readable routes</strong>
+					<p class="muted">
+						JSON indexes, RSS, <code>llms.txt</code>, sitemap, and the public template page give browsing agents
+						a predictable way in.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="cta-band">
+		<div class="section-inner">
+			<div class="cta-panel" data-reveal>
+				<h2>Use the public site as a front door, a reference pattern, or a tracking surface.</h2>
+				<p class="lede" style="color: rgba(248, 244, 236, 0.8); margin-bottom: 1.5rem;">
+					Start with <a href="/about/" style="color: inherit;">About</a> for the operating model, use the public
+					template entry when creating a new project record, and follow the feeds when you need machine-readable
+					change history.
+				</p>
+				<div class="cta-links">
+					<a class="button" href="/about/">Read the objective</a>
+					<a class="button--ghost" href="/projects/template/">Open the template entry</a>
+					<a class="button--ghost" href="/llms.txt">Open llms.txt</a>
+					<a class="button--ghost" href="/updates/index.json">Read updates JSON</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

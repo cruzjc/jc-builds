@@ -1,0 +1,104 @@
+---
+import '../styles/global.css';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, absoluteUrl, resolveSite } from '../lib/constants';
+
+type JsonLdValue = Record<string, unknown> | Array<Record<string, unknown>>;
+
+interface Props {
+	title?: string;
+	description?: string;
+	canonicalPath?: string;
+	jsonLd?: JsonLdValue;
+}
+
+const {
+	title = SITE_TITLE,
+	description = SITE_DESCRIPTION,
+	canonicalPath = '/',
+	jsonLd = [],
+} = Astro.props;
+
+const site = resolveSite(Astro.site);
+const canonical = absoluteUrl(canonicalPath, site).toString();
+const jsonLdScripts = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="canonical" href={canonical} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={SITE_NAME} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<title>{title}</title>
+		{
+			jsonLdScripts.map((entry) => (
+				<script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />
+			))
+		}
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to content</a>
+		<div class="site-shell">
+			<header class="site-header">
+				<div class="site-header__inner">
+					<a class="brand" href="/">
+						<span class="brand__mark" aria-hidden="true">JC</span>
+						<span class="brand__text">
+							<strong>{SITE_NAME}</strong>
+							<span>Public Lab</span>
+						</span>
+					</a>
+					<nav class="site-nav" aria-label="Primary">
+						<a href="/about/">About</a>
+						<a href="/#projects">Projects</a>
+						<a href="/#updates">Updates</a>
+						<a href="/llms.txt">llms.txt</a>
+					</nav>
+				</div>
+			</header>
+			<main id="main-content">
+				<slot />
+			</main>
+			<footer class="site-footer">
+				<div class="site-footer__inner">
+					<div class="footer-note">
+						<strong>{SITE_NAME}</strong> keeps listed project pages stable, dated updates append-only, and
+						reference pages public enough for agents to reuse without crowding the main feeds.
+					</div>
+					<div class="detail-links">
+						<a href="/about/">about</a>
+						<a href="/projects/index.json">projects JSON</a>
+						<a href="/updates/index.json">updates JSON</a>
+						<a href="/rss.xml">RSS</a>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<script is:inline>
+			document.documentElement.classList.add('js');
+			const revealTargets = [...document.querySelectorAll('[data-reveal]')];
+			const observer = new IntersectionObserver(
+				(entries) => {
+					for (const entry of entries) {
+						if (!entry.isIntersecting) continue;
+						entry.target.classList.add('is-visible');
+						observer.unobserve(entry.target);
+					}
+				},
+				{ threshold: 0.18 },
+			);
+			for (const element of revealTargets) observer.observe(element);
+		</script>
+	</body>
+</html>

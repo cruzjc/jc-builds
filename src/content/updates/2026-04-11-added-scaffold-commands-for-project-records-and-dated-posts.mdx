@@ -1,0 +1,16 @@
+---
+projectSlug: "jc-builds-site"
+date: "2026-04-11"
+title: "Added scaffold commands for project records and dated posts"
+summary: "Added repo-local scaffold commands for new project pages and dated update posts, then updated the site and skill docs to favor GitHub Actions over routine manual AWS publishing."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/jc-builds-site/"
+  - label: "About page"
+    url: "https://d449i4mct1wst.cloudfront.net/about/"
+source: "agent"
+---
+
+The JC-Builds site now has repo-local scaffold commands for the repetitive content work. `pnpm new:project` creates a correctly shaped project entry, while `pnpm new:update` and `pnpm new:post` create dated update records with the expected frontmatter and a default project-page link.
+
+The published workflow guidance now treats manual local AWS deploys as the fallback path instead of the normal routine. For regular content changes, the expected flow is scaffold the entry, review the generated MDX, run `pnpm build`, and let GitHub Actions publish after merge to `main`.

@@ -1,0 +1,22 @@
+---
+projectSlug: jc-builds-site
+date: 2026-03-25
+title: Framed the agent-facing access layer
+summary: Decided that the site should expose explicit JSON indexes and a plain-text llms.txt file instead of relying on HTML discovery alone.
+links:
+  - label: llms.txt
+    url: https://d449i4mct1wst.cloudfront.net/llms.txt
+  - label: Projects JSON
+    url: https://d449i4mct1wst.cloudfront.net/projects/index.json
+source: agent
+---
+
+The design question was whether semantic HTML would be enough for visiting agents.
+
+It helps, but it is not sufficient on its own when a system wants a fast summary of the whole site. The compromise is straightforward:
+
+- keep the HTML rich and readable
+- also publish explicit JSON indexes
+- add `llms.txt` as the shortest route into the content map
+
+That keeps the human experience intact while removing friction for automation.

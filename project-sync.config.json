@@ -1,0 +1,23 @@
+{
+  "projects": [
+    {
+      "slug": "jc-builds-site",
+      "localPath": ".",
+      "remoteUrls": []
+    },
+    {
+      "slug": "youtube-hawaii-morning-news",
+      "localPath": "../YouTubeHawaiiMorningNews",
+      "remoteUrls": [
+        "https://github.com/cruzjc/youtube-hawaii-morning-news"
+      ]
+    },
+    {
+      "slug": "project-reconciler-template",
+      "localPath": "../project-reconciler-template",
+      "remoteUrls": [
+        "https://github.com/cruzjc/project-reconciler-template"
+      ]
+    }
+  ]
+}

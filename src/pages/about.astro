@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_NAME, SITE_TITLE, absoluteUrl, resolveSite } from '../lib/constants';
+
+const canonicalPath = '/about/';
+const site = resolveSite(Astro.site);
+const description =
+	'How the JC-Builds public lab works, who it serves, how agents should update it, and which machine-readable routes it exposes.';
+
+const jsonLd = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'AboutPage',
+		name: `About ${SITE_TITLE}`,
+		description,
+		url: absoluteUrl(canonicalPath, site).toString(),
+	},
+];
+---
+
+<BaseLayout
+	title={`About | ${SITE_NAME}`}
+	description={description}
+	canonicalPath={canonicalPath}
+	jsonLd={jsonLd}
+>
+	<section class="hero">
+		<div class="hero__inner">
+			<div class="hero__copy">
+				<div class="eyebrow" data-reveal>About the lab</div>
+				<h1 data-reveal>One public surface for people, agents, and project history.</h1>
+				<p data-reveal>
+					JC-Builds is a static project registry. It is meant to read well in a browser, stay accessible to
+					screen readers, and give AI agents explicit routes for discovering projects, updates, and reusable
+					entry patterns.
+				</p>
+				<div class="hero__actions" data-reveal>
+					<a class="button" href="/projects/template/">Open the template entry</a>
+					<a class="button--ghost" href="/projects/index.json">Inspect projects JSON</a>
+				</div>
+			</div>
+			<aside class="hero-signal" aria-labelledby="about-signal-title" data-reveal>
+				<div class="eyebrow">Purpose</div>
+				<h2 id="about-signal-title" style="margin: 0; font-size: 1.35rem;">Why this exists</h2>
+				<ul class="signal-list">
+					<li>
+						<span class="signal-index">01</span>
+						<span>Human-friendly browsing</span>
+						<span class="signal-status">clear interface</span>
+					</li>
+					<li>
+						<span class="signal-index">02</span>
+						<span>Agent-readable routes</span>
+						<span class="signal-status">structured access</span>
+					</li>
+					<li>
+						<span class="signal-index">03</span>
+						<span>Central project tracking</span>
+						<span class="signal-status">dated log</span>
+					</li>
+				</ul>
+			</aside>
+		</div>
+	</section>
+
+	<div class="page-shell">
+		<div class="page-grid">
+			<article class="project-hero">
+				<section class="project-summary">
+					<div class="section-heading" style="margin-bottom: 0; padding-bottom: 0.8rem;">
+						<div>
+							<p class="kicker">Operating model</p>
+							<h2 style="font-size: 2.2rem;">What stays stable here.</h2>
+						</div>
+					</div>
+					<div class="meta-grid">
+						<div class="meta-item">
+							<strong>Audience</strong>
+							<p class="muted">Humans browsing the work and agents indexing, summarizing, or updating it.</p>
+						</div>
+						<div class="meta-item">
+							<strong>Primary record</strong>
+							<p class="muted">One stable page per project with summary, status, stage, and related links.</p>
+						</div>
+						<div class="meta-item">
+							<strong>Change model</strong>
+							<p class="muted">Dated update entries append to a project instead of silently replacing history.</p>
+						</div>
+						<div class="meta-item">
+							<strong>Reference pattern</strong>
+							<p class="muted">A public template page shows the expected entry shape without joining listed feeds.</p>
+						</div>
+					</div>
+				</section>
+
+				<section class="rich-copy">
+					<h2>Purpose</h2>
+					<p>
+						The site acts as the public source of truth for JC-Builds projects. It is meant to give visitors
+						a readable homepage, give agents stable machine-readable routes, and keep project changes visible
+						through dated entries instead of scattered notes.
+					</p>
+					<p>
+						This makes the site useful in three ways at once: a human-friendly portfolio, an agent-friendly
+						index, and a central log for project updates.
+					</p>
+
+					<h2>How entries work</h2>
+					<p>
+						Listed projects are the public portfolio records. They appear on the homepage, in
+						<code>/projects/index.json</code>, and in the update feeds. Reference pages stay public, but do
+						not count as listed projects.
+					</p>
+					<ul>
+						<li>Project pages are stable records.</li>
+						<li>Update entries are dated append-only log items linked back to a project.</li>
+						<li>Reference pages document reusable patterns without polluting the main feeds.</li>
+					</ul>
+
+					<h2>How an agent should update the site</h2>
+					<ol>
+						<li>Use <code>pnpm new:project</code> for a new project page or <code>pnpm new:update</code> for a dated post.</li>
+						<li>Review the generated MDX and replace the scaffold body with the real project details.</li>
+						<li>Use <code>surface: listed</code> for real public projects and <code>surface: reference</code> for reusable patterns.</li>
+						<li>Optionally register a local repository in <code>project-sync.config.json</code> if git metadata should enrich the build.</li>
+						<li>Run <code>pnpm build</code> to validate the content collections and generated routes.</li>
+						<li>Push the branch and let GitHub Actions publish after merge to <code>main</code>.</li>
+					</ol>
+
+					<h2>How the template should be used</h2>
+					<p>
+						The public template entry at <a href="/projects/template/">/projects/template/</a> is the canonical
+						example for new project records. Agents can inspect it from the live site, then copy its structure
+						into a new project MDX file and replace the frontmatter and narrative with real project details.
+					</p>
+					<p>
+						In the repo, <code>pnpm new:project</code> applies that shape automatically. The template remains
+						public so browsing agents can find it, but it is intentionally excluded from the homepage counts,
+						JSON project index, RSS, and update feeds.
+					</p>
+				</section>
+			</article>
+
+			<aside class="machine-rail" aria-label="Machine-readable route inventory">
+				<section class="detail-grid">
+					<div class="detail-block">
+						<strong>Home</strong>
+						<a href="/">{absoluteUrl('/', site).toString()}</a>
+					</div>
+					<div class="detail-block">
+						<strong>About</strong>
+						<a href="/about/">{absoluteUrl('/about/', site).toString()}</a>
+					</div>
+					<div class="detail-block">
+						<strong>Projects JSON</strong>
+						<p class="muted">Listed projects only.</p>
+						<a href="/projects/index.json">{absoluteUrl('/projects/index.json', site).toString()}</a>
+					</div>
+					<div class="detail-block">
+						<strong>Updates JSON</strong>
+						<p class="muted">Updates for listed projects only.</p>
+						<a href="/updates/index.json">{absoluteUrl('/updates/index.json', site).toString()}</a>
+					</div>
+					<div class="detail-block">
+						<strong>llms.txt</strong>
+						<p class="muted">Short agent guide and route map.</p>
+						<a href="/llms.txt">{absoluteUrl('/llms.txt', site).toString()}</a>
+					</div>
+					<div class="detail-block">
+						<strong>Reference template</strong>
+						<p class="muted">Public example project entry.</p>
+						<a href="/projects/template/">{absoluteUrl('/projects/template/', site).toString()}</a>
+					</div>
+					<div class="detail-block">
+						<strong>RSS and sitemap</strong>
+						<div class="detail-links">
+							<a href="/rss.xml">RSS feed</a>
+							<a href="/sitemap-index.xml">Sitemap index</a>
+						</div>
+					</div>
+				</section>
+			</aside>
+		</div>
+	</div>
+</BaseLayout>

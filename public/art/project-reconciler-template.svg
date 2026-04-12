@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Project Reconciler Template artwork</title>
+  <desc id="desc">Editorial artwork showing a structured maintenance workflow with guarded reconcile and reporting stages.</desc>
+  <defs>
+    <linearGradient id="reconcilerSky" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f2031" />
+      <stop offset="52%" stop-color="#2f7e78" />
+      <stop offset="100%" stop-color="#f1c774" />
+    </linearGradient>
+    <linearGradient id="reconcilerPanel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#11263a" />
+      <stop offset="100%" stop-color="#09131d" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#09131d" />
+  <rect x="76" y="84" width="1048" height="632" rx="44" fill="url(#reconcilerSky)" opacity="0.9" />
+  <g opacity="0.14">
+    <path d="M136 180h928M136 280h928M136 380h928M136 480h928M136 580h928" stroke="#f7f1e7" stroke-width="2" />
+    <path d="M226 140v520M416 140v520M606 140v520M796 140v520M986 140v520" stroke="#f7f1e7" stroke-width="2" />
+  </g>
+  <g transform="translate(164 152)">
+    <rect width="508" height="492" rx="30" fill="url(#reconcilerPanel)" />
+    <rect x="34" y="34" width="440" height="68" rx="20" fill="#17334b" />
+    <circle cx="82" cy="68" r="13" fill="#f06a46" />
+    <circle cx="118" cy="68" r="13" fill="#f1c774" />
+    <circle cx="154" cy="68" r="13" fill="#d8e6dd" opacity="0.5" />
+    <rect x="42" y="148" width="174" height="68" rx="18" fill="#f1c774" />
+    <text x="68" y="191" font-family="Georgia, serif" font-size="28" fill="#10202b">LOCK</text>
+    <rect x="254" y="148" width="210" height="68" rx="18" fill="#2f7e78" />
+    <text x="286" y="191" font-family="Georgia, serif" font-size="28" fill="#f7f1e7">RECONCILE</text>
+    <rect x="42" y="246" width="422" height="46" rx="16" fill="#d8e6dd" opacity="0.18" />
+    <rect x="42" y="316" width="422" height="46" rx="16" fill="#d8e6dd" opacity="0.18" />
+    <rect x="42" y="386" width="422" height="46" rx="16" fill="#d8e6dd" opacity="0.18" />
+    <rect x="42" y="456" width="204" height="18" rx="9" fill="#f7f1e7" opacity="0.35" />
+  </g>
+  <g transform="translate(726 176)">
+    <path d="M0 104c0-37 30-68 68-68h230c37 0 68 31 68 68v256c0 37-31 68-68 68H68c-38 0-68-31-68-68V104Z" fill="#10202b" opacity="0.92" />
+    <rect x="42" y="52" width="280" height="54" rx="18" fill="#f7f1e7" opacity="0.14" />
+    <path d="M66 154h258" stroke="#f7f1e7" stroke-width="10" stroke-linecap="round" opacity="0.85" />
+    <path d="M66 208h204" stroke="#f1c774" stroke-width="10" stroke-linecap="round" />
+    <path d="M66 262h238" stroke="#f7f1e7" stroke-width="10" stroke-linecap="round" opacity="0.42" />
+    <path d="M66 316h168" stroke="#2f7e78" stroke-width="10" stroke-linecap="round" />
+    <circle cx="286" cy="314" r="54" fill="#f06a46" />
+    <path d="m266 314 16 16 30-38" fill="none" stroke="#fff7ee" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

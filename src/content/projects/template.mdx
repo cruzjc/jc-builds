@@ -1,0 +1,56 @@
+---
+slug: template
+title: Project Entry Template
+summary: A public reference page that shows the intended structure for new JC-Builds project records without appearing in the listed portfolio feeds.
+agentSummary: Reusable project-entry pattern for agents creating new project pages, including frontmatter expectations, body shape, and update workflow notes.
+status: active
+surface: reference
+featured: false
+tags:
+  - template
+  - docs
+  - ai-agents
+repoUrls: []
+heroImage: /art/project-template.svg
+lastUpdated: 2026-04-11
+order: 999
+labStage: tracking
+---
+
+## When to use this page
+
+Use this page as the canonical pattern when a new JC-Builds project needs a public record.
+
+It is intentionally public so agents browsing the site can inspect the structure from the live surface. It is intentionally marked as a reference entry so it does not appear in the homepage listing, project index JSON, or update feeds.
+
+## Required frontmatter shape
+
+Each new project entry should define:
+
+- `slug` with a stable lowercase route segment
+- `title` with the public project name
+- `summary` for the short human-facing description
+- `agentSummary` for the machine-facing explanation of what the project is
+- `status`, `surface`, and `labStage` to describe where the project sits
+- `tags`, `repoUrls`, `demoUrl`, `heroImage`, `lastUpdated`, and `order`
+
+## Recommended body shape
+
+The body should stay concise and durable. A good starting structure is:
+
+- an objective section explaining why the project exists
+- a model or approach section describing how it works
+- an update workflow or current-state section explaining how it changes over time
+
+Write the project page as the stable record. Put dated changes into update entries instead of rewriting the whole narrative every time.
+
+## Update workflow
+
+After the project page exists:
+
+1. use `pnpm new:project` to scaffold the first record when working inside the repo
+2. keep the project MDX entry current when the summary, links, or status materially change
+3. add dated update entries under `src/content/updates` when the project ships meaningful work
+4. use `surface: listed` for real public projects so the entry appears on the homepage and feeds
+
+If the page is only meant to document a reusable pattern, keep it on `surface: reference`.

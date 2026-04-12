@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">JC-Builds site artwork</title>
+  <desc id="desc">Abstract editorial artwork for the JC-Builds site project.</desc>
+  <defs>
+    <linearGradient id="siteGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7c77e" />
+      <stop offset="52%" stop-color="#d95a39" />
+      <stop offset="100%" stop-color="#251922" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#141821" />
+  <g opacity="0.2">
+    <path d="M0 95h1200M0 225h1200M0 355h1200M0 485h1200M0 615h1200M0 745h1200" stroke="#fff" />
+    <path d="M120 0v800M300 0v800M480 0v800M660 0v800M840 0v800M1020 0v800" stroke="#fff" />
+  </g>
+  <rect x="118" y="118" width="964" height="564" rx="42" fill="url(#siteGlow)" opacity="0.88" />
+  <path d="M230 208h312v72H310v106h190v70H310v120h248v72H230V208Z" fill="#f7f1e7" />
+  <path d="M720 210 548 400l172 190h118L676 400l162-190H720Z" fill="#141821" opacity="0.88" />
+  <circle cx="826" cy="400" r="42" fill="#f7f1e7" />
+</svg>

@@ -1,0 +1,44 @@
+---
+slug: youtube-hawaii-morning-news
+title: YouTube Hawaii Morning News
+summary: Pi-hosted YouTube curator that turns Hawaii-focused topic feeds into daily playlists with a LAN-only admin UI and automatic playlist cleanup.
+agentSummary: Fastify, React, and SQLite app for topic-based YouTube monitoring on a Raspberry Pi, with Google OAuth, scheduled HST batches, immutable per-topic playlists, and retention-based cleanup.
+status: active
+surface: listed
+featured: false
+tags:
+  - youtube
+  - raspberry-pi
+  - fastify
+  - react
+  - sqlite
+repoUrls:
+  - https://github.com/cruzjc/youtube-hawaii-morning-news
+heroImage: /art/youtube-hawaii-morning-news.svg
+lastUpdated: 2026-04-11
+order: 2
+labStage: testing
+---
+
+## Objective
+
+This project exists to cut down the daily manual work of assembling a Hawaii-focused video briefing.
+
+Instead of opening YouTube and rebuilding the same searches by hand every morning, the app keeps a set of named topics, pulls matching videos from channel feeds and saved searches, and publishes one playlist per topic on a fixed Honolulu schedule.
+
+## How it works
+
+The runtime stays intentionally compact:
+
+- a Fastify service exposes the admin and API surface
+- a React admin UI manages topics, sources, settings, account connection, and run history
+- SQLite stores source definitions, run records, and encrypted refresh tokens
+- a scheduled batch runs on `Pacific/Honolulu` time and uses a 24-hour lookback window
+
+Each successful topic run creates a dated playlist, records what was published or skipped, and keeps the playlist immutable after the run completes. Older tracked playlists can then be removed automatically after the configured retention window.
+
+## Current state
+
+The project is structured for Raspberry Pi hosting and local-network use, with Docker Compose support for deployment and a LAN-only default posture until a separate auth layer exists.
+
+The external dependency boundary is also clear: the app needs a dedicated Google Cloud project for OAuth and the YouTube Data API so the redirect URI, client credentials, and quota stay isolated to this tool.

@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_NAME, SITE_TITLE } from '../lib/constants';
+
+const title = `Not Found | ${SITE_NAME}`;
+const description = 'The requested page was not found in the JC-Builds public lab.';
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/404/">
+	<section class="hero">
+		<div class="hero__inner">
+			<div class="hero__copy">
+				<div class="eyebrow">404</div>
+				<h1>That page is not in the current lab index.</h1>
+				<p>
+					The site keeps project records at stable paths, but this URL does not map to a published page in{' '}
+					{SITE_TITLE}.
+				</p>
+				<div class="hero__actions">
+					<a class="button" href="/">Return to the homepage</a>
+					<a class="button--ghost" href="/projects/index.json">Open the project index</a>
+				</div>
+			</div>
+			<aside class="hero-signal" aria-labelledby="not-found-signal">
+				<div class="eyebrow">Next step</div>
+				<h2 id="not-found-signal" style="margin: 0; font-size: 1.35rem;">Use a known surface</h2>
+				<ul class="signal-list">
+					<li>
+						<span class="signal-index">01</span>
+						<a href="/">Homepage</a>
+						<span class="signal-status">human overview</span>
+					</li>
+					<li>
+						<span class="signal-index">02</span>
+						<a href="/projects/index.json">Projects JSON</a>
+						<span class="signal-status">machine index</span>
+					</li>
+					<li>
+						<span class="signal-index">03</span>
+						<a href="/llms.txt">llms.txt</a>
+						<span class="signal-status">agent guide</span>
+					</li>
+				</ul>
+			</aside>
+		</div>
+	</section>
+</BaseLayout>
