@@ -135,13 +135,15 @@ The public template entry at [`src/content/projects/template.mdx`](/mnt/e/Projec
 
 ## Deployment
 
-The GitHub Actions workflow expects:
+The checked-in GitHub Actions workflow now uses the production deployment values recorded in [`AWS-Infrastructure.csv`](/mnt/e/Projects/JC-Builds/AWS-Infrastructure.csv).
 
-- `SITE_URL`
-- `AWS_REGION`
-- `AWS_S3_BUCKET`
-- `AWS_CLOUDFRONT_DISTRIBUTION_ID`
-- `AWS_DEPLOY_ROLE_ARN`
+Those values are:
+
+- `SITE_URL=https://d449i4mct1wst.cloudfront.net`
+- `AWS_REGION=us-west-2`
+- `AWS_S3_BUCKET=jc-builds-public-lab-202343234967`
+- `AWS_CLOUDFRONT_DISTRIBUTION_ID=E8FTV3JXMVFYG`
+- `AWS_DEPLOY_ROLE_ARN=arn:aws:iam::202343234967:role/jc-builds-github-actions-deploy`
 
 The deployment flow is:
 
@@ -151,5 +153,7 @@ The deployment flow is:
 4. invalidate CloudFront
 
 Routine content changes should go through git plus GitHub Actions, not a manual local AWS deploy. Local AWS CLI publishing is only the fallback path.
+
+For the current production path, no repository-level GitHub Actions variables or secrets are required because the workflow is self-contained and uses GitHub OIDC with the tracked deploy role.
 
 Record actual AWS resources in [`AWS-Infrastructure.csv`](/mnt/e/Projects/JC-Builds/AWS-Infrastructure.csv) as they are created.

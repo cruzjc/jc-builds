@@ -13,10 +13,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      SITE_URL: ${{ vars.SITE_URL }}
-      AWS_REGION: ${{ vars.AWS_REGION }}
-      AWS_S3_BUCKET: ${{ vars.AWS_S3_BUCKET }}
-      AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+      SITE_URL: https://d449i4mct1wst.cloudfront.net
+      AWS_REGION: us-west-2
+      AWS_S3_BUCKET: jc-builds-public-lab-202343234967
+      AWS_CLOUDFRONT_DISTRIBUTION_ID: E8FTV3JXMVFYG
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -42,7 +42,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: ${{ env.AWS_REGION }}
-          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          role-to-assume: arn:aws:iam::202343234967:role/jc-builds-github-actions-deploy
 
       - name: Sync build output to S3
         run: aws s3 sync dist/ "s3://${AWS_S3_BUCKET}" --delete

@@ -1,5 +1,6 @@
 service,resource_name,purpose,environment,region,identifier,status,notes
 S3,jc-builds-public-lab-202343234967,Static site origin bucket,production,us-west-2,jc-builds-public-lab-202343234967,active,Hosts Astro build output from dist/ and serves the website endpoint for CloudFront
 CloudFront,jc-builds-public-lab-cdn,Global CDN and TLS termination,production,global,E8FTV3JXMVFYG,active,Public hostname d449i4mct1wst.cloudfront.net fronts the S3 website origin
+IAM,jc-builds-github-actions-deploy,GitHub Actions OIDC deploy role,production,global,arn:aws:iam::202343234967:role/jc-builds-github-actions-deploy,active,Trusted for repo cruzjc/jc-builds on refs/heads/main to sync the site bucket and invalidate CloudFront
 ACM,jc-builds-site-certificate,TLS certificate for the production domain,production,us-east-1,TBD,planned,Required only when moving from the default CloudFront hostname to a custom domain
 Route53,jc-builds-domain-zone,DNS hosting for the production domain,production,global,TBD,planned,Create when the final domain is selected

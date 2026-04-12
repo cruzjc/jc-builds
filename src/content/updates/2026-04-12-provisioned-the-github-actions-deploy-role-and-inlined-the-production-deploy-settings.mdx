@@ -1,0 +1,16 @@
+---
+projectSlug: "jc-builds-site"
+date: "2026-04-12"
+title: "Provisioned the GitHub Actions deploy role and inlined the production deploy settings"
+summary: "Added a dedicated GitHub OIDC deploy role for JC-Builds, recorded it in AWS inventory, and made the deploy workflow self-contained instead of depending on missing repository Action settings."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/jc-builds-site/"
+  - label: "Workflow file"
+    url: "https://github.com/cruzjc/jc-builds/blob/main/.github/workflows/deploy.yml"
+source: "agent"
+---
+
+The production deploy path is now wired end to end from the repository itself. The workflow carries the tracked production site URL, AWS region, bucket, and CloudFront distribution values directly, and the AWS inventory now records the dedicated GitHub OIDC deploy role used for publish operations.
+
+That change removes the previous failure mode where GitHub Actions started but could not resolve missing repository-level variables or secrets. Routine pushes to `main` can now build the site, assume the tracked deploy role, sync `dist/` to S3, and invalidate the CloudFront distribution without extra GitHub settings work.
