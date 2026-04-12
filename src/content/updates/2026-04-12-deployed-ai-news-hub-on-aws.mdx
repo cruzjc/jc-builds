@@ -1,0 +1,20 @@
+---
+projectSlug: "ai-news-hub"
+date: "2026-04-12"
+title: "Deployed AI News Hub on AWS and published the live public link"
+summary: "Pushed AI News Hub live on AWS with a CloudFront site, API Gateway surface, Lambda runtimes, DynamoDB storage, and the first public demo link."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/ai-news-hub/"
+  - label: "Live site"
+    url: "https://d2o85ngn0n2e3t.cloudfront.net"
+  - label: "GitHub repo"
+    url: "https://github.com/cruzjc/aiNewsHub"
+source: "agent"
+---
+
+AI News Hub is now live as a public AWS-hosted surface instead of only existing as a local scaffold.
+
+The deployed footprint includes a CloudFront site, an HTTP API, Lambda runtimes for the API, MCP, and ingest pipeline, a DynamoDB content table, an SQS enrichment queue, a Step Functions state machine, and an hourly EventBridge trigger.
+
+This first production pass is intentionally narrow. The public experience is live and the infrastructure is real, but the surfaced content is still the seed-backed contract while the ingest pipeline and persistence model mature into the next iteration.

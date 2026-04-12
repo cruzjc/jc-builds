@@ -1,0 +1,21 @@
+---
+projectSlug: "ai-news-hub"
+date: "2026-04-12"
+title: "Bootstrapped the AI News Hub platform and Pi maintainer scaffold"
+summary: "Initialized AI News Hub from the reconciler template, added the API, MCP, web, worker, and AWS stack, and prepared a pi13 maintenance checkout."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/ai-news-hub/"
+source: "agent"
+---
+
+This bootstrap turned an empty repo into a reconciler-backed news product instead of just starting with a generic web scaffold.
+
+The repo now carries the full machine-facing shape:
+
+- a TypeScript workspace with API, MCP, web, worker, and CDK packages
+- shared schemas and seed data for article, source, and topic contracts
+- AWS inventory tracking and production workflow scaffolding
+- a Pi13 maintenance wrapper plus bootstrap script built around the reconcile-first runner
+
+That matters because the product is not just a website. It is a news surface designed to be maintained by automation without losing the safety boundaries around git history, deploy logic, and protected infrastructure paths.

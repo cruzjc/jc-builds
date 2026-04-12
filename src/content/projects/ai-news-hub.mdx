@@ -1,0 +1,53 @@
+---
+slug: "ai-news-hub"
+title: "AI News Hub"
+summary: "Agent-first news hub with AWS delivery, structured feeds, and a Pi-maintained reconciler workflow."
+agentSummary: "Broad-spectrum news platform for AI agents with a JSON API, read-only MCP surface, hourly allowlisted feed ingest, AWS serverless deployment, and a reconcile-first pi13 maintenance checkout."
+status: "active"
+surface: "listed"
+featured: false
+tags:
+  - "typescript"
+  - "aws"
+  - "news"
+  - "mcp"
+  - "ai-agents"
+repoUrls:
+  - "https://github.com/cruzjc/aiNewsHub"
+demoUrl: "https://d2o85ngn0n2e3t.cloudfront.net"
+heroImage: "/art/ai-news-hub.svg"
+lastUpdated: "2026-04-12"
+order: 4
+labStage: "testing"
+---
+
+## Objective
+
+AI News Hub exists to make news easier for agents to consume without forcing every integration to scrape publisher pages or reverse-engineer inconsistent feeds.
+
+The product is intentionally machine-first. It turns allowlisted feed items into stable article records with structured summaries, topic tags, source metadata, and outbound links so an agent can query recent coverage quickly and then decide when to open the original source.
+
+## How it works
+
+The repo was bootstrapped from the `project-reconciler-template` and now carries both the product code and the maintenance contract:
+
+- `apps/api` exposes the public JSON feed and lookup endpoints
+- `apps/mcp` exposes the same content through read-only MCP tools
+- `apps/web` provides a simple public site and `llms.txt`
+- `apps/workers` handles allowlisted feed ingest, dedupe, and OpenAI-backed or fallback enrichment
+- `infra` defines the AWS serverless footprint with S3, CloudFront, API Gateway, Lambda, DynamoDB, SQS, EventBridge, Step Functions, and Secrets Manager
+
+The maintenance story is equally important. A dedicated `pi13` checkout can reconcile, refresh repo maps, run validation, and attempt low-risk fixes through a guarded maintainer wrapper instead of treating automation as a blind deploy loop.
+
+## Current state
+
+The first public deployment is now live:
+
+- the product workspace builds and validates locally
+- the repo is published at `cruzjc/aiNewsHub`
+- the site is live at `https://d2o85ngn0n2e3t.cloudfront.net`
+- the JSON API is reachable through the same CloudFront surface and directly at `https://yhi91xn0v3.execute-api.us-west-2.amazonaws.com`
+- the repo spec, rules, schedule config, and Pi bootstrap scripts are aligned with the reconciler contract
+- the AWS inventory file now records the live production identifiers
+
+The next iteration is to move the API and MCP surfaces from bundled seed data toward DynamoDB-backed live ingest output so the public site reflects the scheduled pipeline rather than the initial seed set.
