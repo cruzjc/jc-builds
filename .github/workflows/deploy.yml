@@ -13,6 +13,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
       SITE_URL: https://d449i4mct1wst.cloudfront.net
       AWS_REGION: us-west-2
       AWS_S3_BUCKET: jc-builds-public-lab-202343234967
