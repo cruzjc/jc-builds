@@ -1,0 +1,18 @@
+---
+projectSlug: "youtube-hawaii-morning-news"
+date: "2026-04-12"
+title: "Deployed the latest Raspberry Pi build"
+summary: "Synced the current workspace to pi13, rebuilt the Docker service, preserved the live env and data volume, and verified the app health endpoint on port 3001."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/youtube-hawaii-morning-news/"
+  - label: "GitHub repo"
+    url: "https://github.com/cruzjc/youtube-hawaii-morning-news"
+source: "agent"
+---
+
+The Pi-hosted deploy now matches the current local workspace instead of the earlier `ea89b24` public release checkout.
+
+This rollout reused the existing `pi13` deployment, created a fresh backup before syncing the app files, preserved the live `.env` and `data/` paths, rebuilt the Docker image, and restarted the `ytnews-app-1` service on port `3001`.
+
+After the rebuild, the container reported a clean startup and the Pi health probe at `http://127.0.0.1:3001/health` returned `{"ok":true}`, which confirms the updated LAN-hosted admin and API surface is live.
