@@ -1,0 +1,26 @@
+---
+projectSlug: "ai-news-hub"
+date: "2026-04-12"
+title: "Stabilized AI News Hub hourly ingest on AWS"
+summary: "Replaced dead feed URLs, hardened the ingest worker against upstream failures, fixed maintainer repo-map traversal, and verified the live hourly Lambda completes successfully."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/ai-news-hub/"
+  - label: "Live site"
+    url: "https://d2o85ngn0n2e3t.cloudfront.net"
+  - label: "GitHub repo"
+    url: "https://github.com/cruzjc/aiNewsHub"
+source: "agent"
+---
+
+The first production worker path had three separate failure modes hiding behind each other: dead Reuters feed URLs, a default 3-second Lambda timeout that was too short for real ingest work, and loose model JSON that occasionally returned entity objects instead of plain strings.
+
+This update fixes that chain end to end.
+
+- The allowlist now uses working source feeds instead of the dead Reuters endpoints and the AP page that no longer returns RSS.
+- Feed fetches are isolated per source, use timeouts plus a user-agent, and skip non-feed payloads instead of crashing the whole run.
+- The hourly worker now caps candidates per source and per run, limits enrichment concurrency, and runs with a real Lambda timeout and memory profile.
+- Model output is normalized before validation so unexpected `entities` objects do not break article parsing.
+- The reconciler repo-map builder now prunes ignored directories during traversal, which restores fast local validation in this larger workspace.
+
+After redeploying the stack, the live `HourlyIngestLambda` completed successfully on AWS and returned a 24-article run without the earlier unhandled errors.

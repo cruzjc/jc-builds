@@ -50,4 +50,6 @@ The first public deployment is now live:
 - the repo spec, rules, schedule config, and Pi bootstrap scripts are aligned with the reconciler contract
 - the AWS inventory file now records the live production identifiers
 
+The hourly ingest worker has also been hardened in production. Dead feed URLs were replaced, per-source fetch failures no longer crash the run, the Lambda timeout now matches the workload, and the live worker completes successfully against the deployed AWS stack.
+
 The next iteration is to move the API and MCP surfaces from bundled seed data toward DynamoDB-backed live ingest output so the public site reflects the scheduled pipeline rather than the initial seed set.
