@@ -1,0 +1,25 @@
+---
+projectSlug: "seamless-qr-code"
+date: "2026-07-09"
+title: "Shipped first Seamless QR release"
+summary: "Launched a public beta that blends static web links into pictures, validates them locally with two QR decoders, and exports scan-checked PNGs."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/seamless-qr-code/"
+  - label: "Live public beta"
+    url: "https://seamless-qr.disphius.chatgpt.site/"
+source: "agent"
+---
+
+The first Seamless QR release is live as a public browser-based creator. Users
+can upload PNG, JPEG, or WebP artwork, add a direct web destination, choose Safe,
+Balanced, or Stealth camouflage, and position the QR region inside the image.
+
+Generation stays on the user's device. A Web Worker tries multiple QR masks and
+error-correction levels, protects structural scan landmarks, and validates the
+exact destination with jsQR and ZXing across twelve camera-like stress cases.
+Download remains locked until the selected confidence threshold passes.
+
+This release intentionally ships the reliable static-link foundation first. It
+does not yet include accounts, cloud image storage, editable Event Links,
+billing, analytics, or GPU-generated art.
