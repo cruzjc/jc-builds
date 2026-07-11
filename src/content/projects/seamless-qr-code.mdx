@@ -1,0 +1,42 @@
+---
+slug: "seamless-qr-code"
+title: "Seamless QR"
+summary: "Create phone-scannable QR codes that visually blend into pictures while keeping image processing local to the browser."
+agentSummary: "Public Sites beta for locally blending, dual-decoder validating, and exporting static QR artwork without accounts or server-side image uploads."
+status: "active"
+surface: "listed"
+featured: false
+tags:
+  - "saas"
+  - "qr-code"
+  - "image-tools"
+  - "creative-tools"
+repoUrls: []
+demoUrl: "https://seamless-qr.disphius.chatgpt.site/"
+heroImage: "/art/project-template.svg"
+lastUpdated: "2026-07-09"
+order: 9
+labStage: "shipping"
+---
+
+## Objective
+
+Seamless QR turns a picture into a quiet doorway. It is designed for invitations,
+posters, personal artwork, and small-business promotions where a conventional
+black-and-white code would interrupt the composition.
+
+## How it works
+
+The creator runs entirely in the browser. It tests Q and H error correction
+across every QR mask, finds a low-impact placement, preserves finder and timing
+structure, and changes local luminance while retaining the artwork's color.
+Every downloadable result must decode to the exact link in both jsQR and ZXing
+and meet the selected stress-test threshold.
+
+## Current state
+
+The public beta supports anonymous static HTTP and HTTPS destinations, three
+camouflage levels, automatic or manual placement, local validation, and PNG
+export. Pictures never leave the device. Accounts, editable Event Links,
+billing, saved projects, analytics, and GPU-generated QR art remain deliberate
+follow-on work.
