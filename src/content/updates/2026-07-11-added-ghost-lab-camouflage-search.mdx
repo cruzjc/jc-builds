@@ -1,0 +1,40 @@
+---
+projectSlug: "seamless-qr-code"
+date: "2026-07-11"
+title: "Added Ghost Lab camouflage search"
+summary: "Added an experimental local vision search for quieter scale, angle, and placement choices while preserving exact dual-decoder validation."
+links:
+  - label: "Try Ghost Lab"
+    url: "https://seamless-qr.disphius.chatgpt.site/studio"
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/seamless-qr-code/"
+source: "agent"
+---
+
+Ghost Lab is now live as a separate screen-first experiment alongside the
+existing Safe, Balanced, and Stealth targets. It does not weaken those modes.
+Instead, it searches M, Q, and H correction across all eight masks, combines
+quarter-turn matrix orientation with geometric angles from -20 to +20 degrees,
+and explores placements from 22% to 88% of the artwork's short side.
+
+Candidate ranking now considers local texture, edge alignment, saliency, finder
+contrast, and tonal alteration rather than treating average luminance change as
+the complete camouflage signal. Passing runs can expose three already-validated
+choices: Most hidden, Best balance, and Most reliable. Switching between them
+updates the preview and full-resolution export recipe without another search.
+
+The reliability boundary remains explicit. Ghost Lab must decode the exact link
+in pristine artwork with both jsQR and ZXing, then pass at least seven of twelve
+stress variants independently in each decoder. Download stays disabled when the
+gate is missed, and the interface labels Ghost as experimental and screen-first.
+
+On the 640 by 800 garden-lantern sample, the selected Ghost result improved the
+internal visual-camouflage estimate from 60.2% to 66.9%, reduced finder contrast
+from 50.9% to 42.5%, and reduced average luminance shift from 16.3% to 13.6%
+versus Stealth in the same deterministic harness. The weakest decoder passed
+seven of twelve variants. These are local regression measurements, not a
+universal phone-camera or print guarantee.
+
+All placement analysis, rendering, decoder checks, and export remain on-device.
+No cloud image service, database, object storage, or new infrastructure was
+introduced in this release.

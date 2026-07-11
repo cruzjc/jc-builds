@@ -1,8 +1,8 @@
 ---
 slug: "seamless-qr-code"
 title: "Seamless QR"
-summary: "Create phone-scannable QR codes with adaptive, locally optimized image blending and full-artwork validation."
-agentSummary: "Public Sites beta for locally searching standards-compatible QR masks, rotations, placements, and contrast levels, then dual-decoder validating and exporting the least-tonally-altered passing artwork."
+summary: "Create scan-checked QR artwork with local perceptual placement, angle and scale search, and dual-decoder validation."
+agentSummary: "Public Sites beta for locally searching standards-compatible QR masks, correction levels, geometric angles, placements, scales, and contrast levels, then dual-decoder validating and exporting several passing camouflage choices."
 status: "active"
 surface: "listed"
 featured: false
@@ -14,7 +14,7 @@ tags:
 repoUrls: []
 demoUrl: "https://seamless-qr.disphius.chatgpt.site/"
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-07-10"
+lastUpdated: "2026-07-11"
 order: 9
 labStage: "shipping"
 ---
@@ -27,19 +27,21 @@ black-and-white code would interrupt the composition.
 
 ## How it works
 
-The creator runs entirely in the browser. It tests Q and H error correction
-across every QR mask while searching rotation, placement, scale, and six signal
-levels. The adaptive renderer only moves pixels that need more local contrast,
-leaving already camera-readable artwork untouched and retaining source color.
-Every downloadable result must be discovered in the full artwork, decode to the
-exact link in both jsQR and ZXing, and meet the selected per-decoder stress-test
-threshold.
+The creator runs entirely in the browser. Safe, Balanced, and Stealth test Q and
+H error correction across every QR mask. Ghost Lab expands that search to M/Q/H,
+real geometric angles from -20 to +20 degrees, and scales from 22% to 88% while
+ranking local texture, edge alignment, saliency, finder contrast, and required
+tonal change. The adaptive renderer retains source color and only adds the
+camera signal needed by the selected recipe. Every downloadable result must be
+discovered in the full artwork, decode to the exact link in both jsQR and ZXing,
+and meet the selected per-decoder stress-test threshold.
 
 ## Current state
 
 The public beta supports anonymous static HTTP and HTTPS destinations, Safe,
-Balanced, and experimental Stealth scan targets, automatic or manual placement,
-separate scan and tonal-change reporting, reproducible full-resolution export,
-and PNG download. Pictures never leave the device. Accounts, editable Event
-Links, billing, saved projects, analytics, and QR-conditioned GPU art remain
-deliberate follow-on work.
+Balanced, experimental Stealth, and screen-first Ghost Lab scan targets. Ghost
+Lab requires exact pristine decoding in both engines plus seven of twelve stress
+variants per decoder, and can return Most hidden, Best balance, and Most reliable
+validated poses without rerunning. Pictures never leave the device. Accounts,
+editable Event Links, billing, saved projects, analytics, cloud vision ranking,
+and QR-conditioned GPU art remain deliberate follow-on work.
