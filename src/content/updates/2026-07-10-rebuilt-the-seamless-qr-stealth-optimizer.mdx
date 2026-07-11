@@ -1,0 +1,28 @@
+---
+projectSlug: "seamless-qr-code"
+date: "2026-07-10"
+title: "Rebuilt the Seamless QR stealth optimizer"
+summary: "Replaced fixed QR overlays with an adaptive least-change search, full-artwork decoder validation, and honest tonal-change reporting."
+links:
+  - label: "Live creator"
+    url: "https://seamless-qr.disphius.chatgpt.site/studio"
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/seamless-qr-code/"
+source: "agent"
+---
+
+Seamless QR's second public version replaces its fixed light-and-dark overlay
+with a standards-compatible adaptive optimizer. Pixels are changed in only the
+direction needed to cross a local camera threshold, and already-correct pixels
+remain untouched. The search now evaluates masks, Q/H correction, quarter-turn
+rotation, multiple placements and sizes, and all six signal levels.
+
+Validation is stricter as well: jsQR and ZXing must both discover the exact link
+inside the complete artwork, and each decoder must independently meet the
+selected twelve-variant stress target. Safe, Balanced, and Stealth are now
+presented as 95%, 85%, and 70% reliability targets rather than opacity labels.
+
+The result report separates scan robustness from a clearly labeled tonal-change
+estimate. Full-resolution export replays the exact winning mask, placement,
+rotation, and signal recipe instead of silently running a different search. The
+rebuild remains entirely local and is live on the existing public-beta URL.
