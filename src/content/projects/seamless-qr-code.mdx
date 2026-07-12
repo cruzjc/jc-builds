@@ -1,8 +1,8 @@
 ---
 slug: "seamless-qr-code"
 title: "Seamless QR"
-summary: "Create scan-checked QR artwork with continuous Classic controls, local Ghost camouflage search, and exact dual-decoder validation."
-agentSummary: "Public Sites beta with on-device Classic and Ghost blending plus exact dual-decoder validation. Generative Lab now has a closed, $50-budgeted GCP foundation, but no upload path, container image, coordinator, GPU Job, or execution."
+summary: "Create scan-checked QR artwork with local Classic and Ghost tools plus an opt-in, PIN-gated GPU Generative Lab."
+agentSummary: "Public Sites beta with on-device Classic and Ghost blending plus an opt-in, PIN-gated Generative Lab using short-lived GPU jobs, texture-aware optimization, and exact multi-decoder validation."
 status: "active"
 surface: "listed"
 featured: false
@@ -14,7 +14,7 @@ tags:
 repoUrls: []
 demoUrl: "https://seamless-qr.disphius.chatgpt.site/"
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-07-11"
+lastUpdated: "2026-07-12"
 order: 9
 labStage: "shipping"
 ---
@@ -27,39 +27,44 @@ black-and-white code would interrupt the composition.
 
 ## How it works
 
-The creator runs entirely in the browser. Classic turns the former Safe,
-Balanced, and Stealth presets into one continuous blend-strength control, with
-manual position, size, and rotation controls plus a placement preview. Ghost
-Lab expands the search to M/Q/H correction, all QR masks, nearby geometric
-angles around the user's preferred rotation, and scales from 22% to 88% while
-ranking local texture, edge alignment, saliency, finder contrast, and required
-tonal change. Every downloadable result must be discovered in the full
-artwork, decode to the exact link in both jsQR and ZXing, and meet the selected
-per-decoder stress threshold.
+Classic turns the former Safe, Balanced, and Stealth presets into one continuous
+blend-strength control, with manual position, size, and rotation controls plus
+a placement preview. Ghost Lab expands the local search across QR correction,
+masks, nearby angles, and scales while ranking texture, edge alignment,
+saliency, finder contrast, and required tonal change.
+
+Generative Lab is a separate, explicit opt-in path. A deterministic
+perceptual/EOT optimizer selects texture-aware placement, size, and rotation,
+then runs as a short-lived one-L4 Cloud Run Job. It is not a diffusion model and
+does not regenerate the source artwork. Cloud-side OpenCV and ZXing-C++ checks
+are followed by exact-payload jsQR and ZXing JS validation in the browser before
+download.
 
 ## Current state
 
 The public beta supports anonymous static HTTP and HTTPS destinations through
 Classic and the screen-first Ghost Lab experiment. Ghost still requires exact
-pristine decoding in both engines; informed by successful real-phone testing,
-its stress gate now requires six of twelve variants independently in each
+pristine decoding in both browser engines; informed by successful real-phone
+testing, its stress gate requires six of twelve variants independently in each
 decoder. It can return Most hidden, Best balance, and Most reliable validated
 poses without rerunning.
 
 The renderer treats the source artwork and QR-driven correction as separate
 working layers, but export deliberately flattens them into one metadata-stripped
 PNG. Classic and Ghost remain local, so pictures never leave the device.
+Generative Lab is temporarily protected by a PIN while the end-user flow is
+tested. It uploads only after explicit consent, deletes source artwork at
+terminal job cleanup, and retains a one-day storage lifecycle as a fallback
+rather than a guaranteed deletion time.
 
-The future opt-in Generative Lab now has an idle GCP foundation in the dedicated
-project. It includes private temporary and control buckets, an immutable empty
-container repository, scoped build/runtime/coordinator/budget identities, a
-one-at-a-time launch queue, and a project-only $50 monthly gross-spend budget.
-The queue is paused and a persistent control object keeps generation disabled.
+The cloud path allows one active GPU execution, supports user cancellation, and
+closes new work at $40 of tracked monthly spend, cancels an active execution at
+$45, and emits a project-scoped $50 budget alert. The alert is not a hard billing
+cap. A final production-path smoke decoded the exact normalized destination in
+all 12 of 12 deterministic variants in each of the four validation engines and
+left no source, queue task, lock, or dispatch record behind.
 
-This is still a closed foundation, not a shipped cloud tier. There is no
-user-image upload path, container image, Cloud Build run, coordinator service,
-Cloud Run GPU Job, or execution. Before testing can open, the private
-coordinator and budget brake must enforce one active Job, 20 accepted starts per
-UTC day, and 200 per month. The $50 budget alerts on spend but is not represented
-as a guaranteed billing cutoff. Accounts, editable Event Links, customer
-billing, saved projects, and analytics also remain follow-on work.
+The product does not promise universal invisibility or a commercial scan
+guarantee. Users should test final artwork on the intended phone, display, and
+print size. Payment, accounts, saved projects, editable links, and diffusion or
+regenerative image generation remain outside this release.

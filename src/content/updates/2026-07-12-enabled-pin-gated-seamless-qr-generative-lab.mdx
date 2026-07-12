@@ -1,0 +1,42 @@
+---
+projectSlug: "seamless-qr-code"
+date: "2026-07-12"
+title: "Enabled the PIN-gated Seamless QR Generative Lab"
+summary: "Opened an opt-in GPU optimization tier with texture-aware QR placement, four-decoder validation, cancellation, cleanup, and layered cost brakes."
+links:
+  - label: "Try Generative Lab"
+    url: "https://seamless-qr.disphius.chatgpt.site/studio"
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/seamless-qr-code/"
+source: "agent"
+---
+
+Seamless QR's Generative Lab is now available in the public studio behind a
+temporary PIN gate for end-user testing. The user must explicitly opt in before
+an image is uploaded. Classic and Ghost retain their local-only path, while the
+high tier sends the selected artwork to a private, short-lived cloud workflow.
+The PIN value is not published or stored in the site source.
+
+The worker uses a deterministic perceptual and expectation-over-transformation
+optimizer rather than a diffusion model. It ranks texture-aware placement,
+size, and rotation, then adjusts luminance while protecting QR structure and
+source chroma. Each request runs as a single short-lived Cloud Run Job on one
+non-redundant L4 GPU. OpenCV and ZXing-C++ validate the cloud candidate, and the
+browser independently gates download with jsQR and ZXing JS against the exact
+normalized destination.
+
+The final production-path smoke passed all 12 of 12 deterministic degradation
+variants in each of the four decoder checks. It also confirmed terminal source
+cleanup and removal of the queue task, active lock, and dispatch record. Source
+artwork is deleted at terminal cleanup; a one-day bucket lifecycle is an
+additional fallback and not a guaranteed deletion deadline. User cancellation
+was separately exercised through a real GPU execution and left the same control
+state clean.
+
+Cost and concurrency remain deliberately narrow during the beta. Only one GPU
+execution may be active, accepted starts are rate-limited, new work closes at
+$40 of tracked monthly spend, an active execution is cancelled at $45, and a
+project-scoped $50 monthly budget sends an alert. That $50 alert is not a hard
+billing cap. The release does not include payments, accounts, saved projects,
+editable links, diffusion-based regeneration, or a promise that every result is
+invisible or will scan in every camera and print condition.
