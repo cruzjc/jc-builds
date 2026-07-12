@@ -25,13 +25,14 @@ non-redundant L4 GPU. OpenCV and ZXing-C++ validate the cloud candidate, and the
 browser independently gates download with jsQR and ZXing JS against the exact
 normalized destination.
 
-The final production-path smoke passed all 12 of 12 deterministic degradation
-variants in each of the four decoder checks. It also confirmed terminal source
-cleanup and removal of the queue task, active lock, and dispatch record. Source
-artwork is deleted at terminal cleanup; a one-day bucket lifecycle is an
-additional fallback and not a guaranteed deletion deadline. User cancellation
-was separately exercised through a real GPU execution and left the same control
-state clean.
+The final production-path smoke passed the cloud-side OpenCV and ZXing-C++
+decoder gates. Browser-side jsQR and ZXing JS each passed all 12 of 12
+deterministic degradation variants against the exact normalized destination. It
+also confirmed terminal source cleanup and removal of the queue task, active
+lock, and dispatch record. Source artwork is deleted at terminal cleanup; a
+one-day bucket lifecycle is an additional fallback and not a guaranteed
+deletion deadline. User cancellation was separately exercised through a real
+GPU execution and left the same control state clean.
 
 Cost and concurrency remain deliberately narrow during the beta. Only one GPU
 execution may be active, accepted starts are rate-limited, new work closes at
