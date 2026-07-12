@@ -2,7 +2,7 @@
 slug: "seamless-qr-code"
 title: "Seamless QR"
 summary: "Create scan-checked QR artwork with continuous Classic controls, local Ghost camouflage search, and exact dual-decoder validation."
-agentSummary: "Public Sites beta with a continuous on-device Classic blend, an experimental local Ghost search across QR recipes and geometry, and exact jsQR plus ZXing validation before flattened PNG export."
+agentSummary: "Public Sites beta with a continuous on-device Classic blend, an experimental local Ghost search, and exact dual-decoder validation. A keyless GCP control-plane foundation is prepared for a future opt-in Generative Lab, but no runtime service or image-upload path exists."
 status: "active"
 surface: "listed"
 featured: false
@@ -33,9 +33,9 @@ manual position, size, and rotation controls plus a placement preview. Ghost
 Lab expands the search to M/Q/H correction, all QR masks, nearby geometric
 angles around the user's preferred rotation, and scales from 22% to 88% while
 ranking local texture, edge alignment, saliency, finder contrast, and required
-tonal change. Every
-downloadable result must be discovered in the full artwork, decode to the exact
-link in both jsQR and ZXing, and meet the selected per-decoder stress threshold.
+tonal change. Every downloadable result must be discovered in the full
+artwork, decode to the exact link in both jsQR and ZXing, and meet the selected
+per-decoder stress threshold.
 
 ## Current state
 
@@ -48,8 +48,14 @@ poses without rerunning.
 
 The renderer treats the source artwork and QR-driven correction as separate
 working layers, but export deliberately flattens them into one metadata-stripped
-PNG. Classic and Ghost remain local, so pictures never leave the device. An
-opt-in Generative Lab using semantic placement and QR-conditioned GPU inpainting
-has been researched, but no cloud image upload, GPU service, storage, or queue
-has been provisioned. Accounts, editable Event Links, billing, saved projects,
-and analytics also remain follow-on work.
+PNG. Classic and Ghost remain local, so pictures never leave the device.
+
+The future opt-in Generative Lab now has a dedicated, billing-enabled GCP
+project and a keyless, least-privilege architect boundary. Required APIs are
+enabled for a future `us-central1` deployment, and its separate runtime
+identity remains unattached and permissionless. This is control-plane
+preparation only: there is
+no user-image upload path, Cloud Run service or GPU, task queue, storage bucket,
+Artifact Registry repository, Cloud Build run, or other billable workload.
+Accounts, editable Event Links, customer billing, saved projects, and analytics
+also remain follow-on work.

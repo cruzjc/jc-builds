@@ -1,0 +1,33 @@
+---
+projectSlug: "seamless-qr-code"
+date: "2026-07-11"
+title: "Established the Seamless QR GCP architect boundary"
+summary: "Prepared a keyless, least-privilege GCP control plane for a future opt-in Generative Lab without creating an upload path, GPU service, or billable workload."
+links:
+  - label: "Live local creator"
+    url: "https://seamless-qr.disphius.chatgpt.site/studio"
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/seamless-qr-code/"
+source: "agent"
+---
+
+Seamless QR now has an intentionally narrow GCP foundation for the future
+opt-in Generative Lab. A dedicated project is active with billing enabled, the
+required service APIs are enabled, and keyless architect impersonation has been
+verified. `us-central1` is the selected region because the preferred
+`us-west1` region does not currently offer the Cloud Run L4 GPU target.
+
+The architect identity has scoped control-plane authority for Cloud Run, Cloud
+Tasks queue administration, Cloud Storage, Artifact Registry, Cloud Build, and
+the Service Usage Consumer role. A separate runtime identity remains unattached
+and has no permissions; the architect can act as it only when a future
+deployment is intentionally created. No user-managed service-account keys were
+created. The unsafe Editor grant was also removed from the unused default
+compute service account.
+
+This milestone does not launch cloud image processing. The project currently
+has zero Cloud Run services or GPUs, Cloud Tasks queues, storage buckets,
+Artifact Registry repositories, or Cloud Build executions. There is no user
+image-upload route and no billable application workload. Classic and Ghost
+continue to process artwork entirely on the user's device while the generative
+data plane remains a separately reviewed future release.
