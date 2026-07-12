@@ -60,9 +60,10 @@ rather than a guaranteed deletion time.
 The cloud path allows one active GPU execution, supports user cancellation, and
 closes new work at $40 of tracked monthly spend, cancels an active execution at
 $45, and emits a project-scoped $50 budget alert. The alert is not a hard billing
-cap. A final production-path smoke decoded the exact normalized destination in
-all 12 of 12 deterministic variants in each of the four validation engines and
-left no source, queue task, lock, or dispatch record behind.
+cap. A final production-path smoke passed both cloud decoder gates, while the
+browser validators decoded the exact normalized destination in 12 of 12
+deterministic variants in jsQR and 12 of 12 in ZXing JS. It left no source,
+queue task, lock, or dispatch record behind.
 
 The product does not promise universal invisibility or a commercial scan
 guarantee. Users should test final artwork on the intended phone, display, and
