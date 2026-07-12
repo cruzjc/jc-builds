@@ -1,0 +1,44 @@
+---
+projectSlug: "seamless-qr-code"
+date: "2026-07-11"
+title: "Provisioned the Seamless QR GPU job foundation"
+summary: "Created the closed, budget-guarded GCP foundation for short-lived Generative Lab GPU jobs without deploying a runnable workload."
+links:
+  - label: "Try the local creator"
+    url: "https://seamless-qr.disphius.chatgpt.site/studio"
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/seamless-qr-code/"
+source: "agent"
+---
+
+Seamless QR's future Generative Lab now has a real but deliberately idle GCP
+foundation. Two private regional buckets separate temporary artwork from the
+launch ledger and kill switch. Uniform access, public-access prevention,
+disabled soft delete and versioning, exact-origin CORS, and one-day temporary
+object cleanup constrain the image path before one exists. An empty immutable
+Artifact Registry repository and dedicated keyless build, runtime,
+task-invoker, coordinator, and budget-guard identities establish the remaining
+least-privilege boundaries.
+
+The launch path starts physically closed. Its Cloud Tasks queue is paused,
+contains no tasks, has no HTTP or OIDC target, and permits one concurrent
+dispatch at 0.1 dispatches per second. A control object disables acceptance and
+records the future limits of one active execution, 20 accepted starts per UTC
+day, and 200 per UTC month. The planned worker is a short-lived Cloud Run Job
+with one non-redundant L4, one task, parallelism one, zero Job retries, and a
+180-second task timeout; no Job or placeholder image was deployed.
+
+A $50 monthly gross-spend budget is scoped only to the dedicated project. It
+alerts at 50%, 75%, 80%, 90%, and 100% actual spend plus an 80% forecast and
+publishes status to a private retained topic. The budget is explicitly treated
+as an alert rather than a hard cutoff. Before the queue can resume, a reviewed
+budget brake must close the gate and pause dispatch at $40, then cancel an
+active execution at $45, while the launch ledger provides the deterministic
+pre-spend boundary.
+
+The checked-in runbook was reconciled twice and then verified against live IAM,
+bucket policies, queue limits, budget scope, and alert thresholds. The audit
+also confirmed zero Cloud Run services or Jobs, zero tasks, zero container
+images, zero Cloud Builds, and zero user-managed service-account keys. Classic
+and Ghost remain local-only; the next milestone is the private coordinator,
+budget brake, and real digest-pinned worker followed by one manual smoke Job.
