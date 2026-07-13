@@ -1,8 +1,8 @@
 ---
 slug: "seamless-qr-code"
 title: "Seamless QR"
-summary: "Create scan-checked QR artwork with local Classic and Ghost tools plus an opt-in, PIN-gated GPU Generative Lab."
-agentSummary: "Public Sites beta with on-device Classic and Ghost blending plus an opt-in, PIN-gated Generative Lab using short-lived GPU jobs, texture-aware optimization, and exact multi-decoder validation."
+summary: "Create blended QR artwork with clearly unverified Phone-test exports, optional automatic checks, and an opt-in GPU Generative Lab."
+agentSummary: "Public Sites beta with on-device Classic and Ghost blending plus an opt-in Generative Lab that offers either manual phone testing or exact automated decoder validation."
 status: "active"
 surface: "listed"
 featured: false
@@ -29,25 +29,30 @@ black-and-white code would interrupt the composition.
 
 Classic turns the former Safe, Balanced, and Stealth presets into one continuous
 blend-strength control, with manual position, size, and rotation controls plus
-a placement preview. Ghost Lab expands the local search across QR correction,
-masks, nearby angles, and scales while ranking texture, edge alignment,
-saliency, finder contrast, and required tonal change.
+a placement preview. Its default Phone-test path performs one low-footprint
+render and allows a clearly marked, unverified download without running decoder
+checks. Automatic scan checking remains available when the user wants a gated
+export. Ghost Lab expands the local search across QR correction, masks, nearby
+angles, and scales while ranking texture, edge alignment, saliency, finder
+contrast, and required tonal change.
 
 Generative Lab is a separate, explicit opt-in path. A deterministic
-perceptual/EOT optimizer selects texture-aware placement, size, and rotation,
-then runs as a short-lived one-L4 Cloud Run Job. It is not a diffusion model and
-does not regenerate the source artwork. Cloud-side OpenCV and ZXing-C++ checks
-are followed by exact-payload jsQR and ZXing JS validation in the browser before
-download.
+perceptual optimizer selects texture-aware placement, size, and rotation, then
+runs as a short-lived one-L4 Cloud Run Job. Its Phone-test path applies
+blueprint-inspired local-threshold, module-center weighting, JND-like placement,
+and a softer quiet-zone treatment while leaving final scan judgment to the
+user's target phone. It is not a diffusion model and does not regenerate the
+source artwork. Automatic mode retains exact-payload cloud and browser decoder
+checks.
 
 ## Current state
 
 The public beta supports anonymous static HTTP and HTTPS destinations through
-Classic and the screen-first Ghost Lab experiment. Ghost still requires exact
-pristine decoding in both browser engines; informed by successful real-phone
-testing, its stress gate requires six of twelve variants independently in each
-decoder. It can return Most hidden, Best balance, and Most reliable validated
-poses without rerunning.
+Classic and the screen-first Ghost Lab experiment. Manual Phone-test exports are
+intentionally unverified. In Generative Lab, 98 is a starting point derived from
+one phone and artwork combination, not a universal readable boundary. Ghost and
+the optional Automatic paths retain exact decoder gates for users who prefer an
+automated safety signal.
 
 The renderer treats the source artwork and QR-driven correction as separate
 working layers, but export deliberately flattens them into one metadata-stripped
@@ -60,10 +65,11 @@ rather than a guaranteed deletion time.
 The cloud path allows one active GPU execution, supports user cancellation, and
 closes new work at $40 of tracked monthly spend, cancels an active execution at
 $45, and emits a project-scoped $50 budget alert. The alert is not a hard billing
-cap. A final production-path smoke passed both cloud decoder gates, while the
-browser validators decoded the exact normalized destination in 12 of 12
-deterministic variants in jsQR and 12 of 12 in ZXing JS. It left no source,
-queue task, lock, or dispatch record behind.
+cap. Production smokes cover both workflows: the Automatic path passed its exact
+decoder gates, while the newer Phone-test path completed a short-lived L4 job
+with automated validation explicitly disabled. Cleanup left no source artwork or
+job-scoped task, lock, dispatch, or temporary object behind; the queue returned
+to its running state with the admission gate open.
 
 The product does not promise universal invisibility or a commercial scan
 guarantee. Users should test final artwork on the intended phone, display, and

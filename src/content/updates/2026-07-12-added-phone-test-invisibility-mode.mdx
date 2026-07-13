@@ -1,0 +1,37 @@
+---
+projectSlug: "seamless-qr-code"
+date: "2026-07-12"
+title: "Added phone-test invisibility mode"
+summary: "Added clearly unverified manual exports and a lower-footprint GPU phone-test path while retaining automatic decoder validation as an option."
+links:
+  - label: "Try Phone-test mode"
+    url: "https://seamless-qr.disphius.chatgpt.site/studio"
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/seamless-qr-code/"
+source: "agent"
+---
+
+Seamless QR now separates manual phone judgment from automated decoder gating.
+Classic defaults to a Phone-test export that performs one low-footprint render,
+runs no decoder checks, and labels the download unverified. Automatic mode is
+still available for users who prefer a decoder-gated result.
+
+Generative Lab now defaults to a separate Phone-test workflow at 98 concealment.
+That value is a starting point observed with one phone and one artwork, not a
+universal scan threshold or an invisibility guarantee. The cloud worker uses
+ideas from the project's Invisible QR Embedding concept blueprint: a local
+luminance threshold, stronger weighting near module centers, JND-like
+texture-aware placement, and a softer quiet-zone treatment. The approach remains
+deterministic and does not regenerate the source image.
+
+A production smoke exercised the new path on one short-lived L4 Cloud Run Job.
+Its worker image pass finished in about 22 seconds and returned with
+`automatedValidation=false`, as intended, so no phone scan success is claimed.
+After the result was downloaded, cleanup verification found no source artwork,
+task, lock, dispatch, or job-scoped temporary object; the queue was running with
+its admission gate open. The existing Automatic workflow and its exact decoder
+checks remain available.
+
+This behavior is published in the public Sites v7 studio. Pictures remain on the
+device in Classic; Generative Lab uploads only after explicit consent and uses
+the existing terminal cleanup and one-day storage-lifecycle fallback.
