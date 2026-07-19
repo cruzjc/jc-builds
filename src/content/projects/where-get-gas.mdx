@@ -1,0 +1,60 @@
+---
+slug: "where-get-gas"
+title: "Where Get Gas?"
+summary: "Mobile-first Hawaii gas-station finder that ranks nearby stations by price, road distance, and transparent trip-adjusted cost using live HERE data."
+agentSummary: "Public Sites/vinext pilot using one-time browser geolocation, HERE Fuel Prices, Matrix Routing, lazy static maps, and local-only fuel and navigation preferences."
+status: "active"
+surface: "listed"
+featured: false
+tags:
+  - "hawaii"
+  - "here"
+  - "gas-prices"
+  - "maps"
+  - "privacy"
+repoUrls: []
+demoUrl: "https://where-get-gas.disphius.chatgpt.site/"
+heroImage: "/art/project-template.svg"
+lastUpdated: "2026-07-18"
+order: 1000
+labStage: "shipping"
+---
+
+## Objective
+
+Help people in Hawaiʻi choose a nearby fuel stop by the cost of the purchase and
+the drive, rather than by pump price or distance alone. The experience is
+mobile-first and deliberately asks passengers or parked drivers to operate it.
+
+## How it works
+
+One browser location reading starts a server-side HERE Fuel Prices search.
+HERE Matrix Routing adds road distance and ETA for up to 15 stations, while a
+collapsed static HERE map shows the numbered top ten only after the user asks
+for it.
+
+The list can be sorted by Best Value, Lowest Price, or Closest. Best Value keeps
+the provider price and route inputs visible and labels the app's calculation
+separately:
+
+```text
+trip-adjusted total = gallons × station price
+  + (one-way road miles ÷ MPG) × median fresh local price
+```
+
+Regular, midgrade, premium, and diesel are selectable when HERE supplies a
+compatible price. The estimate defaults to 10 gallons and 25 MPG, with quick
+presets for changing both assumptions.
+
+## Current state
+
+The public Hawaiʻi pilot is live at
+[where-get-gas.disphius.chatgpt.site](https://where-get-gas.disphius.chatgpt.site/).
+Its launch smoke test returned 15 distinct central-Honolulu stations with
+Regular USD-per-gallon prices reported within 24 hours and 15 usable road
+routes.
+
+There are no accounts, analytics, saved coordinates, or location history.
+Only fuel, MPG, gallons, and navigation preferences may stay on the current
+device. Prices can still change before arrival, so the site keeps update age
+visible and asks users to verify the pump.

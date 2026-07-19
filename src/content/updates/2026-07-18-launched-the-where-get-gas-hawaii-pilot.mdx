@@ -1,0 +1,38 @@
+---
+projectSlug: "where-get-gas"
+date: "2026-07-18"
+title: "Launched the Where Get Gas Hawaii pilot"
+summary: "Published the live Hawaii pilot with fresh HERE prices, road routing, transparent trip-adjusted ranking, and no saved coordinates or search history."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/where-get-gas/"
+  - label: "Live pilot"
+    url: "https://where-get-gas.disphius.chatgpt.site/"
+source: "agent"
+---
+
+Published the first public Where Get Gas? pilot as a phone-first Sites app for
+the main Hawaiian Islands.
+
+## What shipped
+
+- one-tap browser geolocation with no continuous tracking or IP fallback
+- live HERE station prices, Matrix road miles and ETA, and an on-demand map
+- Best Value, Lowest Price, and Closest rankings with transparent assumptions
+- Regular, midgrade, premium, and diesel selection plus gallons and MPG presets
+- explicit price freshness, provider attribution, and Apple or Google
+  directions handoff
+- public Privacy and Terms pages with no accounts, analytics, or saved searches
+
+## Launch verification
+
+The fixed central-Honolulu check returned 15 distinct Regular stations, all 15
+with exact USD-per-gallon prices reported within 24 hours and all 15 with
+usable driving routes. The public homepage, Privacy, Terms, live search,
+short-lived map token, PNG map response, attribution, and no-store headers were
+verified after deployment.
+
+The release also passed 30 unit tests, eight rendered and integration checks,
+type checking, linting, a production build, dependency audit, and credential
+scans. Provider prices can still change, so the site never presents a displayed
+price as a guarantee.
