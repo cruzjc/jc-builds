@@ -2,7 +2,7 @@
 projectSlug: "opening-momentum-v1"
 date: "2026-07-21"
 title: "Hardened the Pi research and notification workflow"
-summary: "Added DST-aware market timers, kept Claude research-only, and verified deterministic Alpaca/IEX opportunity alerts with 23 strategy tests, 9 app/context tests, and an HTTP 200 read-only smoke."
+summary: "Added DST-aware market timers, kept Claude research-only, and verified deterministic Alpaca/IEX opportunity alerts with 31 strategy tests, 13 app/context tests, and authenticated live smoke checks."
 links:
   - label: "Project page"
     url: "https://d449i4mct1wst.cloudfront.net/projects/opening-momentum-v1/"
@@ -13,6 +13,6 @@ Hardened the Raspberry Pi research and notification workflow around the determin
 
 The market schedule now uses DST-aware timers rather than fixed timezone offsets, keeping session timing and day context aligned as Eastern Time changes. Alpaca/IEX data and explicit strategy rules determine actionability: new entries remain long-only, incomplete or missing opening-range data fails closed, and failed-gap or opening-range failure behavior is limited to protective exits for held longs. Existing short positions cannot generate protective sells.
 
-Claude remains research-only. It may add context to the research record, but it does not decide whether a setup qualifies and is not an order-execution path. Qualifying results are routed to notification-only alerts for human review; autonomous execution is not enabled.
+Claude remains research-only. Its scheduled runner has only web search and fetch tools; local shell, file, browser, persistence, skill, and configured MCP surfaces are disabled. It may add context to the research record, but it does not decide whether a setup qualifies and is not an order-execution path. Qualifying results are routed to notification-only alerts for human review, and near-expiry entries are skipped.
 
-Verification passed 23 strategy tests and 9 app/context tests. A read-only service smoke returned HTTP 200. No test alert was sent and no order was placed, so this verification does not claim phone delivery.
+Verification passed 31 strategy tests and 13 app/context tests. The dashboard returned HTTP 200, authenticated state returned HTTP 200, and unauthenticated state and alert-ingest requests returned HTTP 401. Deterministic alerts render in a read-only dashboard section without an Execute control. No test alert was sent and no order was placed, so this verification does not claim phone delivery.
