@@ -1,0 +1,37 @@
+---
+slug: "opening-momentum-v1"
+title: "Opening-Momentum v1"
+summary: "Deterministic Alpaca/IEX opening-momentum research and notification workflow with long-only entries, protective exits for held longs, and human review."
+agentSummary: "Deterministic US-equities opening-momentum system: explicit Alpaca/IEX rules produce long-entry or held-long protective-exit plans; Claude is research-only, alerts are notification-only, and autonomous execution is not enabled."
+status: "active"
+surface: "listed"
+featured: false
+tags:
+  - "python"
+  - "trading"
+  - "alpaca"
+  - "iex"
+  - "raspberry-pi"
+  - "automation"
+repoUrls: []
+heroImage: "/art/project-template.svg"
+lastUpdated: "2026-07-21"
+order: 1001
+labStage: "testing"
+---
+
+## Objective
+
+Opening-Momentum v1 turns early-session US-equity data into explicit, reviewable trade plans. The strategy engine is deterministic: Alpaca/IEX market and account data plus fixed risk rules determine whether a setup qualifies. The monitored Raspberry Pi workflow routes qualifying opportunities to notification-only alerts for human review; it does not autonomously place orders.
+
+## Strategy boundaries
+
+- New entries are long-only and require the configured opening-range, VWAP, catalyst, spread, and liquidity conditions.
+- Incomplete or missing opening-range data is non-actionable; the engine does not infer a trade plan from partial inputs.
+- Failed-gap and opening-range failure logic protects held long positions; it does not open short positions, and an existing short position cannot generate a protective sell.
+- Alpaca/IEX is the decision-time source of truth for bars, quotes, account state, positions, and market context.
+- Claude may contribute research context only. Deterministic rules decide whether an opportunity is actionable, and Claude is not an order-execution path.
+
+## Current state
+
+Market jobs use DST-aware timers instead of fixed UTC or Hawaii offsets. The current verification baseline is 23 strategy tests plus 9 app/context tests, with an HTTP 200 read-only smoke check. No test alert or order was sent, and the smoke check does not claim delivery to a phone or other end device.
