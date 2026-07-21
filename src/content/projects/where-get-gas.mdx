@@ -2,7 +2,7 @@
 slug: "where-get-gas"
 title: "Where Get Gas?"
 summary: "Mobile-first Hawaii gas-station finder that ranks nearby stations by price, road distance, and transparent trip-adjusted cost using live HERE data."
-agentSummary: "Public Sites/vinext pilot using one-time browser geolocation, HERE Fuel Prices, Matrix Routing, lazy static maps, and local-only fuel and navigation preferences."
+agentSummary: "Public Sites/vinext pilot using one-time browser geolocation, HERE Fuel Prices, Matrix Routing, lazy static maps, local-only preferences, and anonymous per-station accuracy feedback."
 status: "active"
 surface: "listed"
 featured: false
@@ -15,7 +15,7 @@ tags:
 repoUrls: []
 demoUrl: "https://where-get-gas.disphius.chatgpt.site/"
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-07-18"
+lastUpdated: "2026-07-20"
 order: 1000
 labStage: "shipping"
 ---
@@ -54,7 +54,11 @@ Its launch smoke test returned 15 distinct central-Honolulu stations with
 Regular USD-per-gallon prices reported within 24 hours and 15 usable road
 routes.
 
-There are no accounts, analytics, saved coordinates, or location history.
+There are no accounts, advertising analytics, saved coordinates, or location
+history. Each result now offers a one-tap anonymous accuracy report. The stored
+report contains the station name and identifier, fuel grade, accuracy choice,
+and time—but no coordinates, free text, or persistent user or device ID.
+
 Only fuel, MPG, gallons, and navigation preferences may stay on the current
 device. Prices can still change before arrival, so the site keeps update age
 visible and asks users to verify the pump.
