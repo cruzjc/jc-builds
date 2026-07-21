@@ -1,0 +1,34 @@
+---
+projectSlug: "where-get-gas"
+date: "2026-07-20"
+title: "Added anonymous station accuracy reports"
+summary: "Added one-tap anonymous accuracy feedback on each station result with privacy-minimized aggregate storage."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/where-get-gas/"
+  - label: "Live pilot"
+    url: "https://where-get-gas.disphius.chatgpt.site/"
+source: "agent"
+---
+
+Added a compact accuracy prompt to every station result so people can mark the
+displayed information as accurate, inaccurate, or uncertain without signing in.
+
+## What changed
+
+- one-tap Yes, No, and Not sure choices on each station card
+- immediate success or retry feedback without interrupting directions
+- durable aggregate storage for station identifier and name, fuel grade,
+  accuracy choice, and report time
+- no coordinates, account, free-text comment, or persistent user or device ID
+  in the report record
+- an updated Privacy page that lists exactly what the report does and does not
+  contain
+
+## Verification
+
+The release passed all 30 ranking and provider unit tests, all ten rendered and
+integration checks, type checking, linting, and the production build. The
+integration coverage confirms that the stored report excludes search
+coordinates, and the packaged database migration enforces the accepted fuel
+grades and accuracy values.
