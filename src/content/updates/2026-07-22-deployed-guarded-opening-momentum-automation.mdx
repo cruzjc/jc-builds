@@ -1,0 +1,18 @@
+---
+projectSlug: "opening-momentum-v1"
+date: "2026-07-22"
+title: "Deployed guarded Opening-Momentum automation"
+summary: "Deployed the autonomous-capable workflow to the Pi with live ordering hard locked, deterministic Alpaca/IEX execution gates, and 305 passing Pi tests."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/opening-momentum-v1/"
+source: "agent"
+---
+
+The guarded Opening-Momentum workflow is now deployed on the Raspberry Pi. Claude is restricted to a short-lived, schema-validated candidate nomination: it can suggest at most five long candidates with confidence and rationale, but it cannot choose price, quantity, side, order type, stop, target, timing, or commands.
+
+Every trade decision remains deterministic. The executor re-fetches current Alpaca account, position, asset, clock, and order state plus IEX bars, quotes, and news; applies the opening-range, VWAP, catalyst, spread, liquidity, equity, PDT, and loss limits; computes quantity and prices; and manages strategy-owned entries and protective exits. Stable client IDs, explicit `position_intent`, broker reconciliation, and a final timed flatten make ambiguous submissions or unresolved exposure fail closed.
+
+The deployment passed 228 strategy tests and 77 dashboard tests on the Pi. The dashboard now distinguishes live-account monitoring from order authorization. The notification-only timer is enabled and active, while the autonomous timer is disabled and inactive. Environment authorization remains false and the external live-trading kill file remains present. No paper or live order was placed during implementation or verification.
+
+Live activation is still blocked. It requires an exclusive single-writer Alpaca account with no manual trading, rotation of trading credentials and key-only SSH access, paper validation of Alpaca `position_intent` request and response behavior, and explicit owner authorization.
