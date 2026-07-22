@@ -1,0 +1,20 @@
+---
+projectSlug: "opening-momentum-v1"
+date: "2026-07-22"
+title: "Deployed Trade Operations over HTTPS"
+summary: "Renamed the dashboard, added ownership-aware operations and durable close controls, and verified 426 Pi tests while every live action remains disabled."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/opening-momentum-v1/"
+source: "agent"
+---
+
+Trade Approvals is now Trade Operations and is deployed on the Raspberry Pi through the HTTPS `/trade/` route. The interface distinguishes strategy-owned positions from external positions and presents recent automated-order activity separately from recent manual-close activity. The production migration preserved the existing records.
+
+The durable manual full-close workflow remains implemented in mutually exclusive strategy-owned and external-position modes. The deployment intentionally disables direct external close, strategy close, manual cancel, and live-entry controls. The autonomous-entry timer and operator-exit timer are also disabled, both live-action environment authorizations are `0`, and the kill file remains present.
+
+Claude still has no execution authority. It can nominate bounded long candidates only; deterministic rules using current Alpaca/IEX data independently validate the setup, calculate size and order terms, and own entry and protective-exit decisions.
+
+Deployment verification passed 308 strategy-source tests and 118 dashboard tests on the Pi. A post-migration broker snapshot showed one pre-existing externally owned position, zero strategy-owned positions, and zero open or same-day orders. No order was submitted during this release.
+
+The operational state is `ready_but_blocked`. Activation still requires an exclusive single-writer account, completion of credential and key-only SSH prerequisites, paper validation of Alpaca `position_intent` behavior, and explicit authorization.
