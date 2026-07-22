@@ -1,8 +1,8 @@
 ---
 slug: "opening-momentum-v1"
 title: "Opening-Momentum v1"
-summary: "Deployed Raspberry Pi opening-momentum workflow with bounded Claude candidate nomination, deterministic Alpaca/IEX decisions, and live ordering hard locked."
-agentSummary: "Claude nominates up to five symbols through a constrained schema; deterministic rules using current Alpaca/IEX data independently validate, size, enter, and exit trades. The executor is deployed, while the timer, environment authorization, and kill file hard-lock live orders."
+summary: "Deployed Raspberry Pi trading workflow with an HTTPS Trade Operations surface, ownership-aware controls, deterministic Alpaca/IEX decisions, and live actions hard locked."
+agentSummary: "Trade Operations exposes ownership-aware monitoring and durable full-close workflows over HTTPS. Claude only nominates candidates; deterministic Alpaca/IEX rules own entries and exits. Live-entry and operator-exit authorizations remain locked pending activation prerequisites."
 status: "active"
 surface: "listed"
 featured: false
@@ -22,7 +22,7 @@ labStage: "testing"
 
 ## Objective
 
-Opening-Momentum v1 turns early-session US-equity data into bounded trade decisions. Claude can nominate a short list of symbols, but Alpaca/IEX market and account data plus fixed risk rules independently determine whether a setup qualifies, calculate size and prices, and control the order lifecycle. The workflow is deployed on the Raspberry Pi with notification-only scheduling active and the autonomous timer disabled behind independent safety locks.
+Opening-Momentum v1 turns early-session US-equity data into bounded trade decisions. Claude can nominate a short list of symbols, but Alpaca/IEX market and account data plus fixed risk rules independently determine whether a setup qualifies, calculate size and prices, and control the order lifecycle. The Raspberry Pi deployment now includes the renamed Trade Operations dashboard on its HTTPS `/trade/` route, while all live action remains behind independent safety locks.
 
 ## Strategy boundaries
 
@@ -33,11 +33,12 @@ Opening-Momentum v1 turns early-session US-equity data into bounded trade decisi
 - Claude may nominate at most five same-session `long_candidate` symbols. Its unattended runner exposes only web search and fetch tools; local shell, file, browser, persistence, skill, and configured MCP surfaces are disabled. Price, quantity, side, stop, target, order type, timing, command, and unknown fields are rejected.
 - A new entry requires a fresh observed breakout, executable ask within a deterministic limit, current catalyst and liquidity checks, PDT and live-equity policy, a one-entry-per-session cap, and a maximum proposed notional of $50.
 - Entries use whole-share DAY limit brackets after the breakout is observed. Protective exits cancel related strategy orders, re-read the live remaining long quantity, and use a risk-reducing DAY market sell. Explicit Alpaca `position_intent`, stable per-session client IDs, durable broker evidence, and reconciliation prevent blind retry.
+- Trade Operations separates strategy-owned and external positions, recent automated-order activity, and recent manual-close activity. Its durable full-close workflow retains mutually exclusive strategy and external-position modes so an operator cannot apply both paths to the same action.
 
 ## Current state
 
-Market jobs use DST-aware timers instead of fixed UTC or Hawaii offsets. The deployed autonomous-capable service supervises the session through a 10:30 ET flatten and a 10:35 ET explicit failure deadline, and can refresh the bounded Claude nomination while it runs. Live execution is nevertheless hard locked: the autonomous timer is disabled and inactive, environment authorization is false, and the external live-trading kill file is present. The notification-only timer remains enabled and active.
+The Trade Operations migration preserved the existing production records. Verification on the deployed Pi passed 308 strategy-source tests and 118 dashboard tests. The post-deployment broker snapshot contained one pre-existing externally owned position, no strategy-owned positions, and no open or same-day orders. No order was submitted during the release.
 
-Verification passed 228 strategy tests and 77 dashboard tests on the Pi. Coverage includes malformed or oversized Claude signals, ambiguous broker responses, delayed bracket cancellation, partial fills, query-only timeout recovery, deterministic exit retries, and unresolved-deadline failure. Deployment and read-only broker checks placed no paper or live orders.
+Live execution remains hard locked. The autonomous-entry timer and operator-exit timer are disabled, both live-action environment authorizations are `0`, and the kill file is present. Direct external close, strategy close, manual cancel, and live-entry controls are disabled. The durable close implementations remain deployed but cannot be invoked in this configuration.
 
-Live activation remains blocked until the Alpaca account has an exclusive single writer with no manual trading, credentials are rotated and SSH is key-only, paper trading validates Alpaca `position_intent` request and response behavior, and the owner gives explicit authorization.
+Operational status is `ready_but_blocked`. Activation requires an exclusive single-writer Alpaca account, completion of the credential-rotation and key-only SSH prerequisites, paper validation of Alpaca `position_intent` request and response behavior, and explicit owner authorization.
