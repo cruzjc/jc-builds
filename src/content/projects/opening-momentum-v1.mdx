@@ -1,8 +1,8 @@
 ---
 slug: "opening-momentum-v1"
 title: "Opening-Momentum v1"
-summary: "Deterministic Alpaca/IEX opening-momentum research and notification workflow with long-only entries, protective exits for held longs, and human review."
-agentSummary: "Deterministic US-equities opening-momentum system: explicit Alpaca/IEX rules produce long-entry or held-long protective-exit plans; Claude is research-only, alerts are notification-only, and autonomous execution is not enabled."
+summary: "Deterministic Alpaca/IEX opening-momentum workflow with Claude-nominated candidates, strict long-only rules, and a guarded autonomous executor staged on a Raspberry Pi."
+agentSummary: "Claude can nominate symbols through a constrained schema, but live Alpaca/IEX data and deterministic rules independently choose whether, how, and how much to trade. Autonomous execution is implemented and deployed but remains safety-disabled pending credential rotation."
 status: "active"
 surface: "listed"
 featured: false
@@ -15,23 +15,27 @@ tags:
   - "automation"
 repoUrls: []
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-07-21"
+lastUpdated: "2026-07-22"
 order: 1001
 labStage: "testing"
 ---
 
 ## Objective
 
-Opening-Momentum v1 turns early-session US-equity data into explicit, reviewable trade plans. The strategy engine is deterministic: Alpaca/IEX market and account data plus fixed risk rules determine whether a setup qualifies. The monitored Raspberry Pi workflow routes qualifying opportunities to notification-only alerts for human review; it does not autonomously place orders.
+Opening-Momentum v1 turns early-session US-equity data into bounded trade decisions. Claude can nominate a short list of symbols, but Alpaca/IEX market and account data plus fixed risk rules independently determine whether a setup qualifies, calculate size and prices, and control the order lifecycle. The existing notification-only workflow remains active while the autonomous service is staged behind three separate safety locks.
 
 ## Strategy boundaries
 
 - New entries are long-only and require the configured opening-range, VWAP, catalyst, spread, and liquidity conditions.
 - Incomplete or missing opening-range data is non-actionable; the engine does not infer a trade plan from partial inputs.
-- Failed-gap and opening-range failure logic protects held long positions; it does not open short positions, and an existing short position cannot generate a protective sell.
+- Failed-gap and opening-range failure logic protects only long positions owned by this strategy; it does not open short positions or sell unrelated holdings.
 - Alpaca/IEX is the decision-time source of truth for bars, quotes, account state, positions, and market context.
-- Claude may contribute research context only. Its unattended runner exposes only web search and fetch tools; local shell, file, browser, persistence, skill, and configured MCP surfaces are disabled. Deterministic rules decide whether an opportunity is actionable, and Claude is not an order-execution path.
+- Claude may nominate at most five same-session `long_candidate` symbols. Its unattended runner exposes only web search and fetch tools; local shell, file, browser, persistence, skill, and configured MCP surfaces are disabled. Price, quantity, side, stop, target, order type, timing, command, and unknown fields are rejected.
+- A new entry requires a fresh observed breakout, executable ask within a deterministic limit, current catalyst and liquidity checks, PDT and live-equity policy, a one-entry-per-session cap, and a maximum proposed notional of $50.
+- Entries use whole-share DAY limit brackets after the breakout is observed. Protective exits cancel related strategy orders, re-read the live remaining long quantity, and use a risk-reducing DAY market sell. Stable per-session client IDs and broker reconciliation prevent blind retry.
 
 ## Current state
 
-Market jobs use DST-aware timers instead of fixed UTC or Hawaii offsets. Qualifying alerts appear in a read-only dashboard section with no Execute control, and nearly expired entry alerts are suppressed. The current verification baseline is 31 strategy tests plus 13 app/context tests, with an HTTP 200 read-only smoke check and HTTP 401 checks for unauthenticated state and alert access. No test alert or order was sent, and the smoke check does not claim delivery to a phone or other end device.
+Market jobs use DST-aware timers instead of fixed UTC or Hawaii offsets. The staged autonomous service supervises the session through the 10:30 ET flatten and refreshes the Claude signal while it runs, but it is currently disabled and inactive. Environment authorization is set to false and an external buy kill file is present because the Alpaca credential must be rotated before activation. The prior notification-only timer remains enabled.
+
+Verification passed 52 strategy tests and 17 dashboard, context, and Claude-boundary tests on the Pi. A live-source read-only smoke returned `alpaca_market_closed` with zero actions, and Alpaca reported zero Opening-Momentum orders today and zero open strategy orders. No test notification or order was sent.
