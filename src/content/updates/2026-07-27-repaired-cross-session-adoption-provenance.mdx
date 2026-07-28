@@ -1,0 +1,22 @@
+---
+projectSlug: "opening-momentum-v1"
+date: "2026-07-27"
+title: "Repaired cross-session adoption provenance"
+summary: "Archived completed adoption provenance across sessions, reconciled the flat Pi state, and corrected the live systemd registry while keeping autonomous entries safety-paused."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/opening-momentum-v1/"
+source: "agent"
+---
+
+Deployed the cross-session ownership fix to the Raspberry Pi and repaired the strategy's canonical Pi registry record.
+
+The defect came from discarding the adopted-position record after a supported exit and broker-flat confirmation. A later full-history replay still saw the retained `sell_to_close`, but no longer had the adopted long basis to net against it, so local state inferred a synthetic short while Alpaca remained flat.
+
+Completed adoptions are now archived as immutable provenance. Ownership reconstruction starts from active and completed adoption records before replaying strategy fills, while completed records remain outside exposure counts and entry blockers. The exact close-and-rollover lifecycle, state migration, malformed provenance, and overlap cases are covered by regression tests.
+
+The deployed Pi suite passed 418 tests. A read-only migration recovered the exact prior CLSK adoption from the checksum-pinned live-cutover state, confirmed the live account flat with zero open orders twice, reconciled strategy-owned and strategy-created-short quantities to zero, and preserved the internal kill switch without making a broker mutation.
+
+The Pi registry now records live broker mode, the autonomous and operator-exit systemd units, and the real log paths. The corrected inventory checker validates that aggregate topology when only protective operator-exit supervision is active.
+
+Autonomous entries remain intentionally paused: live-entry authorization is off, the external kill file and internal kill switch remain set, and the auto timer is disabled. The operator-exit timer stays enabled. Reactivation is a separate operator decision.
