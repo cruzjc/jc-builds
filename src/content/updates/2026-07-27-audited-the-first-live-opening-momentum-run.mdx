@@ -1,0 +1,18 @@
+---
+projectSlug: "opening-momentum-v1"
+date: "2026-07-27"
+title: "Audited the first live Opening-Momentum run"
+summary: "Verified a profitable strategy-owned close, confirmed the broker account is flat, and documented a fail-closed reconciliation defect that blocks new entries pending a tested fix."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/opening-momentum-v1/"
+source: "agent"
+---
+
+Completed a read-only audit of the live Raspberry Pi scheduler, strategy state, logs, and Alpaca account after the first live Opening-Momentum sessions.
+
+The July 24 cutover enabled the deterministic executor and exit supervisor. The bot then submitted one full-quantity `sell_to_close` for the previously adopted long. Broker activity confirmed that the close was profitable, no autonomous entry order was placed, and the account was left with zero positions and zero open orders.
+
+On the next session, the engine replayed the retained exit fill after it had cleared the adopted-position provenance. That bookkeeping sequence incorrectly produced a synthetic short in local state even though the broker remained flat. The engine's safety boundary worked as intended: it latched the internal kill switch, blocked new entries, emitted a critical result, and made no additional order.
+
+The runtime is therefore live-configured but fail-closed. Before another entry is allowed, the adoption-close provenance needs to survive session rollover, the exact lifecycle needs a regression test, and the Pi registry and inventory checker need to be reconciled with the active autonomous and exit-supervision timers.
