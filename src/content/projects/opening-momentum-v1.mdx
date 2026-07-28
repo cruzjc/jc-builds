@@ -1,8 +1,8 @@
 ---
 slug: "opening-momentum-v1"
 title: "Opening-Momentum v1"
-summary: "Runs a deterministic single-writer Raspberry Pi trading workflow with live Alpaca/IEX execution, strategy-owned position management, and fail-closed safety controls; new entries are currently blocked pending a reconciliation fix."
-agentSummary: "Claude only nominates bounded candidates; deterministic Alpaca/IEX rules own entries, exits, sizing, and reconciliation. The live workflow completed one strategy-owned close, then failed closed on a cross-session adoption defect, leaving the broker flat and new entries blocked."
+summary: "Runs a deterministic single-writer Raspberry Pi workflow with live Alpaca/IEX execution and fail-closed controls; adoption provenance is repaired while autonomous entries remain safety-paused."
+agentSummary: "Claude only nominates bounded candidates; deterministic Alpaca/IEX rules own entries, exits, sizing, and reconciliation. Completed adoption provenance now survives full-history replay, the broker is flat, and reactivation remains an explicit operator decision."
 status: "active"
 surface: "listed"
 featured: false
@@ -41,6 +41,10 @@ The live Alpaca credentials were rotated and isolated to the required Pi service
 
 The live cutover completed on July 24. The executor submitted one full-quantity `sell_to_close` for the adopted long, the broker confirmed the position flat, and no autonomous entry order was placed. A later cross-session reconciliation pass retained the exit fill after clearing the adoption provenance and incorrectly inferred a short even though the broker still showed zero positions and zero open orders.
 
-The engine responded fail-closed: it latched its internal kill switch, blocked new entries, emitted a critical safety result, and exited nonzero without placing another order. The autonomous and exit-supervision timers remain installed and enabled, but the internal safety state prevents a new buy.
+The engine responded fail-closed: it latched its internal kill switch, blocked new entries, emitted a critical safety result, and exited nonzero without placing another order.
 
-The current operating state is live-configured and internally kill-switched. The next safe milestone is to preserve adopted-position close provenance across session rollover, add a regression test for that exact lifecycle, reconcile the Pi strategy registry with the active timers, and repeat read-only broker verification before any new entry is allowed.
+The repaired state model now archives a completed adoption as immutable provenance instead of deleting it. Full-history reconstruction seeds that adopted long basis before replaying strategy exits, so the July 24 CLSK close continues to net to zero across later sessions. Cross-session, migration, malformed-state, and overlap regressions were added; the deployed Pi suite passed 418 tests.
+
+The Pi state was migrated from the checksum-pinned July 24 cutover snapshot while broker mutations were blocked. Two live read-only checks confirmed zero positions and zero open orders, the false local short cleared, and completed CLSK provenance remained intact. The strategy registry and reusable inventory checker now describe the actual live-mode auto and operator-exit services instead of the retired dry-run alert timer.
+
+The current operating state is live-configured and deliberately safety-paused: live-entry authorization is off, the external and internal kill switches remain set, and the autonomous timer is disabled. Operator-exit supervision remains enabled. Re-enabling autonomous entries requires a separate, explicit operator decision; this repair did not reactivate trading.
