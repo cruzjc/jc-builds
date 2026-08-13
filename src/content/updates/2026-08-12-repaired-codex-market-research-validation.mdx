@@ -16,3 +16,5 @@ The deployment changed only that dashboard contract: low and medium event risk n
 After the dashboard-only service restart, both the direct research API and the routed `/trading/` API returned HTTP 200 with `health: healthy`, a populated validated result, medium risk paired with a neutral action, and no telemetry errors. The inactive threshold signal is expected because that session's signal had expired.
 
 Research timestamps and artifact modification times remained unchanged, proving the deployment did not trigger another research run. Research and strategy timers retained their prior schedules, no order operation was invoked, and the selected strategy remained in its flatten phase with no open or pending entries or exits. Opening Momentum remained disabled and interlocked throughout the repair.
+
+The independent strategy-registry validator still reports its pre-existing Short-Term Options classification and schedule mismatch. This dashboard repair does not change that metadata and does not claim registry-wide health.
