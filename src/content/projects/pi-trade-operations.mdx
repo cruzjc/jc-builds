@@ -1,0 +1,36 @@
+---
+slug: "pi-trade-operations"
+title: "Pi Trade Operations"
+summary: "Monitors independently gated trading strategies and scheduled Codex market research on Raspberry Pi while deterministic engines retain execution authority."
+agentSummary: "Operational dashboard for strategy-specific controls, telemetry, and bounded Codex research. Research can recommend directional tilts; deterministic market-data, risk, and order gates remain authoritative."
+status: "active"
+surface: "listed"
+featured: false
+tags:
+  - "python"
+  - "trading"
+  - "raspberry-pi"
+  - "codex"
+  - "operations"
+repoUrls: []
+heroImage: "/art/project-template.svg"
+lastUpdated: "2026-08-12"
+order: 1000
+labStage: "testing"
+---
+
+## Objective
+
+Pi Trade Operations provides one Raspberry Pi-hosted surface for monitoring independently gated trading strategies and scheduled market research. It keeps research, deterministic strategy decisions, and broker operations visibly separate so a healthy research workflow cannot silently become order authority.
+
+## How it works
+
+The `/trading/` dashboard combines scheduler health, strategy-specific controls, research artifacts, engine-applied threshold telemetry, and position or order state. Scheduled Codex research can nominate bounded equity or option candidates and recommend directional call, put, and event-risk actions. It cannot supply prices, quantities, order types, or commands.
+
+Each deterministic engine independently reads current market and account data, validates the research schema and session window, applies configured multiplier bounds, and retains full authority over eligibility, risk, and execution. Strategies keep separate enablement, interlocks, timers, ownership state, and exit supervision; the dashboard does not collapse them into one generic live status.
+
+## Current state
+
+As verified on August 12, 2026, the Codex market-research scheduler is enabled and its latest run succeeded. The dashboard accepts the resulting medium-risk, neutral-threshold artifact and reports healthy research telemetry. Short-Term Options was the selected strategy and was in its end-of-session flatten phase with no open or pending strategy exposure at the verification snapshot.
+
+Opening Momentum remains separately disabled and safety-blocked by its internal interlocks; this project status does not imply that every strategy is authorized to enter trades. The research-validator repair did not run research, alter schedules, or invoke an order path. Strategy-registry normalization remains a separate follow-up, so healthy research telemetry is not presented as registry-wide health.

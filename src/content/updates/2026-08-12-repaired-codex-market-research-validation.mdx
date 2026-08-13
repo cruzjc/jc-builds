@@ -1,0 +1,20 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-08-12"
+title: "Repaired Codex market-research validation"
+summary: "Aligned medium event risk with the engine's neutral multiplier and restored healthy /trading/ research telemetry without running research or changing orders."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+The latest scheduled Codex market-research run had completed successfully, but the `/trading/` dashboard showed the Research Agent as degraded. The saved result described medium event risk with a neutral threshold action, matching the deterministic Short-Term Options engine's configured `1.0` medium-risk multiplier. A stale dashboard validator instead required `raise_both_medium`, so it rejected both otherwise valid artifacts.
+
+The deployment changed only that dashboard contract: low and medium event risk now validate as neutral, while high risk still requires `raise_both_high`. Regression coverage now accepts the canonical low, medium, and high mappings and rejects the obsolete medium-risk raise. All 79 dashboard tests passed in an isolated deployment candidate before the live dashboard file was replaced atomically with a rollback copy preserved.
+
+After the dashboard-only service restart, both the direct research API and the routed `/trading/` API returned HTTP 200 with `health: healthy`, a populated validated result, medium risk paired with a neutral action, and no telemetry errors. The inactive threshold signal is expected because that session's signal had expired.
+
+Research timestamps and artifact modification times remained unchanged, proving the deployment did not trigger another research run. Research and strategy timers retained their prior schedules, no order operation was invoked, and the selected strategy remained in its flatten phase with no open or pending entries or exits. Opening Momentum remained disabled and interlocked throughout the repair.
+
+The independent strategy-registry validator still reports its pre-existing Short-Term Options classification and schedule mismatch. This dashboard repair does not change that metadata and does not claim registry-wide health.
