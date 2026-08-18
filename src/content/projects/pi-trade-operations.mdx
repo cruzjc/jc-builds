@@ -14,7 +14,7 @@ tags:
   - "operations"
 repoUrls: []
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-08-12"
+lastUpdated: "2026-08-18"
 order: 1000
 labStage: "testing"
 ---
@@ -27,10 +27,14 @@ Pi Trade Operations provides one Raspberry Pi-hosted surface for monitoring inde
 
 The `/trading/` dashboard combines scheduler health, strategy-specific controls, research artifacts, engine-applied threshold telemetry, and position or order state. Scheduled Codex research can nominate bounded equity or option candidates and recommend directional call, put, and event-risk actions. It cannot supply prices, quantities, order types, or commands.
 
+Short-Term Options also has revision-checked strategy presets. The dashboard compares the fixed August 4 signal and session settings, the adaptive pre-change settings, and the active configuration side by side. Operators can apply either preset atomically or edit the supported controls individually, while the engine continues to enforce its non-configurable broker, ownership, reconciliation, affordability, and exit protections.
+
 Each deterministic engine independently reads current market and account data, validates the research schema and session window, applies configured multiplier bounds, and retains full authority over eligibility, risk, and execution. Strategies keep separate enablement, interlocks, timers, ownership state, and exit supervision; the dashboard does not collapse them into one generic live status.
 
 ## Current state
 
-As verified on August 12, 2026, the Codex market-research scheduler is enabled and its latest run succeeded. The dashboard accepts the resulting medium-risk, neutral-threshold artifact and reports healthy research telemetry. Short-Term Options was the selected strategy and was in its end-of-session flatten phase with no open or pending strategy exposure at the verification snapshot.
+As verified on August 18, 2026, Short-Term Options is the selected live strategy and the August 4 preset is active. That profile uses fixed call and put momentum thresholds, seven completed five-minute bars, a 10:00 a.m. to 2:00 p.m. Eastern entry window, nearest-out-of-the-money contract selection, and two daily buy attempts. The dashboard accurately reports that realized-volatility floors and research outlook tilts are disabled for this profile.
 
-Opening Momentum remains separately disabled and safety-blocked by its internal interlocks; this project status does not imply that every strategy is authorized to enter trades. The research-validator repair did not run research, alter schedules, or invoke an order path. Strategy-registry normalization remains a separate follow-up, so healthy research telemetry is not presented as registry-wide health.
+The historical trading behavior is layered onto the current safety architecture rather than restoring the older engine wholesale. The dynamic buying-power affordability ceiling, active-strategy gate, shared lock, durable order intents, idempotent recovery, account reconciliation, kill controls, strategy-owned exits, and timed flattening remain enforced. At the verification snapshot, the broker and strategy state were flat with no open or pending orders, the timer was enabled and healthy, and no test order had been sent.
+
+Opening Momentum remains separately disabled and safety-blocked by its own interlocks; selecting Short-Term Options does not authorize every strategy. The strategy registry now agrees with the active systemd/live deployment and validates without errors, while three legacy registry rows still produce explicit unmatched-inventory warnings.

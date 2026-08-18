@@ -1,0 +1,18 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-08-18"
+title: "Added an August 4 Short-Term Options preset"
+summary: "Added a side-by-side strategy comparison, made both the August 4 and adaptive profiles configurable, and activated the August 4 settings without removing modern order safeguards."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+The Short-Term Options dashboard now compares three views side by side: the strategy settings used on August 4, the adaptive settings in place before this change, and the configuration that is active now. Both named profiles are server-defined presets with revision-checked, atomic application, and each supported control remains individually editable.
+
+The active August 4 profile restores the fixed +0.15% call and -0.30% put momentum thresholds, seven completed five-minute bars, the 10:00 a.m. to 2:00 p.m. Eastern entry window, nearest-out-of-the-money contract selection, exact-ask entry pricing, and a two-attempt daily buy limit. Research nominations remain relevant to weekly stock options, while 0DTE ETF candidates remain independently eligible under deterministic rules. Dashboard telemetry now names the active profile and its effective schedule, thresholds, research behavior, and contract depth.
+
+This is a configuration preset on the current engine, not a rollback to the older August 4 code. The active-strategy gate, shared execution lock, durable pending-order state, idempotent client order IDs, partial-fill and unknown-submit reconciliation, account-wide checks, strategy-owned protective exits, timed flattening, liquidity and delta filters, and dynamic affordability ceiling all remain in force. Kill controls continue to block new buys without disabling protective management.
+
+The engine, dashboard, presets, and registry changes passed their focused and compatibility suites before atomic deployment with rollback copies. Post-deployment checks confirmed the selected August 4 profile, healthy timer and dashboard services, a flat broker and strategy state, no open or pending orders, and a registry with zero validation errors. No test order, cancellation, close, or alert was sent during the change.
