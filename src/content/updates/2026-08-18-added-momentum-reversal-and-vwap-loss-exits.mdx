@@ -1,0 +1,20 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-08-18"
+title: "Added momentum-reversal and VWAP-loss exits"
+summary: "Tightened August 4 entry thresholds, froze proportional take-profit targets, and added latched minute-level momentum and VWAP invalidation exits."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+Short-Term Options now captures the effective momentum threshold that justified each new entry and freezes the position's take-profit percentage from that threshold. The active August 4-derived controls use an 80% scale, so the fixed call and put triggers are +0.12% and -0.24% instead of +0.15% and -0.30%, and a new position receives a +80% option take-profit target. Existing positions without the new metadata retain the prior fixed target and are not silently enrolled in technical exits.
+
+Position management still runs every minute. Once five fully post-fill one-minute underlying bars are available, either of two independent conditions can begin a two-bar confirmation streak: an adverse five-minute momentum move equal to 50% of the frozen entry threshold, or a close beyond cumulative regular-session VWAP by five basis points. Calls and puts use mirrored direction rules. Missing, stale, duplicate, malformed, or recently gapped data resets the technical evidence while the resting take profit, broker-P&L stop, and timed flatten stay active.
+
+A confirmed technical trigger is written to durable state before the engine requests cancellation of a resting take-profit order. The trigger stays latched through reconciliation and signal recovery, and the engine requires the take-profit order to be terminal plus a fresh position snapshot before submitting one `sell_to_close` DAY market order. Timed flatten remains highest priority, stop loss remains next, and stop-loss execution retains its prior bid-limit and hard-deadline behavior.
+
+The active configuration remains custom rather than replacing either historical preset: fixed August 4 signals, four completed five-minute entry bars, a 9:30 a.m. to 2:00 p.m. Eastern entry window, nearest-out-of-the-money selection, exact-ask entry pricing, and a 20-attempt guard. The two saved historical presets remain unchanged and explicitly leave threshold scaling and technical exits off when selected.
+
+The rollout passed 105 strategy tests and 111 dashboard tests on the Pi, including state-version rollback compatibility, post-fill timing, missing IEX minutes, call/put symmetry, TP-cancel reconciliation, and duplicate-sell defenses. A guarded first attempt restored its exact backup after an immediate premarket timer tick exposed an overly strict transient-state check; the corrected rollout then completed at control revision 8. Postflight verification found a flat broker and strategy state, no current-day or open orders, healthy timer and dashboard services, empty dashboard errors, and a registry with zero errors. No test order, cancellation, close, or alert was sent.
