@@ -14,7 +14,7 @@ tags:
   - "operations"
 repoUrls: []
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-08-18"
+lastUpdated: "2026-08-20"
 order: 1000
 labStage: "testing"
 ---
@@ -29,13 +29,15 @@ The `/trading/` dashboard combines scheduler health, strategy-specific controls,
 
 Short-Term Options also has revision-checked strategy presets. The dashboard compares the fixed August 4 signal and session settings, the adaptive pre-change settings, and the active configuration side by side. Operators can apply either historical preset atomically or edit the supported controls individually, while the engine continues to enforce its non-configurable broker, ownership, reconciliation, affordability, and exit protections.
 
+A three-way Directional threshold bias selector controls which side receives the easier of the profile's two entry hurdles. Prefer calls maps the lower hurdle to calls and the higher hurdle to puts, Neutral maps the stricter hurdle to both, and Prefer puts reverses the call-favoring mapping. It affects new-entry thresholds only: neither side is disabled and protective exits remain unchanged. The historical presets explicitly restore Prefer calls when selected.
+
 For each new filled position, the engine freezes the effective entry threshold and a proportional take-profit target. Position management can also invalidate a long call or put from completed one-minute underlying bars: a confirmed adverse momentum reversal or loss of cumulative regular-session VWAP is latched before any resting take-profit cancellation. Reconciliation and a fresh position snapshot remain mandatory before the strategy submits a close, so the faster signal exit does not bypass ownership or duplicate-order protections.
 
 Each deterministic engine independently reads current market and account data, validates the research schema and session window, applies configured multiplier bounds, and retains full authority over eligibility, risk, and execution. Strategies keep separate enablement, interlocks, timers, ownership state, and exit supervision; the dashboard does not collapse them into one generic live status.
 
 ## Current state
 
-As verified on August 18, 2026, Short-Term Options is the selected live strategy with a custom August 4-derived configuration. It keeps the fixed signal profile while using four completed five-minute bars, a 9:30 a.m. to 2:00 p.m. Eastern entry window, nearest-out-of-the-money contract selection, exact-ask entry pricing, and a 20-attempt daily buy guard. An 80% threshold scale changes the fixed call and put triggers from +0.15% and -0.30% to +0.12% and -0.24%, and freezes a +80% option take-profit target on each new position.
+As verified on August 20, 2026, Short-Term Options is the selected live strategy with a custom August 4-derived configuration at control revision 9. It keeps the fixed signal profile while using four completed five-minute bars, a 9:30 a.m. to 2:00 p.m. Eastern entry window, nearest-out-of-the-money contract selection, exact-ask entry pricing, and a 20-attempt daily buy guard. At an 80% threshold scale, Neutral applies the stricter scaled hurdle to both directions, producing a +0.24% call trigger and a -0.24% put trigger. This tightens calls from the prior +0.12% setting without weakening puts, while the +80% option take-profit target for each new position remains unchanged.
 
 Technical exits are enabled with two-bar confirmation, a reversal threshold equal to 50% of the frozen entry trigger, and a five-basis-point VWAP-loss buffer. They require five fully post-fill one-minute bars and treat momentum reversal and VWAP loss as independent OR conditions. Missing or stale recent data resets the technical evidence without removing the resting take profit, stop loss, or timed flatten.
 
