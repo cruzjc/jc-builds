@@ -1,0 +1,18 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-08-20"
+title: "Added neutral call and put threshold bias control"
+summary: "Added a revision-checked Calls, Neutral, and Puts dashboard control and set the live Short-Term Options configuration to equal +0.24% and -0.24% base hurdles."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+The Short-Term Options dashboard now includes a three-way Directional threshold bias selector. Prefer calls assigns the lower of the two deterministic entry hurdles to calls and the higher hurdle to puts. Neutral (balanced) assigns the stricter hurdle to both sides, while Prefer puts reverses the call-favoring mapping. The selector never disables either side and does not change stop-loss, take-profit, technical-exit, or timed-flatten behavior.
+
+Live control revision 9 is Neutral on the August 4 fixed profile at an 80% threshold scale. The resulting entry hurdles are +0.24% for calls and -0.24% for puts: calls are tighter than the prior +0.12% setting without weakening the put hurdle, and the proportional option take-profit target remains +80%. Both historical presets explicitly select Prefer calls, so applying either preset restores its captured directional behavior instead of inheriting the live Neutral setting.
+
+Selector changes use the dashboard's existing expected-revision check and atomic control transaction. The engine also performs a final drift check immediately before any broker POST, so a changed bias or another decision-critical control, strategy authority, or execution authorization blocks the submission rather than acting on a stale decision.
+
+Verification passed 109 strategy tests with 1 skipped, 124 dashboard tests, and 97 remote lifecycle tests. A premarket monitor run completed successfully; the broker reported ACTIVE and unrestricted, flat, and with zero open orders, while strategy state had no open or pending work. Registry validation returned zero errors and three known warnings. No test order, cancellation, close, or alert was sent.
