@@ -1,0 +1,20 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-08-22"
+title: "Enabled market stop-loss sell-to-close"
+summary: "Added and enabled a revision-checked option stop-loss market sell_to_close mode after cancellation, reconciliation, and fresh position checks."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+Short-Term Options now has a revision-checked `stop_loss_market_exit_enabled` control, enabled in the active configuration at revision 12. A latched option stop no longer depends on a newly quoted bid-limit exit when this control is on. The engine cancels any resting take profit or older stop, waits for the broker to report that order terminal, reconciles a fresh position quantity, persists one durable intent with an idempotent client ID, and only then submits one DAY market `sell_to_close`.
+
+The compatibility boundary is explicit. A missing, malformed, legacy, or false control keeps the historical bid-limit behavior, and the saved historical signal presets preserve the current safety toggle rather than silently switching it. Take-profit, technical-exit, timed-flatten, ownership, and duplicate-order protections remain independently enforced. The market option favors execution certainty while accepting possible slippage; it is not a claim that market exits would have improved earlier sessions. Both August 20-21 historical stop limits filled promptly with price improvement.
+
+The guarded rollout found the live account flat, with no open or current-day orders, before any files or controls changed. It sent no test order. Validation passed 115 strategy tests plus 56 subtests and 129 dashboard tests. Postflight checks found the strategy timer, dashboard, and public proxy healthy, no dashboard errors, and an HTTP 200 response from the public trading route.
+
+The same review tested whether recent affordability-rejected entries looked like missed winners. For 13 broker-rejected entries from August 10-13, an indicative replay assumed a fill at the submitted limit, applied the historical take-profit rule, used the first one-minute close through the 50% stop as a stop proxy, and used the first 3:01 p.m. Eastern bar as a flatten proxy. None reached the take-profit proxy; eight reached the stop proxy, and five had lower flatten proxies. A separate `max_open=1` path-consistent sensitivity selected about five trades, all losing, for approximately -$293 of gross sensitivity.
+
+Those figures are directional research, not realized or exact P&L. Historical option quotes and bids were unavailable, trade prints do not prove a queued limit would have filled, and overlapping candidates cannot be added as independent trades. Later August 18-21 proxy paths likewise did not establish a reliable pool of missed profits. The evidence therefore supports keeping the affordability guard while treating any dollar counterfactual as a sensitivity estimate.
