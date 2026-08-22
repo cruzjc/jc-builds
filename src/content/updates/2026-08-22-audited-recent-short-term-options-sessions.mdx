@@ -1,0 +1,18 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-08-22"
+title: "Audited recent Short-Term Options sessions"
+summary: "A read-only audit reconciled five August 18-21 IWM 0DTE round trips: 1 win, 4 losses, a 20% hit rate, -$33 gross, and -65.2% account drawdown including charges."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+A read-only audit reconciled the recent Short-Term Options sessions from broker fills through strategy records. Five IWM zero-days-to-expiration round trips closed between August 18 and 21: one winner and four losses. The combined gross result was -$33, for a 20% hit rate. The corresponding account drawdown, including charges, was 65.2%.
+
+The operational plumbing reconciled cleanly across fills, strategy ownership, orders, and session records, and the canonical live registry validator passed. A separate human-readable strategy note still described an older control revision and contract-selection profile; that catalog freshness gap was documented but not repaired.
+
+Risk analysis found that the configured hard-dollar sizing caps were non-binding at this account scale: available buying power constrained entries before those caps did. The nominal caps therefore did not provide a meaningful account-relative exposure limit, leaving losses disproportionately large versus capital even though order and state reconciliation behaved as designed.
+
+The recommendation is to pause new entries while account-relative sizing and session-loss controls are remediated, then require a fresh guarded review before resumption. This is an operator recommendation, not a state change: the audit made no runtime, order, service, timer, or configuration changes, and it did not pause the bot. Pausing or implementing remediation remains pending explicit operator authorization.
