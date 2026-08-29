@@ -1,8 +1,8 @@
 ---
 slug: "pi-trade-operations"
 title: "Pi Trade Operations"
-summary: "Monitors independently gated trading strategies and scheduled Codex market research on Raspberry Pi while deterministic engines retain execution authority."
-agentSummary: "Operational dashboard for strategy-specific controls, telemetry, and bounded Codex research. Research can recommend directional tilts; deterministic market-data, risk, and order gates remain authoritative."
+summary: "Runs independently gated Raspberry Pi trading services from one canonical monorepo, with a LAN-only operations dashboard and deterministic engines retaining execution authority."
+agentSummary: "Canonical Pi trading monorepo and LAN-only operational dashboard for strategy-specific controls, telemetry, and bounded Codex research. Research can recommend directional tilts; deterministic market-data, risk, and order gates remain authoritative."
 status: "active"
 surface: "listed"
 featured: false
@@ -14,7 +14,7 @@ tags:
   - "operations"
 repoUrls: []
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-08-22"
+lastUpdated: "2026-08-28"
 order: 1000
 labStage: "testing"
 ---
@@ -25,7 +25,7 @@ Pi Trade Operations provides one Raspberry Pi-hosted surface for monitoring inde
 
 ## How it works
 
-The `/trading/` dashboard combines scheduler health, strategy-specific controls, research artifacts, engine-applied threshold telemetry, and position or order state. Scheduled Codex research can nominate bounded equity or option candidates and recommend directional call, put, and event-risk actions. It cannot supply prices, quantities, order types, or commands.
+The LAN-only `/trading/` dashboard combines scheduler health, strategy-specific controls, research artifacts, engine-applied threshold telemetry, and position or order state. Scheduled Codex research can nominate bounded equity or option candidates and recommend directional call, put, and event-risk actions. It cannot supply prices, quantities, order types, or commands.
 
 Short-Term Options also has revision-checked strategy presets. The dashboard compares the fixed August 4 signal and session settings, the adaptive pre-change settings, and the active configuration side by side. Operators can apply either historical preset atomically or edit the supported controls individually, while the engine continues to enforce its non-configurable broker, ownership, reconciliation, affordability, and exit protections.
 
@@ -39,10 +39,10 @@ Each deterministic engine independently reads current market and account data, v
 
 ## Current state
 
-As verified on August 22, 2026, Short-Term Options is the selected live strategy with a custom August 4-derived configuration at control revision 12. It keeps the fixed signal profile, four completed five-minute bars, a 9:30 a.m. to 2:00 p.m. Eastern entry window, exact-ask entry pricing, and a 20-attempt daily buy guard. At an 80% threshold scale, Neutral applies the stricter scaled hurdle to both directions, producing a +0.24% call trigger and a -0.24% put trigger. The +80% option take-profit target for each new position remains unchanged, while the independently configurable stop-loss market close is enabled.
+As verified after the August 28, 2026 session, the Pi trading stack is consolidated in the local Git monorepo at `/home/jeanclydecruz/TradingSystem-August2026`. Strategies, services, the canonical registry, shared helpers, operations tooling, and documentation now share that root. Mutable state, databases, research artifacts, and logs live under `runtime/`; private credentials remain excluded from Git. The original roots are retained as rollback copies.
 
-Technical exits are enabled with two-bar confirmation, a reversal threshold equal to 50% of the frozen entry trigger, and a five-basis-point VWAP-loss buffer. They require five fully post-fill one-minute bars and treat momentum reversal and VWAP loss as independent OR conditions. Missing or stale recent data resets the technical evidence without removing the resting take profit, stop loss, or timed flatten.
+Short-Term Options is live at the operator-selected and approved control revision 15 baseline: Calls direction bias, 100% threshold scale, the `august_4` signal profile, seven completed five-minute entry bars, nearest-out-of-the-money selection with zero extra strikes, technical exits off, and the guarded market stop-loss exit on. The current engine still enforces its buying-power ceiling, active-strategy gate, shared lock, durable intents, idempotent recovery, account reconciliation, kill controls, strategy-owned exits, and timed flattening.
 
-The historical signal behavior is layered onto the current safety architecture rather than restoring the older engine wholesale. The dynamic buying-power affordability ceiling, active-strategy gate, shared lock, durable order intents, idempotent recovery, account reconciliation, kill controls, strategy-owned exits, and timed flattening remain enforced. At the verification snapshot, the broker and strategy state were flat with no open or pending orders, the timer was enabled and healthy, and no test order had been sent.
+The activation boundaries remain explicit. Opening Momentum entries are `ready_but_blocked`: live-entry authorization is off, its external entry kill and internal recovery latch remain set, and automatic and alert timers remain disabled. Its independent operator-exit supervisor stays enabled. Swing remains `dry_run` and unscheduled; archived strategies have no executable deployment hook. Trade Operations cannot place direct live orders or cancellations, while its guarded strategy-owned close-request path remains available.
 
-Opening Momentum remains separately disabled and safety-blocked by its own interlocks; selecting Short-Term Options does not authorize every strategy. The strategy registry now agrees with the active systemd/live deployment and validates without errors, while three legacy registry rows still produce explicit unmatched-inventory warnings.
+The dashboard continues as a single backend on `127.0.0.1:8460`, but `/trading/` is now available only on the private LAN at `http://192.168.4.13/trading/`; public `/trading*` and `/trade*` requests return 404. The August 28 research runs, regular-session Short-Term Options telemetry, scorecard, and post-session reconciliation completed under revision 15. The final broker check was flat with zero open orders, and the verification used read-only broker calls without test orders, cancellations, closes, control posts, or notifications. This is an operational-state report, not a claim about trading performance or whether a future setup will be affordable.
