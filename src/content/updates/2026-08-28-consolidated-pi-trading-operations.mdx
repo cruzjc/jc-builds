@@ -1,0 +1,20 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-08-28"
+title: "Consolidated Pi trading operations"
+summary: "Moved the Pi trading stack into one canonical monorepo, made the operations dashboard LAN-only, and preserved each strategy's independent activation boundary."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+The Raspberry Pi trading stack now runs from the local Git monorepo at `/home/jeanclydecruz/TradingSystem-August2026`. The consolidation brings the live strategies, dashboard and scheduled research services, canonical registry, shared helpers, operations tooling, and runbooks under one root. Mutable databases, strategy state, research artifacts, and logs remain inside Git-ignored `runtime/`, while private credentials remain untracked. The previous roots are still available for rollback.
+
+The dashboard keeps one backend on `127.0.0.1:8460`, but its routes are no longer exposed through the public Raspberry Pi hostname. Private-LAN clients can use `http://192.168.4.13/trading/`; public `/trading*` and `/trade*` requests return 404. This changes the access boundary without changing API schemas, order semantics, risk rules, strategy parameters, or SQLite schemas.
+
+Short-Term Options is live at the intentionally selected and approved revision 15 baseline: Calls direction bias, 100% threshold scale, the `august_4` signal profile, seven completed five-minute bars, nearest-out-of-the-money selection with zero extra strikes, technical exits off, and the guarded market stop-loss exit on. The August 28 research schedule, strategy telemetry, scorecard, and post-session reconciliation completed under that baseline; the final read-only broker check was flat with zero open orders.
+
+Consolidation did not reactivate Opening Momentum entries. Live-entry authorization remains off, its external entry kill and internal recovery latch remain set, and automatic and alert timers remain disabled; independent operator-exit supervision remains enabled. Swing is still `dry_run` and unscheduled, archived strategies remain inert, and Trade Operations still disables direct live orders and cancellations while retaining its guarded strategy-owned close-request path.
+
+The migration and verification placed no test orders, cancellations, closes, control posts, or notifications. This update reports deployment and safety state only; it makes no claim about trading performance, affordability, or future trade availability.

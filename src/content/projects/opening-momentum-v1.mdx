@@ -22,7 +22,7 @@ labStage: "testing"
 
 ## Objective
 
-Opening-Momentum v1 turns early-session US-equity data into bounded trade decisions. Claude can nominate a short list of symbols, but Alpaca/IEX market and account data plus fixed risk rules independently determine whether a setup qualifies, calculate size and prices, and control the order lifecycle. The Raspberry Pi deployment includes the Trade Operations dashboard on its HTTPS `/trade/` route and a single deterministic order path with independent authorization, ownership, reconciliation, and kill-switch controls.
+Opening-Momentum v1 turns early-session US-equity data into bounded trade decisions. Claude can nominate a short list of symbols, but Alpaca/IEX market and account data plus fixed risk rules independently determine whether a setup qualifies, calculate size and prices, and control the order lifecycle. The Raspberry Pi deployment includes the Trade Operations dashboard on its LAN-only `/trading/` route and a single deterministic order path with independent authorization, ownership, reconciliation, and kill-switch controls.
 
 ## Strategy boundaries
 
