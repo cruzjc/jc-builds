@@ -14,7 +14,7 @@ tags:
   - "operations"
 repoUrls: []
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-08-28"
+lastUpdated: "2026-08-29"
 order: 1000
 labStage: "testing"
 ---
@@ -39,7 +39,7 @@ Each deterministic engine independently reads current market and account data, v
 
 ## Current state
 
-As verified after the August 28, 2026 session, the Pi trading stack is consolidated in the local Git monorepo at `/home/jeanclydecruz/TradingSystem-August2026`. Strategies, services, the canonical registry, shared helpers, operations tooling, and documentation now share that root. Mutable state, databases, research artifacts, and logs live under `runtime/`; private credentials remain excluded from Git. The original roots are retained as rollback copies.
+As verified after the August 28, 2026 session, the Pi trading stack is consolidated in the local Git monorepo at `/home/jeanclydecruz/TradingSystem-August2026`. Strategies, services, the canonical registry, shared helpers, operations tooling, and documentation now share that root. Mutable state, databases, research artifacts, and logs live under `runtime/`; private credentials remain excluded from Git. After a healthy verification window and explicit operator approval, nine retired Pi roots and their old logs were removed on August 29. The canonical monorepo, runtime layout, and approved activation matrix remain unchanged; source-level rollback to the retired roots is no longer available.
 
 Short-Term Options is live at the operator-selected and approved control revision 15 baseline: Calls direction bias, 100% threshold scale, the `august_4` signal profile, seven completed five-minute entry bars, nearest-out-of-the-money selection with zero extra strikes, technical exits off, and the guarded market stop-loss exit on. The current engine still enforces its buying-power ceiling, active-strategy gate, shared lock, durable intents, idempotent recovery, account reconciliation, kill controls, strategy-owned exits, and timed flattening.
 

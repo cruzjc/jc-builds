@@ -1,0 +1,16 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-08-29"
+title: "Retired Pi trading legacy roots"
+summary: "Removed nine approved legacy Pi roots and old logs after a healthy verification window while leaving the canonical stack and activation boundaries unchanged."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+After explicit operator approval and a healthy post-migration verification window, cleanup removed nine retired Raspberry Pi roots and their old logs. The canonical monorepo at `/home/jeanclydecruz/TradingSystem-August2026`, its Git-ignored runtime layout, and the LAN-only dashboard boundary were not changed. Source-level rollback to those retired roots is no longer available.
+
+The strategy activation boundaries also remain unchanged. Short-Term Options stays live at the approved revision 15 baseline. Opening Momentum entries remain `ready_but_blocked`, with live-entry authorization off, the external entry kill and internal recovery latch retained, automatic and alert timers disabled, and independent exit supervision preserved. Swing remains `dry_run` and unscheduled, and archived strategies remain inert.
+
+This was an operational cleanup only. It did not place test orders, cancellations, closes, control posts, or notifications; it does not reactivate Opening Momentum entries and makes no claim about trading performance.
