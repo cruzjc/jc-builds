@@ -1,0 +1,45 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-09-05"
+title: "Deployed historical option replay and dashboard improvements"
+summary: "Installed constrained historical collection and replay workers, populated the first descriptive simulation graph, and clarified dashboard navigation, freshness, coverage and unsupported evaluation requests."
+links: []
+source: "agent"
+---
+
+The LAN dashboard now serves the virtual-performance API from its single
+canonical backend. Section navigation, positions near the top, explicit
+Eastern timestamps, a latest-recorded-session chart selector, collection
+progress, data coverage and readable job reasons make current operations and
+historical simulations easier to distinguish. Research settings, evaluation
+configuration and live controls are collapsed by default.
+
+Two constrained system services now collect historical data and replay bound
+option signals outside entry hours. Collection uses GET-only Alpaca calendar,
+IEX bar and option-history requests, with cached immutable artifacts. The
+separate replay worker has no network or access to trading credentials. Both
+have resource limits and an additional market-hours guard in code.
+
+The first on-demand collection covered 20 completed sessions, August 10 through
+September 4, with all 4,680 expected IEX five-minute bars. Its fixed STO
+direction observations supplied 73 sampled option signals; one missing option
+reference was reported in coverage. The first replay completed and its graph
+rendered without browser errors. Both installed timers subsequently fired and
+completed successfully; the collector reused cached history without creating
+duplicate jobs.
+
+This is a descriptive option fill replay, not a full native strategy backtest.
+It samples the first qualifying observation per symbol, direction and session
+and uses explicit reference sizing. It cannot reproduce historical NBBO,
+queue priority, fees, all native entry/exit state or historical account
+affordability. Adaptive STO, Opening Momentum equity replay and Mean
+Reversion exits still require historical adapters; their requests finish with
+specific not-evaluable reasons. No result qualifies for ranking, shadow-session
+evidence or live promotion.
+
+Canonical component and platform tests passed, as did the migration suite,
+registry, deployment layout audit and operational postflight. Fresh broker
+and control checks verified a flat account, one dashboard writer, unchanged
+revision 15 controls, Opening Momentum's blocked entries and independent exit
+supervision, LAN access and public-route 404s. No broker order, cancellation,
+close, trading authorization or live strategy scheduler was changed.
