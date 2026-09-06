@@ -1,0 +1,18 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-09-05"
+title: "Completed built-in historical strategy adapters"
+summary: "Added raw-history adapters for adaptive STO, Opening Momentum and Mean Reversion with explicit data coverage and isolated simulation."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+The evaluation worker now runs adaptive Short-Term Options, Opening Momentum and Mean Reversion rules against immutable historical datasets. It binds each run to its profile, symbol universe and source revision, then regenerates qualifying signals inside the isolated worker. The fixed August 4 STO comparison retains its separately labeled supplied-signal replay.
+
+Adaptive STO uses timestamped research, realized volatility and the engine's bounded threshold rules. Missing historical research excludes decision points instead of borrowing later reports; new research publications are archived automatically. Opening Momentum connects a synchronized historical SPY regime, prior-session and premarket bars to its equity plan, whole-share sizing and timed flatten. Mean Reversion combines regime and EMA/ATR signals with underlying-price exits, option catastrophe stops, holding limits and its risk controls.
+
+The dashboard identifies strategy-generated signals, shows exclusion reasons and flags incomplete research coverage next to the graph. Historical OHLC fills remain approximations without NBBO, queue priority or fees. Explicit universe selection also does not reconstruct historical news discovery. A completed evaluation can correctly contain no trades when market-data, signal or affordability gates block entry.
+
+The deployment passed the platform, dashboard, strategy and migration suites plus the canonical operational checks. Routing remains manage-only with entry grants disabled. Existing live revision 15 controls and the independent entry/exit authorization matrix remain unchanged. No historical result provides ranking, shadow-session or live-promotion authority.
