@@ -14,7 +14,7 @@ tags:
   - "operations"
 repoUrls: []
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-08-29"
+lastUpdated: "2026-09-05"
 order: 1000
 labStage: "testing"
 ---
@@ -45,4 +45,8 @@ Short-Term Options is live at the operator-selected and approved control revisio
 
 The activation boundaries remain explicit. Opening Momentum entries are `ready_but_blocked`: live-entry authorization is off, its external entry kill and internal recovery latch remain set, and automatic and alert timers remain disabled. Its independent operator-exit supervisor stays enabled. Swing remains `dry_run` and unscheduled; archived strategies have no executable deployment hook. Trade Operations cannot place direct live orders or cancellations, while its guarded strategy-owned close-request path remains available.
 
-The dashboard continues as a single backend on `127.0.0.1:8460`, but `/trading/` is now available only on the private LAN at `http://192.168.4.13/trading/`; public `/trading*` and `/trade*` requests return 404. The August 28 research runs, regular-session Short-Term Options telemetry, scorecard, and post-session reconciliation completed under revision 15. The final broker check was flat with zero open orders, and the verification used read-only broker calls without test orders, cancellations, closes, control posts, or notifications. This is an operational-state report, not a claim about trading performance or whether a future setup will be affordable.
+The September 5, 2026 read-only audit verified the same revision 15 activation boundaries, a passing operational postflight and registry validator, and a flat broker account with zero open orders. The September 4 completed-session gate passed for the approved profile's 10:00–13:55 ET decision cycles. Research recovered from two August 31 scheduled failures, with successful scheduled output from September 1 and a latest success on September 4 at 09:11 ET.
+
+The dashboard continues as a single backend on `127.0.0.1:8460`, with `/trading/` available only on the private LAN at `http://192.168.4.13/trading/`; public `/trading*` and `/trade*` requests return 404. The deployed Strategy Platform catalog remains uninitialized with automatic routing off. Its evaluation workers are not installed, Mean Reversion remains dry-run and unscheduled, and the newer virtual-performance API remains undeployed source. These additions do not grant new live execution authority.
+
+Verification used read-only broker calls without test orders, cancellations, closes, control posts, notifications, or trading-system changes. This is an operational-state report, not a claim about trading performance or whether a future setup will be affordable.
