@@ -1,0 +1,18 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-09-07"
+title: "Private cloud development and guarded Pi deployment"
+summary: "Added private cloud development, sanitized analysis snapshots and a signed CI approval path for guarded Pi pull deployments."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+The canonical Trading System now has a private repository for cloud development, including the migrated StockProfiler service. Sanitized, dated error and performance snapshots support offline analysis while credentials, active databases and live control files remain on the Pi.
+
+GitHub runs isolated component tests and a full-history secret scan. Successful main-branch checks publish a signed approval for the tested source revision. A repository-specific read-only key lets the Pi fetch that release without giving GitHub access to the trading host or broker credentials.
+
+The pull service checks every five minutes. Application changes wait for the maintenance window, idle workers, a clean checkout and the existing operational gates. Dependency, deployment-policy and activation changes require an operator update. Failed application health checks restore the previous source and quarantine the failed release.
+
+Verification includes the complete cloud test suite, a documentation release pulled through the installed Pi service, and fresh operational checks. The documentation release tests the delivery path; application restart and rollback paths have isolated automated coverage. Existing trading controls and exit supervision remain unchanged. The analysis files are snapshots with documented coverage limits and are not live trading inputs or proof of profitability.
