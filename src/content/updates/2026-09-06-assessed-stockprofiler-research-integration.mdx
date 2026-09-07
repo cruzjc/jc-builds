@@ -1,0 +1,18 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-09-06"
+title: "Assessed StockProfiler research integration"
+summary: "Audited the StockProfiler archive and identified reusable daily research data, collection repairs and limits for intraday evaluation."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+A read-only inspection assessed the standalone StockProfiler archive for integration with Pi Trade Operations. It contains 344 symbol profiles and roughly 248,000 historical daily price bars, plus dated news links and technical features. These are useful starting material for broader equity screening, company research and future daily or swing evaluations.
+
+The archive is stale: its newest profiles are from July 22. Every saved profile lacks fundamental metrics and sector classification, and the batch ledger contains repeated collection failures. An offline fixture reproduced a null-bar parsing failure. Saved coverage is heavily concentrated in symbols beginning with A and does not include the current SPY, QQQ or IWM strategy universe.
+
+The recommended next step is a bounded research-service integration: preserve original artifacts, repair collection and retry handling, validate imported daily series, reconcile feature schemas, and expose freshness and missing data in the dashboard. The existing operational platform can provide isolated scheduling and shared market-data access.
+
+Daily profiles do not supply historical intraday bars, option fills or the timestamped session outlook required by the current adapters. This assessment establishes potential research value, not trading performance. No source migration, collection restart, trading action or strategy activation was performed.
