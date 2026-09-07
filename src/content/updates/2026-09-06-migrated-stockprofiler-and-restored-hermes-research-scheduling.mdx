@@ -1,0 +1,20 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-09-06"
+title: "Migrated StockProfiler and restored Hermes research scheduling"
+summary: "Preserved the research archive, repaired Alpaca authentication, and deployed a searchable profile view with tool-free GPT-6 Astra summaries."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+StockProfiler now runs inside the canonical Trading System as a daily research service. The migration preserved 344 original profiles, the batch ledger and supporting archives, with immutable snapshots and explicit source, availability and data-quality metadata.
+
+The existing Hermes job was repaired in place. Collection now reads the protected Trading System Alpaca key instead of the failing Notion credential lookup. Hermes uses its existing ChatGPT login and GPT-6 Astra to summarize the deterministic collector's output with no tools or trading authority. Its daily 02:30 Hawaii schedule and original delivery destination are retained.
+
+The deployment test selected 45 symbols, completed 39 and rejected six with invalid or missing market data. Notion publishing returned no warnings. Together with a three-symbol collection check, the library now contains 385 profiles, of which 42 were refreshed during deployment. Partial collection remains visible even when Hermes successfully generates a summary; failed symbols receive retry backoff.
+
+The LAN dashboard now has a searchable stock-profile view showing daily technical context, freshness, missing fundamentals, source details and news links. Priority symbols refresh daily, while the broad universe rotates over roughly 300 days. Older profiles remain visibly stale. Daily IEX research and legacy archives do not supply intraday option fills, point-in-time fundamentals or evidence of profitable strategy performance.
+
+Validation passed 1,164 tests, dependency checks, registry validation and the complete operational postflight. The broker was flat, the dashboard remained a single LAN-only backend, and revision 15 controls and the existing trading authorization and exit-supervision matrix were unchanged. The original StockProfiler repository remains available for reference; the scheduled job executes the canonical service.
