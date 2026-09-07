@@ -13,6 +13,8 @@ A read-only inspection assessed the standalone StockProfiler archive for integra
 
 The archive is stale: its newest profiles are from July 22. Every saved profile lacks fundamental metrics and sector classification, and the batch ledger contains repeated collection failures. An offline fixture reproduced a null-bar parsing failure. Saved coverage is heavily concentrated in symbols beginning with A and does not include the current SPY, QQQ or IWM strategy universe.
 
+A follow-up scheduler check found an enabled daily job inside the Hermes trading profile, which the initial systemd and user-cron survey missed. Hermes continues to attempt collection, but all 24 retained runs from August 14 through September 6 failed with HTTP 401. A read-only check confirmed that the credential lookup succeeds and Alpaca rejects the retrieved credentials. This authentication failure is separate from the earlier per-symbol parser failures; the migration should reuse or deliberately replace the existing schedule rather than add a duplicate.
+
 The recommended next step is a bounded research-service integration: preserve original artifacts, repair collection and retry handling, validate imported daily series, reconcile feature schemas, and expose freshness and missing data in the dashboard. The existing operational platform can provide isolated scheduling and shared market-data access.
 
 Daily profiles do not supply historical intraday bars, option fills or the timestamped session outlook required by the current adapters. This assessment establishes potential research value, not trading performance. No source migration, collection restart, trading action or strategy activation was performed.
