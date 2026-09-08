@@ -1,0 +1,14 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-09-07"
+title: "Audited Raspberry Pi workloads and retained artifacts"
+summary: "Read-only inventory separates reachable workloads, failed jobs, guarded deployment blocks and retained artifacts, with explicit coverage limits."
+links: []
+source: "agent"
+---
+
+A read-only inventory checked the reachable Raspberry Pi hosts, including project checkouts, system and user services, operating-system schedules, agent-managed schedules, and earlier deployment artifacts. The private report distinguishes running processes, successful scheduled jobs, blocked updates, disabled components, and workloads that could not be verified.
+
+The review found a guarded deployment waiting for an operator update, an unrelated application restart loop, and a maintenance runner with a branch divergence and a build dependency problem. These findings are recorded for follow-up; the audit did not repair or restart workloads. One known host remained unreachable and is explicitly excluded from verified coverage.
+
+The trading registry validation passed, while runtime evidence was recorded separately from registry labels. Existing entry restrictions and independent exit supervision were preserved. Private host addresses, credentials, file inventories, and account details are omitted from this public update.
