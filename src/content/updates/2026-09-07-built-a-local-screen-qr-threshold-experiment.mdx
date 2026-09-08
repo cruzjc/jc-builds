@@ -1,0 +1,28 @@
+---
+projectSlug: "seamless-qr-code"
+date: "2026-09-07"
+title: "Built a local screen QR threshold experiment"
+summary: "A local lab measures the smallest QR signal accepted by two decoders, with screen stress checks and manual phone calibration. Public app release remains pending."
+links: []
+source: "agent"
+---
+
+Built a local Screen Threshold Lab for Seamless QR to test how faint a static
+QR can become before standard decoding stops working. It is implemented and
+available in local preview; this update does not announce a public app release.
+
+The lab searches all eight QR masks from zero signal upward, then returns the
+first gray-level difference that passes the chosen checks in both jsQR and
+ZXing. Surface tone, module size, and error correction remain explicit inputs.
+Optional screen margin adds smaller size, softened edges, contrast loss,
+pixel noise, and combined stress. Manual phone observations and PNG export
+support calibration on an actual display.
+
+The result is a minimum within the selected rendering settings, not a claim of
+human imperceptibility or universal phone compatibility. There is no readable
+QR at zero signal. Phone optics and exposure still need physical testing.
+
+The new seven-test suite, TypeScript check, targeted lint, and production build
+passed. The broader unit run found seven failures in existing Hidden Message
+database tests, separate from this local QR path. No infrastructure, cloud
+processing, or credentials were added by the experiment.
