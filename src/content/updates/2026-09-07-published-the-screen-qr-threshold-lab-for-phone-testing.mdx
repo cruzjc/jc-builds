@@ -1,0 +1,26 @@
+---
+projectSlug: "seamless-qr-code"
+date: "2026-09-07"
+title: "Published the screen QR threshold lab for phone testing"
+summary: "The local-processing Screen Lab is public for real phone and display experiments, with two-decoder threshold search, manual calibration, and PNG export."
+links:
+  - label: "Open Screen Lab"
+    url: "https://seamless-qr.disphius.chatgpt.site/screen"
+source: "agent"
+---
+
+The Screen Threshold Lab is now public at
+[seamless-qr.disphius.chatgpt.site/screen](https://seamless-qr.disphius.chatgpt.site/screen).
+Open it on the target display, enter a web link, and search for the lowest
+signal that passes the selected software checks. Then scan it with a phone
+and use the manual controls to explore the physical detection boundary.
+
+The release adds only the local Screen Lab, its navigation links, and its
+documentation and tests to the previously published app. It introduces no
+uploads, cloud processing, infrastructure changes, or new database migrations.
+
+The lab checks exact destinations with jsQR and ZXing, offers optional
+deterministic screen stress, and exports an opaque PNG at its original pixel
+dimensions. A successful software check is not proof of human imperceptibility
+or phone reliability. Physical phone and display testing remains the purpose
+of this experimental release.
