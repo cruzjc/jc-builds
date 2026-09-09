@@ -1,0 +1,18 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-09-08"
+title: "Scheduled private performance snapshots"
+summary: "Publish sanitized broker activity and diagnostics after each weekday trading session, with verified cloud receipts."
+links: []
+source: "agent"
+---
+
+The Pi trading system now has a separate performance uploader for cloud inspection. It publishes sanitized broker activity, diagnostic observations and research results to a private data branch at 6:30 p.m. Eastern, Monday through Friday. A latest-snapshot pointer makes the newest report easy to locate, while dated snapshots retain their capture time, source revision, file hashes and coverage limits.
+
+The uploader runs separately from trading and source deployment. Its service can write only to its own runtime directory. Broker access uses GET requests; trading controls, databases and exit supervision remain unchanged. A separate publication key is restricted to the private repository, and the installed program writes only to the performance branch.
+
+Every upload validates its manifest and hashes, passes a pinned secret scanner, and verifies the resulting remote commit. Incomplete exports and scan failures stop publication. Bounded retries recover from network failures, and a repeated run recognizes an already published report instead of creating a duplicate.
+
+The data remains evidence for analysis. Broker records cover the whole account and require strategy ownership reconciliation. Later exports overlap 45 days to capture delayed fees, so records must be deduplicated across snapshots. Simulations stay separate from realized broker performance, and retained logs identify truncation or missing coverage.
+
+Validation includes the full hosted suite, 61 cloud deployment and uploader tests, and read-only Pi operational checks. The first installed upload and remote receipt were verified before enabling the schedule. The earlier source-updater operator change remains a separate deployment task.
