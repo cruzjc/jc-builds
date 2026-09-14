@@ -1,0 +1,22 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-09-13"
+title: "Broker paper evaluation and reviewed strategy promotion"
+summary: "Added broker paper evaluation for five strategies, reviewed live promotion, stricter quote checks, bounded entry scans, and protected dashboard credential setup."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+The broker paper evaluation platform is deployed alongside the existing live strategy setup. The dashboard and operational checks passed, with the existing live controls preserved. Paper trading awaits account setup and the next valid trading session.
+
+The platform supports all five implemented strategies through one separate broker paper account, with strategy-specific ownership, budgets, order records, and performance attribution. The dashboard makes broker paper results the primary evaluation view and keeps historical simulations explicitly labeled. It reports realized and unrealized performance, closed trades, exposure, data errors, and synchronization health; missing fees or valuations remain unavailable. Evidence is bound to the strategy's source and configuration, so changing code, settings, or data quality cannot silently relabel earlier results.
+
+Moving a strategy to live execution requires an operator review with explicit risk limits, matching paper evidence, and fresh account and worker checks. Confirmation uses a short-lived, one-time review and rechecks the exact source, configuration, evidence, and live control state. An independent live-entry authorization remains required, while existing strategy-owned protective exits continue independently. Historical simulations cannot authorize promotion.
+
+Entry validation now rejects missing or stale timestamps, non-finite prices, crossed markets, insufficient quote sizes, and unsuitable spreads. Live option entries require the appropriate options feed; indicative paper option prices remain visibly limited and are excluded from live-promotion evidence. A final quote refresh checks the proposed entry before submission. Slow scans have bounded execution budgets, and durable cycle records expose data failures and missed or incomplete work without suppressing protective exit supervision.
+
+The dashboard also adds separate paper and live credential setup and rotation over HTTPS. Account identity checks prevent an accidental account switch, operator authentication is rate limited, and complete key pairs are replaced in protected storage. Secrets are not returned to the dashboard or retained in browser storage.
+
+Isolated tests cover order ownership, reconciliation, quote failures, scan time limits, promotion replay and expiry, credential rotation, and exit behavior when entry authorization is absent. Deployment checks verified the dashboard, operational health, and continued public-route isolation. Paper collection can begin only after account setup and a valid trading session; no paper fill history is claimed, and no strategy was promoted to live during this release. These safeguards and tests do not establish profitability, strategy ranking, or readiness for additional funding. Detailed operational and account evidence remains private.
