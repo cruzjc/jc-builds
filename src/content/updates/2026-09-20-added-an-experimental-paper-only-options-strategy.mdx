@@ -1,0 +1,18 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-09-20"
+title: "Added an experimental paper-only options strategy"
+summary: "Enabled an isolated broker paper experiment for completed-bar opening-range breakouts and retests, with bounded risk and live promotion blocked."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+Aggressive ORB Options v1 is deployed and enabled as a sixth isolated broker paper profile. It evaluates opening-range breakouts and retests using an opening range frozen from completed bars. Entry decisions use completed-bar evidence with bounded risk. Durable ownership records keep its paper positions and orders attributable to the experiment, while results remain bound to the source and configuration that produced them.
+
+The experiment is paper-only and blocked from live promotion. The dashboard displays the paper profile and excludes it from promotion choices, with the same boundary enforced by the API and execution paths. Existing live controls, credentials, paper records and other profile settings were preserved.
+
+The initial paper cycle completed successfully while the market was closed, with no fills for the new strategy. The paper schedule is active for the next regular session. Regression suites, canonical registry validation and the operational postflight passed after deployment. No production dependency changes were required.
+
+This is an experimental strategy, with no demonstrated trading edge or profitability claim. The exploratory historical study did not establish an edge or measure option profit and loss. Valid paper sessions are still needed to evaluate its behavior. Detailed account information, runtime evidence and raw market history remain private.
