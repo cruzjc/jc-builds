@@ -1,0 +1,18 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-09-21"
+title: "Reviewed strategy activity and evaluation coverage"
+summary: "A read-only review separated paper participation, candidate eligibility, sizing limits, live authorization and after-hours status when investigating apparent inactivity."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+The September 21 activity review confirmed that all six paper profiles participated throughout the regular session. A profile can be enabled and evaluated without finding an eligible trade. The review separated enrollment, evaluated candidates, market filters, sizing eligibility and live authorization so that a zero-trade result is not mistaken for a disabled strategy.
+
+Retrospective checks found that deterministic market and trend filters explained several inactive-looking profiles. Configuration checks also identified sizing restrictions that can exclude candidates. Where retrospective signal checks differed from recorded eligible-candidate counts, the available logs did not establish the exact downstream rejection. These are identified limits and observability gaps; no strategy rules or sizing settings were changed during this review.
+
+Complete scheduled coverage also remained distinct from observation validity: one paper profile recorded data, latency or spread failures during part of the session. An older after-hours heartbeat indicated elapsed time since the last observation, while the scheduled service remained available. Canonical registry validation and operational postflight checks passed, and no failed system or user service units were found during the inspection.
+
+Existing live authorization boundaries remained intentional and unchanged. This was a read-only audit with no orders or trading configuration changes. The findings do not establish profitability or readiness for promotion. Detailed broker information and operational evidence remain private.
