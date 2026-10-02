@@ -14,7 +14,7 @@ tags:
   - "operations"
 repoUrls: []
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-09-22"
+lastUpdated: "2026-10-01"
 order: 1000
 labStage: "testing"
 ---
@@ -38,6 +38,8 @@ Stop-loss execution has an independent, revision-checked market-close option. Wh
 Each deterministic engine independently reads current market and account data, validates the research schema and session window, applies configured multiplier bounds, and retains full authority over eligibility, risk, and execution. Strategies keep separate enablement, interlocks, timers, ownership state, and exit supervision; the dashboard does not collapse them into one generic live status.
 
 ## Current state
+
+As of October 1, 2026, new entries operate in paper mode and live entries remain disabled. Separate stock and short-dated options research uses frozen rules, chronological evaluation, transaction-cost stress, and explicit data-quality limits. The dated deployment details below record earlier operating phases.
 
 As verified after the August 28, 2026 session, the Pi trading stack is consolidated in the local Git monorepo at `/home/jeanclydecruz/TradingSystem-August2026`. Strategies, services, the canonical registry, shared helpers, operations tooling, and documentation now share that root. Mutable state, databases, research artifacts, and logs live under `runtime/`; private credentials remain excluded from Git. After a healthy verification window and explicit operator approval, nine retired Pi roots and their old logs were removed on August 29. The canonical monorepo, runtime layout, and approved activation matrix remain unchanged; source-level rollback to the retired roots is no longer available.
 
