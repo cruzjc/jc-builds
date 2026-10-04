@@ -1,19 +1,20 @@
 ---
 slug: "parrygame"
 title: "ParryGame"
-summary: "A first-person close-quarters combat game concept built around continuous parrying, positional control, and earned gunfire."
-agentSummary: "ParryGame is in direction review. The brief defines deterministic state-driven close-quarters combat; Unity and production-release scope are under consideration. No playable build is available."
-status: "research"
+summary: "A first-person close-quarters combat game in production for Windows, centered on continuous parrying, positional control, and earned gunfire."
+agentSummary: "ParryGame targets Windows and Steam using Unity/C#. The release scope includes score attack, training, challenges, controller support, and simultaneous opponents. Production foundations are underway; no playable release is available."
+status: "active"
 surface: "listed"
 featured: false
 tags:
   - "game-development"
   - "combat-design"
+  - "unity"
 repoUrls: []
 heroImage: "/art/project-template.svg"
 lastUpdated: "2026-10-04"
 order: 1000
-labStage: "tracking"
+labStage: "building"
 ---
 
 ## Objective
@@ -22,8 +23,12 @@ Create an original first-person combat game in which continuous parries, weapon 
 
 ## How it works
 
-The design brief proposes a deterministic combat state graph. Each interception changes both fighters' positions and available continuations. Shooting is a committed action that an opponent can disrupt before the firing frame. Readable threat cues, concise death explanations, and immediate retries support mastery.
+Unity and C# provide the gameplay foundation, with Blender for original asset and animation production. A deterministic combat state graph governs each interception, both fighters' positions, and their available continuations. Shooting is a committed action that an opponent can disrupt before the firing frame. Readable threat cues, concise death explanations, and immediate retries support mastery.
 
 ## Current state
 
-The project is in direction review. Unity is being considered, and the intended endpoint is a finished product. Target platforms, release content, visual style, and production resources still need decisions before implementation. No playable build is available.
+Production scope is confirmed for a finished Windows game intended for Steam, with score attack, training, challenges, and keyboard/mouse and controller support. Constrained duels use contextual stepping and redirects; simultaneous opponents are essential to the release. Cinematic realism will use original characters, assets, and choreography.
+
+The release specification and production plan define internal validation gates before content expansion. Development uses free tools and resources, with no deadline set. Unity project import, combat-data generation, domain checks, and synthetic input transport checks have passed.
+
+No playable scene or Windows game build is available. World-space encounter feasibility, combat readability, animation coverage, physical controller playtesting, and packaged Windows performance still need evidence.
