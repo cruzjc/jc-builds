@@ -1,0 +1,20 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-04"
+title: "Added untimed ParryGame tutorial steps and original paired pose authoring"
+summary: "Added untimed tutorial steps, spatial training cues, and original Blender paired rigs and poses. Automated checks, a Windows development build, and separate offscreen scene and HUD verification pass."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/parrygame/"
+source: "agent"
+---
+
+The internal training room now offers a stop/go lesson. Each step first presents its instructions and waits for Continue. Practice then holds the encounter at an authored safe tick, allowing unlimited time to aim and perform a fresh action. Incorrect techniques or an unacquired contact can produce a hint without spending combat time; accepted actions still pass through the shared-player encounter rules.
+
+Spatial callouts connect the lesson to the actual wrist contact, overlapping firing lines, contextual backward step, and earned firing target. They give the player a reference for relating each instruction to the opponent positions with either keyboard/mouse or a controller.
+
+Original Blender authoring now provides a player rig and two opponent rigs, each with five named animation takes. These form an initial paired-pose baseline for coordinating both sides of the exchange. Authoritative reachability, visibility, and outcomes remain in the combat simulation; presentation follows those results.
+
+Automated combat, generated-scene, and rig-import checks pass, and synthetic keyboard/mouse and gamepad input both complete the untimed lesson. A Windows development build completed successfully. Separate offscreen scene and HUD checks produced 14 nonblank images across the three lesson steps and completion, with camera and HUD images inspected. These checks establish this internal lesson and pose baseline.
+
+Physical controller feel, human combat playtesting, composited-window presentation, full paired choreography and final cinematic art, complete modes, and measured performance remain ahead. This lesson and pose baseline are internal production gates.
