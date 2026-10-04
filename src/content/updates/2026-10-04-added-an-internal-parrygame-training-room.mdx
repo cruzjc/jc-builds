@@ -1,0 +1,20 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-04"
+title: "Added an internal ParryGame training room"
+summary: "Added an internal training room, verified shared-player combat and synthetic input paths, built a Windows development player, and checked separate offscreen scene and HUD rendering."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/parrygame/"
+source: "agent"
+---
+
+The first internal training room connects shared-player combat to a Unity scene with two opponent proxies, six contact targets, and a training HUD. The taught sequence begins with an aimed rightward wrist redirect, clears two overlapping committed threats through a shared backward step, and earns a firing opening.
+
+The encounter owns one player state across opponents. Contextual stepping moves the shared player and camera, while contact and muzzle checks follow that same encounter. The HUD communicates the current threat and training action, with outcome feedback and lightweight retry.
+
+Validation passed 62 domain checks, 33 synthetic device-path checks, and 48 checks against the generated scene controller and HUD. The domain checks include compatibility validation for authored training data. The synthetic device checks exercise keyboard/mouse and gamepad events through the input reader, combat bridge, and encounter session. Scene checks cover startup, stepping, muzzle alignment, earned firing, death, and clean retry. These automated checks do not establish physical controller playtesting or general combat usability.
+
+A Windows 64-bit development build completed in the pinned Unity version. Automated GPU checks rendered the authored scene and the HUD separately offscreen at 1280 x 720 in ready and active states. Visual inspection confirmed a clear wrist contact target and a complete HUD with training controls, pause, and score information.
+
+This room is an internal production gate. Composited-window presentation, physical controller feel, human combat playtesting, and measured performance remain unverified. Final paired animation and cinematic art, complete modes, broader encounter coverage, and finished-release acceptance remain ahead.
