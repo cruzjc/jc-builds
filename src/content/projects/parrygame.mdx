@@ -2,7 +2,7 @@
 slug: "parrygame"
 title: "ParryGame"
 summary: "A first-person close-quarters combat game in production for Windows, centered on continuous parrying, positional control, and earned gunfire."
-agentSummary: "ParryGame targets Windows and Steam using Unity/C#. Its internal training room has untimed lessons, spatial callouts, and original Blender paired rigs and poses. Automated checks, a Windows development build, and separate offscreen scene/HUD verification pass."
+agentSummary: "ParryGame targets Windows and Steam using Unity/C#. Its internal training room now has continuous motion, reachable arm IK, and a four-gate untimed lesson requiring both opponents to be eliminated. Automated checks, a Windows build, and offscreen scene/HUD verification passed."
 status: "active"
 surface: "listed"
 featured: false
@@ -33,6 +33,8 @@ The release specification and production plan define internal validation gates b
 
 The first internal training room established aimed interception, contextual stepping, and earned firing across two opponents using one shared player state. That baseline passed automated simulation, synthetic device-path, and generated-scene checks, produced a Windows development build, and received separate offscreen scene and HUD inspection.
 
-The current training iteration adds stop/go tutorial steps with unlimited reading and aiming time, spatial callouts, and original Blender rigs for the player and two opponents. These establish an initial paired-pose baseline. Accepted tutorial actions remain subject to the authoritative encounter rules. Automated combat, synthetic input, scene, and rig-import checks pass. A Windows development build and separate offscreen scene and HUD verification across the lesson steps and completion also passed.
+The stop/go tutorial provides unlimited reading and aiming time, spatial callouts, and original Blender rigs for the player and two opponents. This initial paired-pose baseline passed automated combat, synthetic input, scene, and rig-import checks, a Windows development build, and separate offscreen scene and HUD verification.
 
-Composited-window presentation, human combat playtesting, broader encounter feasibility, full paired choreography and final cinematic art, physical controller feel, and packaged Windows performance still need evidence. This internal scene is a production gate; finished-release acceptance remains ahead.
+The Windows 0.3.0 development milestone adds continuous motion and reachable arm IK, with victory requiring separate aimed eliminations of both opponents. The first elimination opens another untimed reading and practice gate. Automated combat, synthetic device, controller/presentation, and rig-import checks passed, including both elimination orders. The Windows build and separate D3D12 offscreen scene/HUD verification passed across all four gates and completion. Authoritative combat continues to decide actual outcomes.
+
+Composited-window presentation, human combat playtesting, broader encounter feasibility, full cinematic choreography and final art, sustained binds and visible weapon displacement, physical controller feel, and packaged Windows performance still need acceptance. This internal scene is a production gate; finished-release acceptance remains ahead.
