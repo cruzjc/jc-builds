@@ -2,7 +2,7 @@
 slug: "parrygame"
 title: "ParryGame"
 summary: "A first-person close-quarters combat game in production for Windows, centered on continuous parrying, positional control, and earned gunfire."
-agentSummary: "ParryGame targets Windows and Steam using Unity/C#. Its 0.3.0 training room has continuous motion, reachable arm IK, and an untimed two-opponent lesson. Next planned: a complete counter loop with several valid responses, visible binds, recovery, and contestable shots."
+agentSummary: "ParryGame targets Windows and Steam using Unity/C#. Its 0.4.0 internal counter loop adds eight routes, binds, two recoveries, precommitted shot interference, solo and paired rooms, and refined original models. Human playtesting and release acceptance remain ahead."
 status: "active"
 surface: "listed"
 featured: false
@@ -37,6 +37,10 @@ The stop/go tutorial provides unlimited reading and aiming time, spatial callout
 
 The Windows 0.3.0 development milestone adds continuous motion and reachable arm IK, with victory requiring separate aimed eliminations of both opponents. The first elimination opens another untimed reading and practice gate. Automated combat, synthetic device, controller/presentation, and rig-import checks passed, including both elimination orders. The Windows build and separate D3D12 offscreen scene/HUD verification passed across all four gates and completion. Authoritative combat continues to decide actual outcomes.
 
-The next planned gate is a complete counter exchange with several valid responses to each attack. Four proposed families will share the existing move vocabulary and lead to different visible binds, recovery routes, or earned and contestable shots. Development starts with one branching duel, then validates an overlapping pair using one shared player state, with surviving-opponent pressure until both are eliminated. Stop/go teaching will precede drills and a real-time room. This is a design direction; these mechanics have not yet shipped in the player.
+The 0.4.0 internal milestone connects a branching counter exchange in solo and two-opponent rooms. Four threat families each offer two counter routes leading to different openings or sustained binds. Raised and crossed positions have explicit recovery actions. Precommitted enemy policies can lift or block a vulnerable weapon before firing, and the final muzzle line decides each elimination. Controlling one opponent leaves the other dangerous, and the survivor continues attacking.
 
-Composited-window presentation, human combat playtesting, broader encounter feasibility, full cinematic choreography and final art, sustained binds and visible weapon displacement, physical controller feel, and packaged Windows performance still need acceptance. This internal scene is a production gate; finished-release acceptance remains ahead.
+Untimed lessons identify the actual control point and redirect direction, then visibly play the accepted action before stopping for the next decision. The original Blender library now contains nineteen motions covering anticipation, displacement, binds, release, recovery, firing interference and defeat. Refined dark-suited models improve the silhouette while retaining the native limb, grip and contact geometry. Each run freezes and identifies its combat content for deterministic replay.
+
+Automated combat, scene and original-rig checks passed. Synthetic input through Unity's native keyboard and gamepad paths verified both elimination orders. A separate D3D12 offscreen Windows development player check verified scene and HUD presentation across seven lessons and a two-elimination paired encounter, including survivor pressure.
+
+Human combat playtesting, physical controller flow, composited-window presentation, broader encounter feasibility, final cinematic content, complete score attack and challenge content, and packaged Windows performance still need acceptance. This internal scene is a production gate; finished-release acceptance remains ahead.
