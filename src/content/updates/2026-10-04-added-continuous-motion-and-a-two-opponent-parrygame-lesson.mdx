@@ -1,0 +1,18 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-04"
+title: "Added continuous motion and a two-opponent ParryGame lesson"
+summary: "The internal training room now connects original rigs with continuous motion and arm IK, and requires fresh aimed shots to eliminate both opponents. Automated checks and a Windows development build passed."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/parrygame/"
+source: "agent"
+---
+
+The internal training room now requires both opponents to be eliminated. The first earned shot leaves the encounter running and returns the tutorial to a reading step. A separate Continue, fresh aim, and a new Fire press are required for the surviving opponent. Aiming at an eliminated opponent produces feedback without spending tutorial time. Four stop/go practice gates preserve unlimited reading and aiming time.
+
+Original Blender rigs now play continuous motion through the exchange, including guard motion while the tutorial waits. Reachable arm IK places the player's palm at the opponent's wrist surface and releases contact during the backward step. Explicit pause freezes presentation. The shared-player combat simulation continues to own contact, reachability, visibility, and outcomes.
+
+Automated combat, synthetic keyboard/mouse and gamepad, controller/presentation, and rig-import checks passed, including both elimination orders and fresh input for the second shot. The Windows 0.3.0 development build passed, with separate actual D3D12 offscreen scene and HUD verification across the four gates and completion. That verification also checked continuous guard motion without advancing combat, pause behavior, wrist contact, reachable arms without stretching, and both opponents' settled defeat states. Original Blender source round trips passed.
+
+Human combat playtesting, physical controller feel, composited-window presentation, measured performance, broader encounters, full cinematic choreography, and final art remain ahead. Sustained binds and visible weapon displacement also need acceptance. This update is an internal production milestone.
