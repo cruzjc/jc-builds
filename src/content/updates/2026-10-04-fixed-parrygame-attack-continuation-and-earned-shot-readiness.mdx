@@ -1,0 +1,30 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-04"
+title: "Fixed ParryGame attack continuation and earned-shot readiness"
+summary: "Corrected attack motion after early firing interference and earned shots on the first legal action tick, with accurate watch cues. Fresh automated, native synthetic input, rig, build and player render checks passed; human acceptance remains ahead."
+links: []
+source: "agent"
+---
+
+ParryGame's 0.4.2 internal development milestone corrects how the exchange continues after an early vulnerable shot and how an earned shot is classified as soon as a counter finishes.
+
+When an opponent lifted or blocked the player's weapon during an early shot, its own weapon could remain frozen in the interference pose while the original attack stayed live.
+
+After that firing contest resolves, the opponent's weapon now moves continuously from its actual pose toward the original attack endpoint. The same precommitted attack retains its identity, telegraph, commitment and impact timing, threat family and defensive policy. This also applies when the player targets the second opponent before its telegraph begins; the physical return does not advance that opponent's attack schedule.
+
+Risky shots remain available from guard and anticipation. The final muzzle line still decides whether a shot hits, misses or is obstructed. A shot from an existing bind retains its established return behavior.
+
+A completed counter also now exposes its earned opening or recovery on the first legal action tick. Previously, a shot admitted at that exact boundary could still count as vulnerable, allowing the surviving opponent to lift or block a properly earned shot. The completed position, input readiness and firing classification now agree at that instant. Inputs one tick earlier remain blocked while the motion is still finishing; enemy impact and expiry resolution retain their existing order. The combat ruleset identity distinguishes both corrections for recorded replay.
+
+Action footers now show a watch cue while movement or a shot is committed, then restore the next-action cue when the authoritative action lock ends. The footer follows the existing input readiness rules.
+
+All 131 domain checks passed. Coverage follows every tick of 96 early-fire counter routes across four families, both opponent roles, both interference policies and both response alternatives, plus 16 future-opponent cases with shared follow-up timing. Exact readiness boundaries cover every counter alternative, both recovery types and earned paired shots while the survivor has a lift or block policy. Native limb lengths, reachable contacts, rigid muzzle geometry, grips, unchanged commitments and causal impact remain checked. The replay suite now contains 26 full-tick traces, including resumed attacks, actions on their first legal tick, both recoveries, shared pressure and causal death.
+
+Fresh Unity checks passed 5,900 assertions through native synthetic keyboard/gamepad input, including shots and recoveries assigned to the first legal action tick through both devices. The original imported-rig checks passed 110,932 assertions, including the 96 early-fire routes and 24 readiness boundaries. These checks verify device transport and authoritative motion; physical controller feel still needs human playtesting.
+
+The Windows development build completed. A separate D3D12 player check passed seven lessons, 37 accepted actions and 93 sampled scene/HUD states. Lifted and obstructed early shots against the future second opponent visibly resumed through an intermediate pose while retaining the same attack schedule, then completed both eliminations with earned shots on the first legal tick. The regular paired encounter retained the survivor's original attack and required an actual counter after the first elimination before completing both eliminations. Redirect midpoints and the causal failure path also passed. The original introduction also passed its four reading/practice gates and both eliminations. Scene and HUD were inspected separately using synthetic commands; composited-window presentation remains unaccepted.
+
+The four-family, eight-route loop, instruction improvements and original tailored models and nineteen-motion library from the previous milestones remain in place. Original model geometry is unchanged.
+
+Human combat playtesting, physical controller feel, composited-window presentation and packaged performance remain unaccepted. Complete score attack, launch challenges, final cinematic content and Steam release remain later production gates.
