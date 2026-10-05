@@ -1,0 +1,20 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-04"
+title: "Clarified ParryGame instructions and strengthened room checks"
+summary: "Refined counter teaching and terminal feedback, hardened room admission, and expanded replay coverage. Fresh automated and Windows player render checks passed; human acceptance remains ahead."
+links: []
+source: "agent"
+---
+
+ParryGame's 0.4.1 internal development milestone improves how the counter loop explains itself and tightens the checks that admit a combat room. It retains the four-family, eight-route loop, original tailored models and nineteen-motion library introduced in 0.4.0.
+
+Counter families and resulting positions now use plain names throughout teaching and live feedback. Once an action is accepted, the instruction changes to a watch-only card while the actual weapon or body movement resolves. Completed and failed encounters show their terminal status and next action, so the interface accurately describes whether the player should read, act, watch or retry.
+
+A supported room must fit the shared player and active opponents before the encounter starts. Admission now checks their starting body envelopes and every supported opponent approach sweep against room bounds and solids. It also checks the closest separation that independent approaches can create between both bodies and their shoulder armor. Rooms that begin with clear spacing but later produce a collision are rejected before combat begins. A wall that already prevents a retreat still permits a safe stationary encounter.
+
+Fifteen recorded command traces now compare full authoritative snapshots at every tick across all eight counter alternatives, raised and crossed recoveries, lifted and obstructed firing, a causal death, and both paired elimination orders. Those comparisons include positions, contacts, weapon frames, precommitted policies, transitions, events, score and results. The counter ruleset identity distinguishes the stricter admission rules from the previous revision.
+
+Fresh automated combat, native synthetic keyboard/gamepad and original-rig checks passed, including both elimination orders. A fresh Windows development build and separate D3D12 scene/HUD checks passed across seven counter lessons, lifted and obstructed shots, a two-elimination pair with survivor pressure, and a causal failure. The original introduction also passed its four reading/practice gates and both eliminations. Full-resolution inspection covered the changed cards and scene callouts. The original model geometry remains unchanged from 0.4.0.
+
+Human combat playtesting, physical controller feel, composited-window presentation and packaged performance remain unaccepted. Complete score attack, launch challenges, final cinematic content and Steam release remain later production gates.
