@@ -2,7 +2,7 @@
 slug: "parrygame"
 title: "ParryGame"
 summary: "A first-person close-quarters combat game in production for Windows, centered on continuous parrying, positional control, and earned gunfire."
-agentSummary: "ParryGame targets Windows and Steam using Unity/C#. Its internal training room now has continuous motion, reachable arm IK, and a four-gate untimed lesson requiring both opponents to be eliminated. Automated checks, a Windows build, and offscreen scene/HUD verification passed."
+agentSummary: "ParryGame targets Windows and Steam using Unity/C#. Its 0.3.0 training room has continuous motion, reachable arm IK, and an untimed two-opponent lesson. Next planned: a complete counter loop with several valid responses, visible binds, recovery, and contestable shots."
 status: "active"
 surface: "listed"
 featured: false
@@ -36,5 +36,7 @@ The first internal training room established aimed interception, contextual step
 The stop/go tutorial provides unlimited reading and aiming time, spatial callouts, and original Blender rigs for the player and two opponents. This initial paired-pose baseline passed automated combat, synthetic input, scene, and rig-import checks, a Windows development build, and separate offscreen scene and HUD verification.
 
 The Windows 0.3.0 development milestone adds continuous motion and reachable arm IK, with victory requiring separate aimed eliminations of both opponents. The first elimination opens another untimed reading and practice gate. Automated combat, synthetic device, controller/presentation, and rig-import checks passed, including both elimination orders. The Windows build and separate D3D12 offscreen scene/HUD verification passed across all four gates and completion. Authoritative combat continues to decide actual outcomes.
+
+The next planned gate is a complete counter exchange with several valid responses to each attack. Four proposed families will share the existing move vocabulary and lead to different visible binds, recovery routes, or earned and contestable shots. Development starts with one branching duel, then validates an overlapping pair using one shared player state, with surviving-opponent pressure until both are eliminated. Stop/go teaching will precede drills and a real-time room. This is a design direction; these mechanics have not yet shipped in the player.
 
 Composited-window presentation, human combat playtesting, broader encounter feasibility, full cinematic choreography and final art, sustained binds and visible weapon displacement, physical controller feel, and packaged Windows performance still need acceptance. This internal scene is a production gate; finished-release acceptance remains ahead.
