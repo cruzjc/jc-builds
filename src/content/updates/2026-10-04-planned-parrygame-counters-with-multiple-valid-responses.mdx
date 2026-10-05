@@ -1,0 +1,20 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-04"
+title: "Planned ParryGame counters with multiple valid responses"
+summary: "The next development gate defines readable attack families, several valid counters, visible contact and recovery, and a complete two-opponent combat loop. This update records a design direction; no new mechanics shipped."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/parrygame/"
+source: "agent"
+---
+
+Controls registering in the current player provides useful feedback. The next development gate is a complete, readable combat loop with several valid responses to each attack. This is a design milestone: the delivered Windows player remains 0.3.0, and no new gameplay implementation or build is claimed here.
+
+The planned exchange runs from reading a committed threat to reachable interception and directional control, visible weapon displacement or a bind, then a choice of continuation, recovery, or earned firing. A successful defense creates a decision; it does not automatically award an elimination. Enemy responses must commit before the player's relevant action, and a contested shot can be disrupted before its firing frame.
+
+Four proposed attack families will each need at least two meaningfully different responses: a high firing line, a low firing line, a crossing weapon check, and a close press. They share the existing aim, intercept, left/right/up redirect, contextual retreat, and fire vocabulary. Compromised raised-weapon and crossed-contact positions need readable recovery routes. Original paired Blender motion and bounded IK must show the authoritative contact, displacement, and release without inventing reach.
+
+Development will start with one branching duel, then add weapon motion and recovery, contestable shots, the four readable families, and a compatible overlapping pair. Every opponent uses one shared player state, with actual reach, sight lines, action durations, and body clearance checked together. In real-time play, the survivor resumes pressure until both opponents are eliminated.
+
+Stop/go instruction and spatial callouts will teach both alternatives and recovery before assisted drills and a real-time two-opponent room. The existing guided survivor instruction remains. Implementation, packaged-player acceptance, human readability, and physical controller flow are still ahead; the current automated foundation does not pass this new gate.
