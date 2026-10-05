@@ -2,7 +2,7 @@
 slug: "parrygame"
 title: "ParryGame"
 summary: "A first-person close-quarters combat game in production for Windows, centered on continuous parrying, positional control, and earned gunfire."
-agentSummary: "ParryGame targets Windows and Steam in Unity/C#. Its 0.4.1 internal milestone clarifies counter teaching, terminal feedback, room admission and full-tick replay checks. Automated and player render checks passed; human playtesting and release acceptance remain ahead."
+agentSummary: "ParryGame targets Windows and Steam in Unity/C#. Its 0.4.2 internal milestone fixes attack continuation and earned-shot readiness, with accurate watch cues. Fresh domain, native synthetic input, rig, build and player render checks passed; human acceptance remains ahead."
 status: "active"
 surface: "listed"
 featured: false
@@ -46,5 +46,11 @@ Automated combat, scene and original-rig checks passed. Synthetic input through 
 The 0.4.1 internal milestone gives counter families and positions plain names, uses watch-only cards while accepted motion plays, and distinguishes completed or failed encounters from live preparation. Room admission now checks starting body envelopes, full supported approach sweeps and independent opponent clearance before combat begins. Fifteen recorded replay traces compare every authoritative tick across all eight alternatives, both recoveries, firing interference, causal death and both elimination orders.
 
 Fresh automated combat, native synthetic keyboard/gamepad and rig checks passed, including both elimination orders. The Windows development build and separate D3D12 scene/HUD checks passed across seven counter lessons, both firing-interference policies, a two-elimination pair with survivor pressure, and a causal failure. The original four reading/practice gates and both eliminations also passed. The original model geometry remains unchanged from 0.4.0.
+
+The 0.4.2 internal milestone fixes attack continuation after an early vulnerable shot and earned-shot readiness after a counter. A lifted or blocked shot could leave the opponent's weapon frozen while its original attack remained live. The weapon now moves continuously from the actual interference pose toward the original attack endpoint, preserving its identity, telegraph, commitment, impact timing, family and defensive policy. Risky early firing remains available, and an existing bind still uses its established return behavior.
+
+Completed counter motions now expose their earned opening or recovery on the first legal action tick. A clean shot at that precise boundary retains its earned classification, so the surviving opponent's policy cannot wrongly contest it. Action footers show a watch cue while movement or a shot is committed, then restore the next-action cue when the authoritative action lock ends.
+
+All 131 domain checks passed, including 96 early-fire counter routes, 16 future-opponent cases, exact readiness boundaries and 26 full-tick replay traces. Fresh native synthetic keyboard/gamepad and original-rig checks passed, and the Windows development build completed. Separate D3D12 scene/HUD checks passed across seven counter lessons and 93 sampled states, including lifted and obstructed early shots, resumed motion of the same future opponent's attack, earned shots on the first legal tick, both eliminations, survivor pressure and a causal failure. The original introduction also passed its four reading/practice gates and both eliminations. The original model geometry remains unchanged.
 
 Human combat playtesting, physical controller flow, composited-window presentation, broader encounter feasibility, final cinematic content, complete score attack and challenge content, and packaged Windows performance still need acceptance. This internal scene is a production gate; finished-release acceptance remains ahead.
