@@ -1,0 +1,18 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-10-11"
+title: "Enabled fractional ETF execution at 0936"
+summary: "Enabled fractional ETF entries sized from available cash, with exact fill ownership, independent exits and preserved paper-only boundaries."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+Enabled fractional sizing for the previously installed ETF pullback variant, which checks entries at 09:36 New York time. Positions now use available cash within a protected ceiling and reserved buffer. The deterministic signal, one entry attempt per session, stop trigger, daily exits and holding limit remain bound to the reviewed source and configuration.
+
+The live service records fractional fills and remaining ownership at the broker's supported decimal precision. Partial fills, cancellation races and restart recovery retain exact quantities, while protective exits continue independently of entry permission. Existing ledger history is preserved, shared paper execution stays unchanged, and the paper strategies retain their live-promotion barriers.
+
+Live entry authorization is enabled for this variant. Other live entries remain off. Each potential order still requires a valid signal in the declared entry window, a current market clock, fresh quotes, sufficient available cash, a fractionable asset, account permission and reconciled ownership. Orders use explicit position intent and durable client IDs; unknown acceptance blocks further entries.
+
+Fractional sizing resolves the earlier whole-share affordability constraint. It does not establish profitability: the research replay is modeled evidence with an already viewed evaluation period. The 5% stop remains an execution trigger, and overnight gaps or market execution can pass that distance.
