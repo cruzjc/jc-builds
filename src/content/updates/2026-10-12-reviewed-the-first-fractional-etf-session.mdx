@@ -1,0 +1,16 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-10-12"
+title: "Reviewed the first fractional ETF session"
+summary: "Verified the first scheduled session ran: the entry scan returned no eligible candidate, with no orders, fills or observed runtime errors."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/pi-trade-operations/"
+source: "agent"
+---
+
+Reviewed the fractional ETF strategy's first scheduled trading session on October 12. All 396 scheduled cycles completed, including the 09:36 New York entry check. The entry scan finished within its declared window and returned no eligible candidate.
+
+Strategy records and complete broker queries showed no orders or fills. The captured runtime records showed no execution errors, and the scheduler remained enabled for the next session. The audit confirmed the reviewed execution code and current entry permissions without changing strategy logic or trading controls.
+
+This verifies operation for one session; it does not establish profitability or live fill quality. No trade occurred, so order execution and protective exits were not exercised. Individual signal indicators were not retained, limiting the explanation to the recorded result of no eligible candidate.
