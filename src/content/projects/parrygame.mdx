@@ -2,7 +2,7 @@
 slug: "parrygame"
 title: "ParryGame"
 summary: "A first-person close-quarters combat game in production for Windows, centered on continuous parrying, positional control, and earned gunfire."
-agentSummary: "ParryGame targets Windows and Steam in Unity/C#. Internal 0.5.1 adds actual-shot firing feedback to open spatial training in a packaged Windows player. Automated and separate scene/HUD checks pass; human playtesting, controller feel and performance acceptance remain ahead."
+agentSummary: "ParryGame targets Windows and Steam in Unity/C#. Internal 0.5.2 adds grounded opponent returns and a fourth same-start route in a packaged Windows player. Automated and separate scene/HUD checks pass; human playtesting, controller feel and performance acceptance remain ahead."
 status: "active"
 surface: "listed"
 featured: false
@@ -12,7 +12,7 @@ tags:
   - "unity"
 repoUrls: []
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-10-16"
+lastUpdated: "2026-10-17"
 order: 1000
 labStage: "building"
 ---
@@ -58,5 +58,7 @@ Player feedback on that milestone identified a practical limit: the default trai
 Validation passed 144 domain checks, 6,350 native synthetic keyboard/gamepad and UI checks including six complete device-path routes, 121,265 imported-rig assertions and 135 original-controller checks. The Windows development build completed. Its actual D3D12 player checks passed the three open routes across 71 sampled states, seven counter lessons across 93 sampled states, and the original introduction's four reading/practice gates and both eliminations. Separate scene/HUD captures verified anatomical callouts, survivor pressure, both firing-interference policies and causal failure feedback. The delivery archive was packaged and verified against the build files.
 
 Internal 0.5.1 makes an evaded enemy shot visibly fire. Previously the committed shot could correctly miss while its firing feedback only appeared on player death. Authoritative shot records now drive the original weapon-slide motion, a brief flash and an actual-line trace without changing the three open routes' timings or scores. Validation passed 150 domain checks, 130,409 imported-rig assertions and 6,354 native synthetic input/UI checks. The Windows development build and actual D3D12 player checks passed all three open routes across 77 sampled states, including the missed-shot feedback probe, plus the retained seven counter lessons and original introduction. The delivery archive was packaged and verified against the build files.
+
+Internal 0.5.2 grounds opponent returns with alternating planted support and an original 35 mm swing-lift curve. Native leg lengths, roots, hips, combat tracks and timing remain unchanged. A fourth complete route from the same starting encounter evades a renewed survivor shot, lets that opponent approach the new lane, then counters and finishes. Validation passed 154 domain checks, 1,674 Unity import checks, 314,204 imported-rig assertions, 6,682 native synthetic input/UI checks covering eight complete device paths, and 135 original-controller checks. The Windows development build and actual D3D12 player checks passed all four open routes across 106 sampled states, additional lower-body inspection captures, the retained seven counter lessons and the original introduction. All 334 delivery archive files were verified against the packaged build.
 
 Continued human combat playtesting, physical controller flow, composited-window presentation, broader encounter feasibility, final cinematic content, complete score attack and challenge content, and packaged Windows performance still need acceptance. This internal scene is a production gate; finished-release acceptance remains ahead.
