@@ -1,0 +1,28 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-16"
+title: "Opened ParryGame training to multiple spatial routes"
+summary: "Delivered internal 0.5 with open coached choices, optional real-time play, contextual body steps and committed-line previews. Three routes from the same start pass in the packaged Windows development player."
+links: []
+source: "agent"
+---
+
+Player feedback exposed a gap in ParryGame's training: the controls worked, but the default lesson still felt like one prescribed sequence. The technique lessons taught the two counters in separate trials, and the real-time paired room was buried in the mode menu. The delivered internal 0.5.0 milestone makes open training the main entry and gives the player several choices within the same exchange.
+
+Optional stop/go coaching holds time while the player reads both opponents. After Continue, any domain-approved counter, contextual step, recovery or shot can be chosen. The selected action then plays through its actual movement and firing recovery before the next decision holds. WAIT advances to a meaningful commitment or response boundary without selecting a move. The player can also turn coaching off for real-time play, then re-enable it in the same encounter without resetting positions, enemy intentions or deadlines. The original guided introduction and individual technique lessons remain accessible.
+
+Unguarded Left, Right and Back now perform a 200 mm contextual body step over 24 simulation ticks. Holding Intercept retains the contact-counter vocabulary and crossed-contact release. These moves displace the one shared player body; they do not grant invulnerability, lengthen an arm or silently fix an unreachable contact. Side lanes and room bounds limit repeated movement. An opponent can track the player before committing its aim; after commitment, its firing line stays causal and can be evaded through position.
+
+The training HUD presents both counter alternatives and their different continuations, identifies contacts that are unavailable from the current position, and shows each opponent's tracking or locked commitment. Anatomical labels follow the player's actual aim at a wrist joint, elbow-side forearm or barrel opening; they explain the point without choosing a route. A compact floor plan draws the authoritative impact-line forecasts, body footprints and step destinations at the same scale. Step previews distinguish clear, threatened, blocked and unavailable routes. A clear preview only describes the evaluated route and landing against the current commitments; tracking opponents can still acquire it, and another decision may be needed before a later impact. Collision-clear but threatened steps remain playable choices.
+
+Three complete routes use the same seed, 1042026, the same starting world, the same first opponent and the same seeded enemy choices and defensive policies:
+
+- Direct control: counter Opponent 1 upward at the muzzle and take its earned shot, then counter and eliminate Opponent 2. Both eliminations happen from the centre, in order 1 then 2.
+- Bind and release: take Opponent 1's alternative forearm-left counter into a crossed bind, step right to release it, then return to the centre. Eliminate Opponent 2 first, answer Opponent 1's renewed crossing check and finish in order 2 then 1.
+- Spatial evade: step right after both aims lock and let Opponent 1's original shot miss. Counter and eliminate Opponent 2 from that lane, then return to the centre because Opponent 1's renewed forearm contact is physically unreachable from the right. Counter and finish Opponent 1, again in order 2 then 1.
+
+Validation passed 144 domain checks, 6,350 native synthetic keyboard/gamepad and UI checks, 121,265 imported-rig assertions and 135 original-controller checks. Native coverage includes all three complete routes through each synthetic device path, for six routes from the same initial encounter. The Windows development build completed, and its actual D3D12 player run passed the three open routes across 71 sampled states, with 142 separate scene and HUD captures, including a causal late-step failure.
+
+The retained combat player checks also passed seven counter lessons and 37 accepted actions across 93 sampled states, including both firing-interference policies, the shared pair, survivor pressure and causal failure. The original introduction passed all four reading/practice gates, its anchored callouts and both eliminations. The Windows delivery archive was packaged and verified against the build files. These automated and separate scene/HUD checks establish the internal delivery gate; human gameplay acceptance remains ahead.
+
+Human feedback prompted this change. Another hands-on pass must establish whether players can discover different sequences, read danger, understand contact reach and explain the result of their movement. Physical controller feel, composited-window presentation, authored footwork, final cinematic content and packaged performance remain acceptance work. Complete score attack, launch challenges and Steam release remain later production gates.
