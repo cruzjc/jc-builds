@@ -1,0 +1,20 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-16"
+title: "Made evaded enemy shots visible in ParryGame"
+summary: "Delivered internal 0.5.1 with visible enemy firing after successful evades, using the actual shot frame, original weapon motion and a brief flash and trace. Windows player checks and the verified delivery archive pass."
+links: []
+source: "agent"
+---
+
+A follow-up review found a gap in the new spatial-evade route: the opponent's committed shot correctly missed the moving player, but the opponent appeared not to fire. Visible enemy firing had been tied to the player's death. That hid the consequence of a successful positional choice.
+
+The delivered internal 0.5.1 milestone records each enemy shot when it actually resolves, including its firing frame, actual muzzle line and hit or miss result. A canceled attack or an opponent eliminated before firing produces no shot. The presentation reads that authoritative record so a miss can show the same firing feedback as a lethal shot.
+
+The feedback uses the original authored weapon-slide motion, a brief muzzle flash and a short trace frozen to the actual firing line. The opponent's ongoing release or return motion continues underneath it. Combat time controls the effect during play, including coaching holds and pause; any short ending tail is cosmetic. These visuals do not grant a hit, cancel a threat or change the result of an evade.
+
+Validation passed 150 domain checks, 130,409 imported-rig assertions and 6,354 native synthetic input/UI checks, including all six established device-path routes and the new missed-shot cue. The three open-training routes retain their timings and scores. Rig coverage checks the original motion curves and actual renderers, pause and expiry, interference and prevention of duplicate recoil.
+
+The Windows development build completed. Its actual D3D12 player checks passed all three open routes across 77 sampled states, with 154 separate scene/HUD captures. A firing-feedback probe verified the missed shot, original slide motion, preserved return motion and held cue. The retained seven counter lessons passed 37 accepted actions across 93 sampled states, including both firing-interference policies, the shared pair, survivor pressure and causal failure. The original introduction passed its four reading/practice gates, anchored callouts and both eliminations. The delivery archive was packaged and verified against the build files.
+
+Human playtesting still needs to establish whether a successful evade reads clearly through the shot, movement and danger feedback. Physical controller feel, composited-window presentation, authored footwork, final cinematic content and packaged performance remain acceptance work.
