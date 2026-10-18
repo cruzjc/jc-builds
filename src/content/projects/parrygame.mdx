@@ -2,7 +2,7 @@
 slug: "parrygame"
 title: "ParryGame"
 summary: "A first-person close-quarters combat game in production for Windows, centered on continuous parrying, positional control, and earned gunfire."
-agentSummary: "ParryGame targets Windows and Steam. Internal 0.8.0 delivers a wrist catch and forearm escape. Combat, native-input, staged rig, Windows GPU and archive checks passed; human acceptance, balance and final art remain ahead."
+agentSummary: "ParryGame targets Windows and Steam. Internal 0.8.1 adds player sleeve material detail with unchanged geometry and choreography. Source/import, scoped rig, Windows GPU and archive checks passed; human acceptance, balance and final art remain ahead."
 status: "active"
 surface: "listed"
 featured: false
@@ -12,7 +12,7 @@ tags:
   - "unity"
 repoUrls: []
 heroImage: "/art/project-template.svg"
-lastUpdated: "2026-10-17"
+lastUpdated: "2026-10-18"
 order: 1000
 labStage: "building"
 ---
@@ -70,6 +70,8 @@ Internal 0.7.0 adds selectable Practice and Duelist opponent profiles for open t
 Internal 0.7.1 corrects cumulative player-weapon displacement after parried shots. The actual gun now returns to its pre-shot aimed frame during the existing twelve-tick recovery, retaining the original firing record and every live enemy commitment. Repeated-input witnesses preserve four reachable defenses, then finish through a separately earned counter and controlled shot. Validation passed 229 combat checks, fresh native keyboard/gamepad integration and original-rig checks. The Windows development build passed actual D3D12 checks across nineteen retained open-training routes and seven counter lessons, plus two new paired repeated-shot routes ending in both eliminations. Synthetic input and separate scene/HUD capture do not establish physical controller feel or human acceptance. The existing original models and twenty-one-motion library are retained.
 
 Internal 0.8.0 delivers an opponent left-hand wrist catch, the player's own forearm escape and separate counter or evasive continuations. Anchored palm/wrist cues explain the contact; stop/go training also pauses at the real end of a missed catch's withdrawal. The original library contains twenty-three takes per role, preserving sixty-three earlier editable actions. Validation passed 245 domain checks, 13,196 synthetic native-input/interface checks, 135 original-controller checks and 2,940 Unity import checks. Rig stages passed separately, including six catch-related routes across 2,094 dense samples. The final Direct3D12 Windows player passed twenty-two open-training route witnesses, fourteen solo and eight paired, across 560 states; seven counter lessons across 151 states; and the original introduction's four gates and both eliminations. All 334 delivery-archive files matched the build. The compact solo-arena focus remains. Human playtesting, physical controller feel, composited-window readability and final art remain pending; the second opponent's tested shooting openings, rigid fingers, contact occlusion and sleeve/body continuity still need work.
+
+Internal 0.8.1 adds original player sleeve panels and rigid-protection material detail using the existing palette and geometry. All 69 editable actions and 23 takes per role are preserved. Final import and scoped hand/skin checks passed, including six catch routes across 2,094 dense samples; the broader rig suite belongs to an earlier placement with identical physical signatures. The final Direct3D12 player passed 22 open-training route witnesses across 560 states, seven counter lessons across 151 states, and the original introduction's four gates and both eliminations. All 334 archive files matched the build. Sampled views show a modest rotational reference at some angles, with low contrast and dark contact occlusion still present. Upper-arm ends, rigid fingers, sleeve/body continuity and human acceptance remain unfinished.
 
 The broader design direction is circular positional counterplay: a successful move should change the situation and expose a different answer, so repeating one technique is not an easy universal win. Open training already shares its combat mechanics with full-speed play, while slow motion and stop/go assistance belong to training. Practice and Duelist are implemented in both solo and paired development scenarios; broader opponent tuning and adaptive behavior remain planned. The focused first-release candidate would use one compact duel arena and concentrate detail in original character models, first-person hands, weapons and paired animation, with complete contact, release and recovery coverage reviewed by humans in slow and normal motion. Larger content counts are expansion planning. Final art and those wider design goals remain unfinished and unaccepted.
 
