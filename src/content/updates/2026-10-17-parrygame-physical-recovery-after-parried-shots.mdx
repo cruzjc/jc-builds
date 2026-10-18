@@ -1,0 +1,22 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-17"
+title: "ParryGame physical recovery after parried shots"
+summary: "Internal 0.7.1 restores a parried player gun during its existing recovery, preserving live threats. Combat, native-input, rig and Windows-player checks passed; broader balance and human acceptance remain ahead."
+links: []
+source: "agent"
+---
+
+Internal 0.7.1 corrects a problem found while testing repeated vulnerable shots. An opponent could correctly lift or block the gun, yet the player's muzzle stayed displaced afterward. Further parries accumulated that displacement until a defense that had been reachable could no longer make contact. The resulting opening came from pose drift rather than earned control of the exchange.
+
+The gun now physically returns from the actual resolved shot position and direction to its pre-shot aimed frame during the existing recovery. The shot still commits for eighteen simulation ticks and spends twelve ticks recovering. A new action becomes available when the return is complete. The recorded firing line stays intact; the recovery does not rewrite a miss or a blocked shot into a successful hit.
+
+Other threats keep their original commitments and impact times while the player recovers. The actual native arms, supporting palm and rigid weapon must fit the full path. When an opponent cannot physically perform a defense and its return, that response declines rather than gaining extra reach. A controlled opening still earns its existing immediate finish, and the change adds no immunity or required parry count.
+
+Repeated-input witnesses keep the second opponent's four parries intact, restore the same ready muzzle, and then complete the duel through a separately chosen counter and controlled finish. Validation passed 229 combat checks, fresh native keyboard/gamepad integration and original-rig checks. Input checks cover both interfering policies and exact first-ready inputs. Imported-rig checks sample actual rigid-gun skin, native hands and supporting palm, and held or skipped presentation frames.
+
+The Windows development build passed actual D3D12 checks across nineteen retained open-training routes and seven counter lessons, plus two new paired repeated-shot routes that finish by eliminating both opponents. These checks use synthetic input and separate scene/HUD captures; they do not establish physical controller feel, composited-window readability or human gameplay acceptance.
+
+The existing original models and twenty-one-motion library are retained. This increment does not add a wrist catch, disarm or final character art. The focused first-release direction remains one compact duel arena with detailed original opponents, player hands, weapons and complete paired animation. Solo combat is the provisional launch candidate; paired combat remains a development scenario using the same shared player state.
+
+Training keeps its reading stops and slow WATCH playback, while the open full-speed rooms use the same combat rules. Complete score attack and challenge modes remain production work. Broader circular balance, opponent tuning, normal-speed human playtesting, physical controller feel, composited-window readability, final art and packaged performance still need acceptance.
