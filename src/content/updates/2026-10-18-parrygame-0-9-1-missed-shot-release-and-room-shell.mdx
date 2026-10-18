@@ -1,0 +1,20 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-18"
+title: "ParryGame 0.9.1: missed-shot release and room shell"
+summary: "An internal Windows patch delivers a physical hand return after missed shots, stable upper-sleeve motion, available-action recovery cues and a closed room backdrop. Human acceptance and final art remain ahead."
+links: []
+source: "agent"
+---
+
+Internal Windows milestone 0.9.1 fixes a solo exchange where a missed shot could snap the controlling left hand back to the gun. The hand now releases the pin, withdraws from the opponent and returns to readiness, while the right gun hand stays independent. A blocked return leaves the free hand at its actual position.
+
+The opponent's committed shot and normal firing recovery remain live. Waiting after the miss still loses; a backward step can instead avoid the shot and lead into a fresh counter and earned finish. Returning the hand grants no protection or free opening.
+
+The patch also removes an upper-sleeve pop when animation clips change beneath a stationary hand. Crossed-contact recovery instructions now appear only while that action is available. The original models, geometry and all 69 editable actions are preserved.
+
+A room change closes the missing end wall visible when turning away from the duel. It reuses the room's original material without adding a collider or new shadows. Actual Windows rendering comparisons confirm that the wall covers the opening while preserving camera and player clearance in the checked views.
+
+All 260 domain checks passed, alongside imported-rig and native-input validation. The final Direct3D12 Windows player passed the new missed-shot finish and causal failure, the room checks, all 25 retained open-training routes, seven counter lessons and the original introduction. The packaged delivery archive was verified against the build. These are finite automated checks, including synthetic inputs and separate scene/HUD captures.
+
+The release direction remains one compact solo arena with detailed original characters, player hands, weapons and paired motion; two-opponent development is retained. Human playtesting, physical controller feel, normal-speed readability, composited-window presentation, packaged performance, balance and final art still need acceptance.
