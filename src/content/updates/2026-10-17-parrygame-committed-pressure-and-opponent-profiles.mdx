@@ -1,0 +1,22 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-17"
+title: "ParryGame committed pressure and opponent profiles"
+summary: "Internal 0.7.0 adds Practice and Duelist profiles, contested forearm contact and several complete responses. Automated, Windows-player and delivery-archive checks passed; human acceptance and broader balance remain ahead."
+links: []
+source: "agent"
+---
+
+Internal 0.7.0 adds a choice between Practice and Duelist opponent profiles. Practice retains the earlier open-training behavior. Duelist adds one conditional continuation: an opponent who rolls free of an incomplete palm pin can keep a committed shot live while the player seeks another contact. The opponent commits to that pressure in advance; the response does not read a future player input or roll an extra chance of success.
+
+The distinction is visible at the forearm. Reaching it can establish contact while the muzzle still threatens the player. Holding that contact alone does not cancel the shot or earn an opening. A further physical redirect must finish before impact and clear the actual firing line. The coaching card distinguishes acquiring the arm from completing the clear, and the opponent's live commitment remains part of the decision.
+
+Complete alternatives include taking the earlier earned opening, acquiring the forearm and then clearing it, approaching the wrist and redirecting it, or stepping clear of the shot and reengaging later. A paired route gives priority to the second opponent before returning to the first. Each path respects one shared player body and hand: switching opponents releases the previous contact. Early steps and interrupted shots preserve continuous weapon motion and the original shot commitment.
+
+The selected profile is shown in open training and remains the same when coaching is switched on or off. Stop/go holds and slow WATCH playback help examine the exchange; full-speed play uses the same authoritative combat. Selecting a different profile starts a fresh encounter, while retrying preserves the current selection. The guided introduction and technique lessons keep their existing assistance.
+
+Validation passed 219 domain checks, 9,984 native synthetic keyboard/gamepad and HUD assertions, 356,642 imported-rig assertions, 1,810 import checks and 135 retained original-controller checks. Native coverage includes 38 complete device paths and two new causal failures. The final Windows development player passed actual D3D12 checks across nineteen complete open-training routes, eleven solo and eight paired, with 457 main sampled states and six lower-body inspection states. The retained seven counter lessons and original introduction also passed. Final HUD spot checks passed, and all 334 delivery-archive files were verified against the packaged build. Synthetic input and offscreen rendering do not establish physical controller feel or human gameplay acceptance.
+
+This increment uses the existing original models and twenty-one-motion library. Detailed final characters, player hands, weapons and paired animation remain production work. The first-release direction is one compact duel arena with a provisional solo roster, while paired combat remains a development scenario. That focus allows more attention to contact, release, recovery and camera clearance before increasing the content count.
+
+The two profiles are a narrow mechanics increment. Human playtesting at slow and normal speed, physical controller feel, broader circular balance, adaptive opponent behavior and difficulty tuning, final art, complete score attack and challenge content, composited-window presentation and packaged performance still need acceptance. This is internal development toward a finished Windows game, with Steam release work still ahead.
