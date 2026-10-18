@@ -1,0 +1,24 @@
+---
+projectSlug: "parrygame"
+date: "2026-10-17"
+title: "ParryGame forearm roll and regrip exchange"
+summary: "Internal 0.6.0 adds an opponent forearm-roll escape, actual hand travel and a regrip or step decision. Automated, Windows-player and delivery-archive checks passed; human feel and broader balance remain ahead."
+links: []
+source: "agent"
+---
+
+Internal 0.6.0 adds a first opponent answer to an incomplete palm pin. After the player chooses a bind, the opponent can perform its already committed forearm roll, changing the actual cuff, armed hand and gun orientation until the pin releases. Both solo and paired open training use this exchange, with the same rules in coached and real-time play.
+
+The family-specific roll turns through ninety degrees. The player's left hand follows the pinned material point until release, then visibly travels to a free ready pose. A new aimed Forearm Right action takes a separate 24-tick approach; it establishes control only when the palm arrives inside the declared opportunity. Hand ownership distinguishes held contact, release, approach and established control. Addressing the other opponent must release the previous contact rather than leave an unsupported pin behind.
+
+This is one continuation among alternatives. An early wrist recovery, a contextual step or a vulnerable shot can change the exchange, and the existing quick earned-opening route remains available. In the paired room, the other committed threat continues through the chosen action. Training holds and slow WATCH playback expose the roll, release and regrip decision boundaries without selecting a response for the player. Anatomical callouts show actual hand reach and distinguish a reachable point from an admitted, correctly timed control motion.
+
+The solo probe also makes the regrip's present benefit concrete. Before regripping, the aimed shot lands in one of the three public possible defensive-response scenarios. Completing the regrip raises landing to three of three. At each sampled pre-regrip shot start, the player also survives that shot's 30-tick recovery in all three scenarios. Those are calculated scenario fractions within the stated action horizon, not measured human accuracy or a promise of safety after the next decision. The current solo regrip approach is unopposed by a new lethal commitment, so this result does not establish a balanced opponent or risk in every continuation.
+
+Two new original Blender paired takes bring the library to twenty-one motions per role. The existing nineteen takes in each role retain their original curves. Runtime motion follows the actual hand and weapon frames, including forearm-cuff rotation through a shot interruption or return. Native limb lengths and the original models remain unchanged. The gloves still have no individual finger rig; this milestone does not claim a detailed finger lock, disarm or finished cinematic hand performance.
+
+Validation passed 198 domain checks, 1,810 Unity import checks, 325,610 imported-rig assertions, 8,255 native synthetic keyboard/gamepad and HUD checks, and 135 retained original-controller checks. The rig coverage includes 446 dense new-exchange samples and the retained 183,795 grounded-footwork assertions. Native transport coverage includes 26 complete device paths across keyboard and gamepad input, including the four new routes through both transports.
+
+The Windows development build and actual D3D12 open-training checks passed thirteen complete routes: six solo and seven paired. These include the earliest and latest accepted regrips, a step-and-reengage route and a paired priority route. The player captures cover 283 main sampled states and six lower-body inspection states, with separate scene and HUD images. Retained counter-player coverage passed seven lessons and 37 accepted actions across 93 sampled states, including both early-shot defenses, paired combat, survivor pressure and a causal failure. The original introduction passed its four reading/practice gates, both eliminations and anchored callouts. All 334 delivery archive files were verified against the packaged build. Offscreen rendering and synthetic device checks do not establish physical controller feel or human gameplay acceptance.
+
+Human playtesting must still assess the exchange at slow and normal speed, the clarity of the free hand and regrip, and whether repeated choices have readable consequences. Adjustable AI profiles, broader circular balance, disarms and body pivots remain future work. The focused arena, detailed final character and hand models, physical controller feel, composited-window presentation and packaged performance also remain acceptance work. This is an internal mechanics increment, not a Steam release or finished-game claim.
