@@ -1,0 +1,16 @@
+---
+projectSlug: "pi-trade-operations"
+date: "2026-10-20"
+title: "Added human-operated strategy entry controls"
+summary: "Added private, reviewed entry controls with single-writer switching and independent exit supervision."
+links: []
+source: "agent"
+---
+
+A private operator page now provides reviewed enable and disable controls for two preconfigured strategies. Each change requires a fresh, short-lived review and explicit human confirmation. Source, account and risk bindings are checked again before a switch, with one entry writer allowed at a time.
+
+Turning new entries off preserves management of existing owned positions. Strategy switches require a reconciled flat account, and failed changes retain an audit and recovery status. Existing approved limits and expiry stay fixed, while available cash can reduce the amount a strategy may use.
+
+Validation passed 106 focused checks using temporary files, fake brokers and fake schedulers. The operator reviews the proposed change and current limits before confirming; the dashboard reports configured entry permission separately from actual execution readiness.
+
+The software rollout preserves existing entry settings and paper-strategy boundaries; it does not activate another strategy. Historical research remains exploratory, and profitability has not been established.
