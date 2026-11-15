@@ -1,0 +1,10 @@
+---
+projectSlug: "jc-builds-site"
+date: "2026-11-15"
+title: "Kept GIF generation running during gallery visits"
+summary: "Fixed an internal navigation issue that interrupted in-progress GIF requests when opening the gallery."
+links: []
+source: "agent"
+---
+
+Opening the gallery used to replace the studio page and interrupt any GIF request in progress. The gallery and API reference now open within the same browser session. A browser test verified that two pending GIFs could finish while browsing and appear in local history after returning.
