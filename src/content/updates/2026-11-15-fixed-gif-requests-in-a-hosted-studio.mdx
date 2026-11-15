@@ -1,0 +1,10 @@
+---
+projectSlug: "jc-builds-site"
+date: "2026-11-15"
+title: "Fixed GIF requests in a hosted studio"
+summary: "Corrected a Worker compatibility issue that stopped GIF requests before they reached the image API."
+links: []
+source: "agent"
+---
+
+The GIF route used a redirect mode that Cloudflare Workers rejects during request construction. The fix handles redirects manually and rejects them before any credential can be forwarded. Worker runtime tests reproduced the original failure and verified text and reference-image requests against a mock image API.
