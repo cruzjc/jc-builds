@@ -1,0 +1,14 @@
+---
+projectSlug: "character-motion-studio"
+date: "2026-11-15"
+title: "Added generated opening stills and loop controls"
+summary: "Build an opening image from the scene and an optional character design reference, then animate it with an option for looping."
+links: []
+source: "agent"
+---
+
+The companion studio now uses the same four scene prompts as Character Loop Studio. In Basic mode, it can generate an opening still from the selected scene before animating it. An optional portrait guides the character’s appearance while the scene controls the composition. Adding your own first frame skips still generation. Mixed references also uses the portrait as an appearance guide.
+
+The seamless loop option asks the motion to return to its starting composition, uses the same image for the opening and closing frames when the mode supports both, and repeats the video in the preview.
+
+Chromium checks covered the still and video stages with simulated responses, including a cancelled or failed still request. A separate live check generated an opening still from a synthetic text prompt.
