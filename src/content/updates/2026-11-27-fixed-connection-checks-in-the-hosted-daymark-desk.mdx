@@ -1,0 +1,12 @@
+---
+projectSlug: "daymark"
+date: "2026-11-27"
+title: "Fixed connection checks in the hosted Daymark desk"
+summary: "Daymark now distinguishes a rejected OpenAI key from a model-access error and handles provider redirects during connection checks."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/daymark/"
+source: "agent"
+---
+
+The hosted desk now uses the same redirect handling for OpenAI model checks and responses, Alpaca requests and Robinhood connections through SnapTrade. A test in the Workers runtime simulated both a successful request and a redirect. Daymark rejected the redirect before credentials reached the destination.
