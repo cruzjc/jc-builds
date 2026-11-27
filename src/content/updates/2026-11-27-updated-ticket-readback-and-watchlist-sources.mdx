@@ -1,0 +1,16 @@
+---
+projectSlug: "daymark"
+date: "2026-11-27"
+title: "Added a market calendar and automatic ticket readback"
+summary: "Daymark reads new tickets between turns, builds the connected watchlist from holdings and research, and shows upcoming market events in Calendar."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/daymark/"
+source: "agent"
+---
+
+During a hands-free conversation, Daymark waits for a pause between turns before reading each newly arrived broker ticket aloud. Saying **Skip this order** leaves the ticket pending and moves on. After the full readback, submitting requires the owner to say the paper or live confirmation phrase and the four digits for that ticket.
+
+The connected watchlist now contains only positions from the selected portfolio and symbols in the premarket brief currently on screen. A symbol appearing in both gets one row. When neither source supplies a symbol, the watchlist stays empty.
+
+Calendar shows upcoming earnings and other dated catalysts identified in the premarket research, with links to the sources and a label for estimated or confirmed dates. It also marks exchange holidays and early closes.
