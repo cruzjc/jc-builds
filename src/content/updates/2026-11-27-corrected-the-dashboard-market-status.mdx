@@ -1,0 +1,18 @@
+---
+projectSlug: "daymark"
+date: "2026-11-27"
+title: "Corrected market status and added OpenAI controls"
+summary: "Daymark refreshes the dashboard across session changes. Owners can adjust OpenAI preferences and inspect provider calls in the advisory log."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/daymark/"
+source: "agent"
+---
+
+The dashboard could still say **Market closed** after the opening bell because it was displaying a premarket snapshot. Daymark now checks the market clock independently of advisory scans and refreshes the status when the regular session opens or closes, including on early-close days.
+
+A message from an earlier scan about the market being closed also clears when the session opens.
+
+The OpenAI settings now expose service tier, reasoning mode, and reasoning effort. Owners can change these preferences from the desk and use the advisory log to see which provider calls ran and what they returned.
+
+Each OpenAI call shows an estimated cost when pricing is available. The total covers the priced calls currently displayed in the log.
