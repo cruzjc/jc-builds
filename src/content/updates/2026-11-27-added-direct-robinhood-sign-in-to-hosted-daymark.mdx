@@ -1,0 +1,18 @@
+---
+projectSlug: "daymark"
+date: "2026-11-27"
+title: "Added direct Robinhood sign-in to hosted Daymark"
+summary: "Daymark now opens Robinhood for sign-in and consent. The owner can select a dedicated Agentic account and confirm eligible orders one ticket at a time."
+links:
+  - label: "Project page"
+    url: "https://d449i4mct1wst.cloudfront.net/projects/daymark/"
+  - label: "Robinhood onboarding guide"
+    url: "https://robinhood.com/us/en/support/articles/onboarding-an-external-agent/"
+source: "agent"
+---
+
+From Connections in the private Daymark site, the owner can open Robinhood's sign-in page and review the requested permissions there. After returning to Daymark, the owner selects the dedicated Robinhood Agentic account in Settings.
+
+Each direct order requires a separate confirmation in Daymark. Tickets support whole-share stock and ETF limit orders that expire at the end of the trading day. Robinhood may also ask the owner to approve the order in its app.
+
+Robinhood returned Daymark's hosted HTTPS callback during client registration. The hosted connection opened the Robinhood sign-in page in a signed-out browser. Tests of the return to Daymark and order handling used simulated broker responses. If Robinhood declines a connection from an unlisted platform, its onboarding guide directs the owner to Support.
